@@ -1,0 +1,163 @@
+section .card-img-top {
+  width: 100px;
+  height: 100px;
+}
+
+.card-body {
+  font-size: 20px;
+  text-align: justify;
+}
+
+.body .card {
+  border: none;
+  background-color: #fff;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.body .card:hover {
+  transition: 0.5s;
+  box-shadow: 10px 10px 37px rgba(0, 0, 0, 0.25);
+}
+
+.section-3 {
+  width: 100%;
+}
+
+.section-3 .content {
+  width: 96%;
+  background-color: #1192e5;
+  top: 0px !important;
+  left: 0 !important;
+}
+
+.section-3 .image {
+  width: 100%;
+  border: none;
+  margin-right: -2px;
+}
+
+.section-3 .text {
+  text-align: left;
+}
+
+.figures {
+  line-height: 1;
+  width: 100%;
+}
+
+.fig .head {
+  font-size: 35px;
+  color: white;
+  font-weight: 700;
+}
+
+.section-4 {
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 426px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .banner .content {
+    top: 10px;
+    margin-top: 25px;
+  }
+
+  .section-3 {
+    flex-direction: column !important;
+  }
+
+  .section-3 .image img {
+    width: 100%;
+  }
+
+  .section-3 .content {
+    width: 100% !important;
+  }
+
+  .figures {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+  }
+
+  .section-2 .body,
+  .secton-4 .body {
+    overflow: hidden;
+  }
+
+  .section-2 .row,
+  .section-4 .row {
+    flex-direction: column;
+  }
+
+  .section-2 .card,
+  .section-4 .card {
+    width: 100% !important;
+    margin: 20px 0 !important;
+  }
+}
+
+/* Responsive Style */
+
+@media (max-width: 991px) and (min-width: 427px) {
+  .section-2 .body {
+    align-items: center !important;
+    flex-direction: column !important;
+  }
+
+  .section-2 .body .row,
+  .section-4 .body .row {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .card-1 {
+    margin: 10px 0px !important;
+    width: 100% !important;
+  }
+
+  .section-3 {
+    flex-direction: column !important;
+  }
+
+  .section-3 .content {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 990px) {
+  .card-1 {
+    margin: 0 !important;
+  }
+
+  .content .text .heading {
+    font-size: 35px;
+  }
+
+  .content .text .body {
+    font-size: 17px;
+  }
+
+  .fig .head {
+    font-size: 30px;
+  }
+
+  .figures {
+    flex-direction: column;
+  }
+
+  .content .text {
+    margin: 0 !important;
+    padding-top: 35px !important;
+  }
+}
+
+@media (max-width: 769px) {
+  .section-3 .content {
+    top: -1px !important;
+  }
+}

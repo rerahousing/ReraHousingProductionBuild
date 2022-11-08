@@ -1,0 +1,51 @@
+.section-6 .card {
+  border: none;
+  border-radius: 0;
+  background-color: #f2f8fe;
+  cursor: pointer;
+}
+
+.section-6 .card:hover {
+  z-index: 1;
+  transition: 0.5s;
+  transform: scale(1.1, 1.1);
+  box-shadow: 4px 4px 25px rgba(0, 98, 255, 0.25);
+  background-color: #fff;
+}
+
+.section-6 .card .link {
+  color: #1192e5;
+  display: flex;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  line-height: 24px;
+  margin-top: auto;
+  text-decoration: none;
+}
+
+.section-6 .gx-6 {
+  --bs-gutter-x: 6rem;
+}
+
+.section-6 .btn {
+  width: fit-content;
+  background-color: #1192e5;
+}
+
+@media (max-width: 544px) {
+  .section-6 .gx-6 {
+    --bs-gutter-x: 0rem;
+  }
+
+  .section-6 {
+    padding: 0px 50px;
+  }
+  .section-6 .card_image {
+    width: 40%;
+  }
+
+  .section-6 h2 {
+    font-size: 40px !important;
+  }
+}

@@ -1,0 +1,220 @@
+.map_projectlist {
+  background-color: #fff;
+}
+
+.property-display .card-body {
+  background-color: #fff;
+  display: inline-block;
+  vertical-align: top;
+  min-height: 255px;
+  position: relative;
+  width: 100%;
+  padding: 18px 18px 40px;
+}
+.dev-logo {
+  top: 200px;
+  position: absolute;
+  z-index: 1;
+  right: 18px;
+  line-height: normal;
+  display: inline-block;
+  width: 42px;
+  height: 42px;
+  background: #fff;
+  padding: 4px 2px;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0 0 4px #999;
+}
+
+.property-display .card .badge {
+  background-color: #1192e5;
+  top: -13px;
+  position: absolute;
+  z-index: 1;
+  left: 12px;
+  font-size: 17px;
+  font-weight: normal;
+  width: 117px;
+  height: 31px;
+}
+
+.property-display .card {
+  cursor: pointer;
+}
+
+.property-display .rera-no {
+  display: inline-block;
+  vertical-align: top;
+  max-width: 100%;
+  height: 20px;
+  position: relative;
+  font-size: 16px;
+}
+
+.mr-3 {
+  margin-right: 10px;
+}
+
+.property-display .rera-no label {
+  margin: 0px 0 0 7px;
+  font-weight: normal;
+  max-width: 153px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  vertical-align: top;
+}
+
+.property-display .developer {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.property-display p {
+  margin: 5px 0 1px 0px;
+  padding: 0px;
+  position: relative;
+  z-index: 1;
+  font-size: 16px;
+}
+
+.price-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 0px;
+  width: 96%;
+  left: 2%;
+  height: 70px;
+  padding: 20px 10px;
+  border-top: solid 1px #ccc;
+}
+
+.property-display .price-bottom .btn {
+  background: #f1f7fd;
+  border: none;
+  color: #1192e5;
+  font-size: 25px;
+}
+
+.price-bottom .price {
+  color: #1192e5;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.property-display .property-name {
+  padding: 0px;
+  margin: 8px 0px 10px;
+  font-size: 20px;
+  font-weight: bold;
+  white-space: nowrap;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.property-display .card .card-img-top {
+  width: 100%;
+  object-fit: cover;
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+
+.property-display .heading {
+  margin: 23px 0 8px 0px;
+}
+
+.property-display .heading h2 {
+  font-size: 24px;
+}
+
+.col-5 {
+  width: 30.24%;
+}
+
+.property-card-basic {
+  background: #fff;
+  margin: 20px 20px;
+  display: inline-block;
+  vertical-align: top;
+  padding: 0px;
+  color: #333;
+  font-size: 13px;
+  position: relative;
+  border: solid 1px #ccc;
+  border-radius: 4px;
+}
+
+.more-filter .btn,
+.more-filter .dropdown .btn {
+  border: 1px solid #dadada;
+  margin-left: 20px;
+  background-color: #fff;
+}
+
+.property-card-basic:hover {
+  background: #fff;
+  box-shadow: 0 14px 35px rgb(0 0 0 / 23%);
+  transition: ease 0.5s;
+}
+
+.d-inline-block {
+  display: inline-block !important;
+}
+
+.header {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  padding: 5px 22px 5px 17px;
+  position: relative;
+  margin: 23px 0 8px 0px;
+}
+
+.header h2 {
+  font-size: 24px;
+  width: auto;
+  padding-left: 0px;
+  display: inline-block;
+}
+
+.header .more-filter {
+  float: right;
+  width: auto;
+  padding-right: 1px;
+}
+
+@media (max-width: 1200px) {
+  .col-5 {
+    width: 29.7%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .col-5 {
+    width: 33%;
+  }
+
+  .filter-container {
+    width: 100%;
+    justify-content: center !important;
+  }
+
+  .navbar {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 544px) {
+  .col-5 {
+    width: 100%;
+    margin: 15px 0 !important;
+  }
+}

@@ -1,0 +1,132 @@
+.footer {
+  width: 100%;
+  padding: 90px 80px;
+  position: relative;
+  height: auto;
+  background: linear-gradient(
+    180deg,
+    #f2f8fe 0%,
+    rgba(242, 248, 254, 0.988646) 25.52%,
+    rgba(240, 246, 252, 0.939446) 41.67%,
+    rgba(239, 244, 250, 0.880208) 62.4%,
+    rgba(217, 217, 217, 0) 100%
+  );
+}
+.footer .col {
+  width: 190px;
+  height: auto;
+  float: left;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  padding: 0px 20px 20px 20px;
+}
+.footer .col h1 {
+  font-size: 16px;
+  line-height: 1.44;
+  margin: 0;
+  letter-spacing: -0.05px !important;
+  margin-bottom: 2px;
+  padding: 0;
+  padding: 20px 0px 5px 0px;
+  font-family: "Open Sans";
+  color: #273653;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+}
+.footer .col ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.footer .col ul li {
+  color: #999999;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: bold;
+  padding: 5px 0px 5px 5px;
+  cursor: pointer;
+  transition: 0.2s;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+}
+.social ul li {
+  display: inline-block;
+  padding-right: 5px !important;
+}
+
+.footer .col ul li:hover {
+  color: #1192e5;
+  transition: 0.1s;
+  -webkit-transition: 0.1s;
+  -moz-transition: 0.1s;
+}
+
+.social {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.social li i {
+  font-size: 26px;
+  color: #273653;
+}
+.clearfix {
+  clear: both;
+}
+
+.social ul li {
+  padding: 5px 0px 5px 26px !important;
+}
+
+/* .social ul li:hover {
+  background-color: #e5e5e5;
+} */
+@media only screen and (min-width: 1280px) {
+  .contain {
+    width: 1200px;
+    margin: 0 auto;
+  }
+}
+@media only screen and (max-width: 1139px) {
+  .contain .social {
+    width: 1000px;
+    display: block;
+  }
+  .social h1 {
+    margin: 0px;
+  }
+}
+@media only screen and (max-width: 950px) {
+  .footer .col {
+    width: 33%;
+  }
+  .footer .col h1 {
+    font-size: 14px;
+  }
+  .footer .col ul li {
+    font-size: 13px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .footer .col {
+    width: 50%;
+  }
+  .footer .col h1 {
+    font-size: 14px;
+  }
+  .footer .col ul li {
+    font-size: 13px;
+  }
+}
+@media only screen and (max-width: 380px) {
+  .footer {
+    padding: 90px 50px;
+  }
+
+  .footer .col {
+    width: 100%;
+  }
+}

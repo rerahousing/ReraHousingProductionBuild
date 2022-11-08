@@ -1,0 +1,33 @@
+.section-9 .card .card-img-top {
+  object-fit: cover;
+}
+
+.section-9 .card {
+  padding: 22px 70px;
+  background-color: #1192e5;
+  color: #fff;
+}
+
+.profile-text {
+  margin-left: 23px;
+}
+
+.quote {
+  position: relative;
+  top: 30px;
+  left: 30px;
+  width: 10%;
+  z-index: 1;
+}
+
+.profile-name {
+  margin: 0 !important;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 1025px) {
+  .section-9 .card {
+    padding: 22px 8px;
+  }
+}

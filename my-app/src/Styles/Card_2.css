@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700");
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+
+.card__author {
+  font-weight: 500;
+  font-size: 20px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.section-5 .card {
+  height: 300px;
+  background-size: cover;
+}
+
+.section-5 .card-title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  position: absolute;
+  top: 0;
+  margin: 16px 0 0 9px;
+  color: #fff;
+}
+
+.section-5 .button {
+  position: absolute;
+  margin-left: 25px;
+  bottom: 24px;
+}
+
+.section-5 .title {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.section-5 .card_group .button {
+  float: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.section-5 .card_group .btn {
+  opacity: 0.9;
+  box-shadow: 0 2px 8px #000;
+  color: #273653;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.view-button {
+  width: 66%;
+  width: 66%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.section-5 .view-buttona .btn {
+  font-size: 22px;
+  background-color: #1192e5;
+}
+
+/* .section-5 .card .image {
+  background-size: contain;
+} */
+
+.section-5 .card .image img {
+  width: 150px;
+  height: 150px;
+  align-self: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 426px) {
+  .section-5 .card_group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .section-5 .row {
+    height: auto !important;
+  }
+}
+
+.section-5 .card {
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 1.4rem 6rem -2rem rgb(108 129 171);
+}
+
+.section-5 .image img {
+  width: 100%;
+}
+
+.card_info {
+  color: black;
+  padding: 20px;
+}
+
+.section-5 .card .image {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100%;
+}
+
+.section-5 .card:hover {
+  transform: scale(1.1);
+  transition: ease-in 0.2s;
+}
+
+@media (max-width: 1025px) {
+  .section-5 .row {
+    height: auto !important;
+  }
+
+  .section-5 .col-12 {
+    display: flex !important;
+    justify-content: center !important;
+  }
+}

@@ -1,0 +1,489 @@
+body {
+  background-color: #f2f8fe;
+  font-family: "Open Sans";
+  letter-spacing: -1px;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.banner {
+  background: url("../Resources/pic1.jpg") top right,
+    linear-gradient(
+      0deg,
+      #265eba 0%,
+      #275eb9 27.12%,
+      #2658af 40.65%,
+      #264ea3 54.44%,
+      #274897 61.07%,
+      #25274d 96.39%
+    );
+  width: 100%;
+  height: 640px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  float: right;
+  overflow: hidden;
+}
+
+.content {
+  width: fit-content;
+  position: relative;
+  top: 130px;
+  left: 100px;
+  width: 40%;
+}
+
+.section-2,
+.section-4,
+.section-5,
+.section-6,
+.section-7,
+.section-9 {
+  margin: 90px 80px;
+}
+
+.content .heading {
+  font-size: 54px;
+  color: white;
+  font-weight: 800;
+}
+
+.content .body {
+  color: white;
+  font-size: 20px;
+  margin-top: 18px;
+}
+
+.search {
+  width: fit-content;
+}
+
+.section-6 {
+  margin: 160px 0;
+  margin-bottom: 60px;
+}
+
+.section-2 .text {
+  text-align: center;
+}
+
+.carousel-item .card-group {
+  display: flex;
+  flex-direction: row;
+}
+/* Responsive Styling */
+@media (max-width: 992px) {
+  .banner {
+    background-size: cover;
+  }
+}
+
+@media (max-width: 578px) {
+  .services {
+    flex-direction: column !important;
+  }
+  .text {
+    width: 100%;
+    left: 0;
+  }
+}
+
+.section-5 {
+  margin-top: 100px !important;
+}
+
+.highlight {
+  color: #1192e5;
+}
+
+.our-services-card {
+  margin-top: 36px;
+  padding: 19px 15px;
+  background-color: #fff;
+  outline: 2px solid #1192e5;
+}
+
+.our-services-card .card {
+  width: 100px;
+  height: 100px;
+}
+
+.services2 .head {
+  font-size: 35px;
+}
+
+.services2 .body {
+  font-size: 20px;
+}
+
+.section-9 {
+  margin-bottom: 150px !important;
+}
+
+.content .text .heading {
+  font-size: 65px;
+}
+
+.content .text .body {
+  font-size: 25px;
+  text-align: justify;
+}
+
+.title {
+  font-size: 36px;
+  color: #273653;
+  font-weight: bold;
+  line-height: 48px;
+  margin-bottom: 56px;
+}
+
+.card-title {
+  font-size: 25px;
+  line-height: 28px;
+  color: #273653;
+  font-weight: bold;
+}
+
+.card-text {
+  color: #55585e;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.section-lable {
+  color: #1192e5;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  line-height: 16px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.section-10 {
+  background: url("../Resources/eco_house_03.png") top right, #1192e5;
+  background-size: contain;
+  text-align: left;
+  padding: 60px 0;
+  background-repeat: no-repeat;
+}
+
+.section-10 .box input[type="submit"] {
+  position: relative;
+  width: 150px;
+  top: 2px;
+  height: 50px;
+  padding: 1px 0 0px 0px;
+  border: none;
+  outline: 1px #fff solid;
+  cursor: pointer;
+  background: #1192e5;
+  color: #fff;
+  margin: -2px 0;
+}
+
+.section-10 .box input[type="submit"]:hover {
+  background-color: #fff;
+  color: #1192e5;
+  transition: 0.3s ease-in-out;
+}
+
+.section-10 .box select {
+  position: relative;
+  border: none;
+  bottom: 0;
+  height: 50px;
+  background: #fff;
+  font-size: 19px;
+  padding: 9px 16px 12px;
+  margin: 0px;
+  border-right: 15px solid #fff;
+}
+
+.section-10 .seclect-group {
+  outline: 1px solid #fff;
+}
+
+.section-10 .wrapper {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1512px;
+  padding: 0 180px;
+}
+
+.section-10 .description {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 160%;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.section-10 .title {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.section-11 {
+  background: url("../Resources/banner-image.png") bottom left, #1192e5;
+  background-size: contain;
+  color: #fff;
+  margin-top: 180px;
+  padding: 56px 0px 44px 0px;
+  background-repeat: no-repeat;
+}
+
+.section-11 .title {
+  font-size: 20px;
+  letter-spacing: -0.5px;
+  line-height: 28px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.section-11 .description {
+  font-size: 18px;
+  font-weight: normal;
+  letter-spacing: 0.01em;
+  line-height: 28px;
+  color: white;
+}
+
+.section-11 .link {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.section-7 .title {
+  margin-bottom: 18px;
+}
+
+.text-container {
+  padding: 0px 58px;
+}
+
+.section-5 .view-button .btn {
+  background-color: #1192e5;
+  font-size: 20px;
+}
+
+.section-5 .view-button .btn p {
+  display: inline;
+}
+
+.our-services-card .img-fluid {
+  width: 66px;
+}
+
+.services2 .row {
+  width: 100%;
+  margin: 0;
+}
+
+@media (max-width: 540px) {
+  .section-2,
+  .section-4,
+  .section-5,
+  .section-6,
+  .section-7,
+  .section-9 {
+    margin: 80px 20px;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .section-10 .wrapper {
+    padding: 0 20px;
+  }
+
+  .section-10 .box select {
+    width: 128px;
+    font-size: 12px;
+    padding: 9px 4px 12px;
+    height: 40px;
+  }
+
+  .section-9 .card {
+    padding: 25px;
+  }
+
+  .section-11 {
+    background: #1192e5;
+  }
+
+  .section-lable {
+    font-size: 14px;
+  }
+
+  .section-10 .box input[type="submit"] {
+    padding: 0 7px;
+    height: 40px;
+  }
+
+  .figures {
+    flex-direction: column;
+  }
+
+  .text-container {
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+
+  .section-5 .title {
+    justify-content: center;
+  }
+
+  .section-5 .view-button {
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 769px) {
+  .title {
+    font-size: 30px;
+    line-height: 40px;
+    margin-bottom: 48px;
+  }
+
+  .tabs .btn {
+    width: 120px;
+  }
+
+  .fig {
+    margin: 20px 0;
+  }
+
+  .services2 .col {
+    padding: 0 !important;
+  }
+}
+
+@media (max-width: 896px) and (min-width: 414px) and (orientation: landscape) {
+  .blog {
+    max-width: 100%;
+  }
+
+  .section-9 .card {
+    padding: 25px !important;
+  }
+
+  .section-10 {
+    margin-top: 180px;
+  }
+
+  .section-2,
+  .section-4,
+  .section-5,
+  .section-6,
+  .section-7,
+  .section-9 {
+    margin: 80px 20px;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .section-10 .wrapper {
+    padding: 0 20px;
+  }
+
+  .section-10 .box select {
+    width: 151px;
+    font-size: 14px;
+  }
+
+  .section-9 .card {
+    padding: 25px;
+  }
+
+  .section-11 {
+    background: #1192e5;
+  }
+
+  .section-lable {
+    font-size: 14px;
+  }
+
+  .section-10 .box input[type="submit"] {
+    padding: 0 7px;
+  }
+
+  .figures {
+    flex-direction: column;
+  }
+
+  .section-5 .row {
+    margin: 0;
+  }
+
+  .section-6 {
+    padding: 80px 0px;
+  }
+
+  .section-6 .gx-6 {
+    --bs-gutter-x: 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 30px;
+    line-height: 40px;
+    margin-bottom: 48px;
+  }
+
+  .tabs .btn {
+    width: 120px;
+  }
+
+  .fig {
+    margin: 20px 0;
+  }
+}
+
+@media (max-width: 1180px) and (min-width: 820px) and (orientation: landscape) {
+  .navbar-brand {
+    width: 25% !important;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .text-container {
+    padding: 0px 32px;
+    justify-content: space-between !important;
+    flex-direction: row !important;
+  }
+
+  .section-5 .view-btn .btn {
+    border-radius: 50%;
+  }
+
+  .section-5 .title {
+    font-size: 27px;
+    justify-content: flex-start;
+  }
+
+  .section-5 .view-button .btn {
+    border-radius: 50%;
+  }
+
+  .section-5 .view-button {
+    justify-content: flex-end !important;
+  }
+
+  .section-5 .view-button .btn p {
+    display: none;
+  }
+}
+
+@media (max-width: 1025px) {
+  .section-11 {
+    background: #1192e5;
+  }
+}

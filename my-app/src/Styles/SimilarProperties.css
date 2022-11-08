@@ -1,0 +1,25 @@
+.similar_property .property-card-basic {
+  width: 100%;
+}
+
+.similar_property .badge img,
+.similar_property .bhk img {
+  display: inline !important;
+  margin-bottom: 4px;
+}
+
+@media screen and (max-width: 1025px) {
+  .similar_property .owl-item {
+    width: 48% !important;
+  }
+
+  .similar_property .owl-stage {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .similar_property .owl-item {
+    width: 100% !important;
+  }
+}

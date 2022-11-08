@@ -1,0 +1,164 @@
+.property-display .card .Featured {
+  top: 175px;
+  width: 79px;
+  height: 28px;
+  font-weight: bold;
+  line-height: 18px;
+  font-size: 14px;
+}
+
+.property-display .card .Featured .fi-rs-eye {
+  margin-right: 5px;
+  position: relative;
+  top: 2px;
+}
+
+.property-card-basic .card-body .seal {
+  width: 65px;
+  height: 70px;
+  position: absolute;
+  top: 104px;
+  right: 18px;
+  z-index: 1;
+}
+
+.grid-card .card-body .seal {
+  width: 86px;
+  height: 86px;
+  top: 118px;
+  right: 30px;
+}
+
+.grid-card {
+  width: 100%;
+  display: flex;
+  margin: 21px 1.5%;
+  padding: 6px;
+}
+
+.grid-card .image {
+  width: 354px;
+  min-width: 354px;
+  height: 289px;
+}
+
+.grid-card .image img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  min-height: 100%;
+}
+
+.grid-card .rera-no {
+  display: inline-block;
+  vertical-align: top;
+  max-width: 100%;
+  height: 20px;
+  position: relative;
+  font-size: 16px;
+}
+
+.grid-card .property-name {
+  padding: 0px;
+  margin: 8px 0px 10px;
+  font-size: 20px;
+  font-weight: bold;
+  white-space: nowrap;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.grid-card .developer {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.grid-card .card-body p {
+  margin: 5px 0 1px 0px;
+  padding: 0px;
+  position: relative;
+  z-index: 1;
+  font-size: 16px;
+}
+
+.grid-card .price-bottom {
+  position: absolute;
+  bottom: 0px;
+  width: 96%;
+  left: 2%;
+  height: 70px;
+  padding: 20px 0 0 10px;
+  border-top: solid 1px #ccc;
+  align-items: center;
+  display: block;
+}
+
+.grid-card .price-bottom .price {
+  margin: 3px 0 0 9px;
+}
+
+.grid-card .card-body .location .bi-geo-alt {
+  font-size: 24px;
+}
+
+.grid-card .btn-custom {
+  background: #2461bb !important;
+  color: #fff !important;
+  width: 160px;
+  top: 15px;
+  text-align: center;
+  position: relative;
+  border-radius: 30px;
+  height: 48px;
+  float: right;
+  margin: -22px 0 0 12px;
+  line-height: 45px;
+  padding: 0 25px;
+  text-decoration: none;
+  border: none;
+  font-size: 16px !important;
+  text-indent: unset;
+  font-weight: bold;
+}
+
+.share,
+.share:active {
+  border: none;
+  position: absolute;
+  display: inline-block;
+  top: 5px;
+  right: 22px;
+  z-index: 2;
+  text-align: center;
+  padding-top: 0px;
+  font-size: 24px;
+  text-decoration: none;
+  color: #1192e5;
+  width: 25px;
+  height: 22px;
+}
+
+.share:hover {
+  color: black;
+}
+
+.hidden-opacity {
+  opacity: 0;
+  position: absolute;
+}
+
+.copied-prompt {
+  border-radius: 8px;
+  position: absolute;
+  padding: 6px 10px;
+  font-size: 14px;
+  opacity: 1;
+  background-color: #000000c9;
+  color: white;
+  top: -30px;
+  right: -23px;
+  z-index: 2;
+  transition: right 1s ease-in-out;
+}

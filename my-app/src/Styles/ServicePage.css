@@ -1,0 +1,28 @@
+.filter-container {
+  justify-content: center !important;
+}
+
+.bottom-banner {
+  background: #1192e5;
+  height: 150px;
+  display: flex;
+  text-align: center;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+}
+
+.bottom-banner h1 {
+  font-size: 65px;
+  font-weight: 600;
+}
+
+.bottom-banner span {
+  font-weight: 300;
+  font-family: "Raleway", sans-serif;
+}
+
+.bottom-banner p {
+  font-family: "Raleway", sans-serif;
+}
