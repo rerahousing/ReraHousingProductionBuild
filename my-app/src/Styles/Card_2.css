@@ -53,8 +53,7 @@
 }
 
 .view-button {
-  width: 66%;
-  width: 66%;
+  width: 47%;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;

@@ -3,28 +3,18 @@ import PropertyContext from "../Context/Property/PropertyContext";
 import "../Styles/Card7.css";
 import InputForm from "./InputForm";
 import CurrencyFormat from "react-currency-format";
-// import ImageUpload from "./ImageUpload";
-// import { serialize } from "object-to-formdata";
 
 function Dashboard() {
   // States
   const ref = useRef(null);
-
   const [imageData, setImageData] = useState([]);
-  const [data, setData] = useState([]);
-
   const context = useContext(PropertyContext);
-  const [imageSingle, setImageSingle] = useState();
+  const [inputImage, setInputImage] = useState([""]);
   const [amenites, setAmenites] = useState([] || "");
   const [why, setWhy] = useState([]);
   const [fetures, setFetures] = useState([]);
-  const [bhkDet, setBhkDet] = useState([
-    {
-      bhk: "",
-      Price: "",
-      Area: "",
-    },
-  ]);
+  const [bhkDet, setBhkDet] = useState([] || "");
+  const [maxPriceFormat, setMaxPriceFormat] = useState("");
   const [inputProp, setInputProp] = useState({
     id: "",
     etitle: "",
@@ -43,8 +33,14 @@ function Dashboard() {
     other_fet: [],
   });
   const [image, setImage] = useState([]);
-  const { property, getProperty, addProperty, deleteProperty, editProp } =
-    context;
+  const {
+    property,
+    getProperty,
+    addProperty,
+    deleteProperty,
+    editProp,
+    patchProp,
+  } = context;
 
   const [bhk, setBhk] = useState([]);
   const [input, setInput] = useState({
@@ -85,7 +81,7 @@ function Dashboard() {
   const [price_min, setPrice_min] = useState();
   const [price_max, setPrice_max] = useState();
 
-  // Functions
+  // Functions;
   const checkBoxes = () => {
     const checkbox = document.querySelectorAll("#flexCheckDefault");
     checkbox.forEach((e) => {
@@ -119,58 +115,81 @@ function Dashboard() {
       eother_fet: currentProp.other_fet,
       eamenites: currentProp.amenites,
     });
+
     setBhk(currentProp.bhk);
-    setBhkDet(currentProp.bhk_no);
+    setImage([]);
+    setImageData([]);
+    setBhkDet([]);
     setWhy(currentProp.why);
     setFetures(currentProp.other_fet);
     setPrice_min(currentProp.pricingmin);
     setPrice_max(currentProp.pricing_max);
   };
-  // console.log(parsedBhkDet);
   const handleFormChange = (e) => {
     setInputDet({ ...inputDet, [e.target.name]: e.target.value });
   };
 
   const updatePropDB = () => {
     ref.current.click();
-    editProp(
-      inputProp.id,
-      inputProp.etitle,
-      inputProp.edeveloper,
-      inputProp.erera_no,
-      inputProp.ecity,
-      inputProp.estate,
-      bhk,
-      bhkDet,
-      price_min,
-      price_max,
-      inputProp.ewebsite_property,
-      inputProp.epossession,
-      inputProp.econfiguration,
-      inputProp.ecarpet_area,
-      inputProp.etower,
-      inputProp.efloor,
-      inputProp.eapartment_per_floor,
-      why,
-      fetures,
-      amenites
-    );
+    const formData = new FormData();
+    formData.append("rera_no", inputProp.erera_no);
+    formData.append("title", inputProp.etitle);
+    formData.append("developer", inputProp.edeveloper);
+    formData.append("city", inputProp.ecity);
+    formData.append("state", inputProp.estate);
+    bhk.forEach((item) => formData.append("bhk", item));
+    formData.append("pricingmin", price_min);
+    formData.append("pricing_max", price_max);
+    formData.append("website_property", inputProp.ewebsite_property);
+    formData.append("possession", inputProp.epossession);
+    formData.append("configuration", inputProp.econfiguration);
+    formData.append("carpet_area", inputProp.ecarpet_area);
+    formData.append("tower", inputProp.etower);
+    formData.append("floor", inputProp.efloor);
+    formData.append("apartment_per_floor", propertyData.apartment_per_floor);
+    fetures.forEach((item) => formData.append("other_fet", item));
+    why.forEach((item) => formData.append("why", item));
+    amenites.forEach((item) => formData.append("amenites", item));
+    const max = price_max;
+    let data;
+    if (max > 999 && max <= 99999) {
+      data = max / 1000;
+      data = data.toString() + " K";
+    } else if (max > 99999 && max <= 9999999) {
+      data = max / 100000;
+      data = data.toString() + " Lacs";
+    } else if (max > 9999999) {
+      data = max / 10000000;
+      data = data.toString() + " Cr";
+    }
+
+    formData.append("priceMaxFormated", data);
+
+    const min = price_min;
+    let data2;
+    if (min > 999 && min <= 99999) {
+      data2 = min / 1000;
+      data2 = data2.toString() + " K";
+    } else if (min > 99999 && min <= 9999999) {
+      data2 = min / 100000;
+      data2 = data2.toString() + " Lacs";
+    } else if (min > 9999999) {
+      data2 = min / 10000000;
+      data2 = data2.toString() + " Cr";
+    }
+
+    formData.append("priceMinFormated", data2);
+    editProp(inputProp.id, formData);
     window.location.reload();
   };
-
-  const addFields = (e) => {
-    e.preventDefault();
-    let newfield = [...bhkDet];
-    newfield.push(inputDet);
-    setBhkDet(newfield);
+  const setDataImage = (image) => {
+    const data = [];
+    image.forEach((item) => {
+      data.push(URL.createObjectURL(item));
+    });
+    setInputImage(data);
+    setImageData(image);
   };
-  const removeFields = (e) => {
-    e.preventDefault();
-    let newfield = [...bhkDet];
-    newfield.pop();
-    setBhkDet(newfield);
-  };
-
   const addAminity = (e) => {
     if (e.target.checked) {
       setAmenites((oldArray) => [...oldArray, e.target.value]);
@@ -196,12 +215,43 @@ function Dashboard() {
     formData.append("carpet_area", propertyData.carpet_area);
     formData.append("tower", propertyData.tower);
     formData.append("floor", propertyData.floor);
+    imageData.forEach((item) => formData.append("image", item));
     formData.append("apartment_per_floor", propertyData.apartment_per_floor);
-    formData.append("imgCollection", image);
+    image.forEach((item) => formData.append("imgCollection", item));
     bhkDet.forEach((item) => formData.append("bhk_no", JSON.stringify(item)));
     fetures.forEach((item) => formData.append("other_fet", item));
     why.forEach((item) => formData.append("why", item));
     amenites.forEach((item) => formData.append("amenites", item));
+    const max = price_max;
+    let data;
+    if (max > 999 && max <= 99999) {
+      data = max / 1000;
+      data = data.toString() + " K";
+    } else if (max > 99999 && max <= 9999999) {
+      data = max / 100000;
+      data = data.toString() + " Lacs";
+    } else if (max > 9999999) {
+      data = max / 10000000;
+      data = data.toString() + " Cr";
+    }
+
+    formData.append("priceMaxFormated", data);
+
+    const min = price_min;
+    let data2;
+    if (min > 999 && min <= 99999) {
+      data2 = min / 1000;
+      data2 = data2.toString() + " K";
+    } else if (min > 99999 && min <= 9999999) {
+      data2 = min / 100000;
+      data2 = data2.toString() + " Lacs";
+    } else if (min > 9999999) {
+      data2 = min / 10000000;
+      data2 = data2.toString() + " Cr";
+    }
+
+    formData.append("priceMinFormated", data2);
+
     addProperty(formData, bhkDet);
     window.location.reload();
   };
@@ -225,7 +275,7 @@ function Dashboard() {
 
   const removeField = (e) => {
     e.preventDefault();
-    const copyBhk = [...bhk];
+    const copyBhk = [bhk];
     copyBhk.pop();
     setBhk(copyBhk);
     setInput("");
@@ -236,11 +286,19 @@ function Dashboard() {
   };
 
   const onChange = (e) => {
-    console.log(propertyData);
     setPropertyData({ ...propertyData, [e.target.name]: e.target.value });
   };
   const handleChange = (e) => {
     setInputProp({ ...inputProp, [e.target.name]: e.target.value });
+  };
+
+  const patchproperty = () => {
+    const formData = new FormData();
+    imageData.forEach((item) => formData.append("image", item));
+    image.forEach((item) => formData.append("imgCollection", item));
+    bhkDet.forEach((item) => formData.append("bhk_no", JSON.stringify(item)));
+    patchProp(inputProp.id, formData);
+    window.location.reload();
   };
 
   return (
@@ -277,6 +335,7 @@ function Dashboard() {
             <th scope="col">Apartments per floor</th>
             <th scope="col">Why this property</th>
             <th scope="col">Other Features</th>
+            <th scope="col">Property Images</th>
             <th scope="col">Amenities</th>
             <th scope="col">Action</th>
           </tr>
@@ -298,9 +357,9 @@ function Dashboard() {
                 </td>
 
                 <td className="overflow">
-                  {e.bhk_no.map((item) => {
+                  {e.bhk_no.map((item, index) => {
                     const data = JSON.parse(item);
-                    console.log(data);
+                    const image = e.image;
                     return (
                       <>
                         <span>
@@ -314,7 +373,11 @@ function Dashboard() {
                         <span>
                           <strong>Area: </strong> {data.Area}
                         </span>
-
+                        <br />
+                        <span>
+                          <strong>image: </strong>
+                          {image[index]}
+                        </span>
                         <hr />
                       </>
                     );
@@ -353,26 +416,32 @@ function Dashboard() {
                 </td>
                 <td className="overflow">
                   <ul>
-                    {e.amenites.map((i) => {
+                    {e.imgCollection.map((i) => {
                       return <li>{i}</li>;
                     })}
                   </ul>
                 </td>
                 <td>
+                  <ul>
+                    {e.amenites.map((i) => {
+                      return <li>{i}</li>;
+                    })}
+                  </ul>
+                </td>
+                <td className="d-flex flex-column">
                   <button
-                    type="button"
-                    className="btn btn-danger"
+                    type="button "
+                    className="btn btn-danger my-1"
                     onClick={() => {
                       deleteProperty(e._id);
                     }}
                   >
                     Delete
                   </button>
-                </td>
-                <td>
+
                   <button
-                    type="button"
-                    className="btn btn-danger"
+                    type="button "
+                    className="btn btn-warning my-1"
                     data-bs-toggle="modal"
                     data-bs-target="#myModal1"
                     onClick={() => {
@@ -380,6 +449,18 @@ function Dashboard() {
                     }}
                   >
                     Edit
+                  </button>
+
+                  <button
+                    type="button"
+                    className="btn btn-success my-1"
+                    data-bs-toggle="modal"
+                    data-bs-target="#myModal2"
+                    onClick={() => {
+                      updateProp(e);
+                    }}
+                  >
+                    Overwrite
                   </button>
                 </td>
               </tr>
@@ -512,36 +593,47 @@ function Dashboard() {
                     BHK details:
                   </label>
                   <InputForm
-                    addProperty={addProperty}
                     setBhkDet={setBhkDet}
-                    bhkDet={bhkDet}
-                    setImageData={setImageData}
+                    setDataImage={setDataImage}
                   />
                   <h6>BHK Details Added: </h6>
-                  {bhkDet?.map((i) => {
+                  {bhkDet?.map((i, index) => {
+                    const image = inputImage;
                     return (
                       <>
-                        <div className="d-flex">
-                          <p>
-                            <strong>BHK: </strong>
-                            {i.bhk}
-                          </p>
+                        <div className="row">
+                          <div className="col">
+                            <p>
+                              <strong>BHK: </strong>
+                              {i.bhk}
+                            </p>
+                          </div>
+
                           {"  "}
-                          <p>
-                            <strong>Price: </strong>
-                            {i.Price}
-                          </p>
-                          {"  "}
-                          <p>
-                            <strong>Area: </strong>
-                            {i.Area}
-                          </p>
-                          {"  "}
-                          <p>
-                            <strong>Image: </strong>
-                            {i.image}
-                          </p>
-                          {"  "}
+                          <div className="col">
+                            <p>
+                              <strong>Price: </strong>
+                              {i.Price}
+                            </p>
+                            {"  "}
+                          </div>
+                          <div className="col">
+                            <p>
+                              <strong>Area: </strong>
+                              {i.Area}
+                            </p>
+                            {"  "}
+                          </div>
+                          <div className="col">
+                            <p>
+                              <strong>Image: {index}</strong>
+                              <img
+                                src={image[index] ? `${image[index]}` : ""}
+                                alt=""
+                              />
+                            </p>
+                            {"  "}
+                          </div>
                         </div>
                       </>
                     );
@@ -576,17 +668,22 @@ function Dashboard() {
                 </div>
 
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
-                    Website
+                  <label for="basic-url" className="form-label">
+                    Website URL
                   </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="exampleInputPassword1"
-                    name="website_property"
-                    placeholder="Ex: https://www.example.com"
-                    onChange={onChange}
-                  />
+                  <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon3">
+                      https://example.com/users/
+                    </span>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="basic-url"
+                      name="website_property"
+                      aria-describedby="basic-addon3"
+                      onChange={onChange}
+                    />
+                  </div>
                 </div>
                 <div className="mb-3 ">
                   <label for="exampleInputPassword1" className="form-label">
@@ -823,9 +920,9 @@ function Dashboard() {
                   </label>
                   <div className="row">
                     <div className="col-4">
-                      <div class="form-check">
+                      <div className="form-check">
                         <input
-                          class="form-check-input"
+                          className="form-check-input"
                           type="checkbox"
                           value="Hospital"
                           id="flexCheckDefault"
@@ -833,15 +930,18 @@ function Dashboard() {
                             addAminity(e);
                           }}
                         />
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <label
+                          className="form-check-label"
+                          for="flexCheckDefault"
+                        >
                           Hospital
                         </label>
                       </div>
                     </div>
                     <div className="col-4">
-                      <div class="form-check">
+                      <div className="form-check">
                         <input
-                          class="form-check-input"
+                          className="form-check-input"
                           type="checkbox"
                           value="Park"
                           id="flexCheckDefault"
@@ -849,15 +949,18 @@ function Dashboard() {
                             addAminity(e);
                           }}
                         />
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <label
+                          className="form-check-label"
+                          for="flexCheckDefault"
+                        >
                           Park
                         </label>
                       </div>
                     </div>
                     <div className="col-4">
-                      <div class="form-check">
+                      <div className="form-check">
                         <input
-                          class="form-check-input"
+                          className="form-check-input"
                           type="checkbox"
                           value="School"
                           id="flexCheckDefault"
@@ -865,15 +968,18 @@ function Dashboard() {
                             addAminity(e);
                           }}
                         />
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <label
+                          className="form-check-label"
+                          for="flexCheckDefault"
+                        >
                           School
                         </label>
                       </div>
                     </div>
                     <div className="col-4">
-                      <div class="form-check">
+                      <div className="form-check">
                         <input
-                          class="form-check-input"
+                          className="form-check-input"
                           type="checkbox"
                           value="Club House"
                           id="flexCheckDefault"
@@ -881,15 +987,18 @@ function Dashboard() {
                             addAminity(e);
                           }}
                         />
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <label
+                          className="form-check-label"
+                          for="flexCheckDefault"
+                        >
                           Club House
                         </label>
                       </div>
                     </div>
                     <div className="col-4">
-                      <div class="form-check">
+                      <div className="form-check">
                         <input
-                          class="form-check-input"
+                          className="form-check-input"
                           type="checkbox"
                           value="Play Area"
                           id="flexCheckDefault"
@@ -897,15 +1006,18 @@ function Dashboard() {
                             addAminity(e);
                           }}
                         />
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <label
+                          className="form-check-label"
+                          for="flexCheckDefault"
+                        >
                           Play Area
                         </label>
                       </div>
                     </div>
                     <div className="col-4">
-                      <div class="form-check">
+                      <div className="form-check">
                         <input
-                          class="form-check-input"
+                          className="form-check-input"
                           type="checkbox"
                           value="Collage"
                           id="flexCheckDefault"
@@ -913,15 +1025,18 @@ function Dashboard() {
                             addAminity(e);
                           }}
                         />
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <label
+                          className="form-check-label"
+                          for="flexCheckDefault"
+                        >
                           Collage
                         </label>
                       </div>
                     </div>
                     <div className="col-4">
-                      <div class="form-check">
+                      <div className="form-check">
                         <input
-                          class="form-check-input"
+                          className="form-check-input"
                           type="checkbox"
                           value="Metro Station"
                           id="flexCheckDefault"
@@ -929,15 +1044,18 @@ function Dashboard() {
                             addAminity(e);
                           }}
                         />
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <label
+                          className="form-check-label"
+                          for="flexCheckDefault"
+                        >
                           Metro Station
                         </label>
                       </div>
                     </div>
                     <div className="col-4">
-                      <div class="form-check">
+                      <div className="form-check">
                         <input
-                          class="form-check-input"
+                          className="form-check-input"
                           type="checkbox"
                           value="Police Station"
                           id="flexCheckDefault"
@@ -945,15 +1063,18 @@ function Dashboard() {
                             addAminity(e);
                           }}
                         />
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <label
+                          className="form-check-label"
+                          for="flexCheckDefault"
+                        >
                           Police Station
                         </label>
                       </div>
                     </div>
                     <div className="col-4">
-                      <div class="form-check">
+                      <div className="form-check">
                         <input
-                          class="form-check-input"
+                          className="form-check-input"
                           type="checkbox"
                           value="Mall"
                           id="flexCheckDefault"
@@ -961,15 +1082,18 @@ function Dashboard() {
                             addAminity(e);
                           }}
                         />
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <label
+                          className="form-check-label"
+                          for="flexCheckDefault"
+                        >
                           Mall
                         </label>
                       </div>
                     </div>
                     <div className="col-4">
-                      <div class="form-check">
+                      <div className="form-check">
                         <input
-                          class="form-check-input"
+                          className="form-check-input"
                           type="checkbox"
                           value="Shopping Mall"
                           id="flexCheckDefault"
@@ -977,15 +1101,18 @@ function Dashboard() {
                             addAminity(e);
                           }}
                         />
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <label
+                          className="form-check-label"
+                          for="flexCheckDefault"
+                        >
                           Shopping Mall
                         </label>
                       </div>
                     </div>
                     <div className="col-4">
-                      <div class="form-check">
+                      <div className="form-check">
                         <input
-                          class="form-check-input"
+                          className="form-check-input"
                           type="checkbox"
                           value="Cinema"
                           id="flexCheckDefault"
@@ -993,7 +1120,10 @@ function Dashboard() {
                             addAminity(e);
                           }}
                         />
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <label
+                          className="form-check-label"
+                          for="flexCheckDefault"
+                        >
                           Cinema Hall
                         </label>
                       </div>
@@ -1012,16 +1142,18 @@ function Dashboard() {
                   </ul>
                 </div>
 
-                {/* <ImageUpload formData={formData} /> */}
                 <div className="form-group">
-                  <input
-                    type="file"
-                    multiple
-                    onChange={(e) => {
-                      console.log(e.target.files);
-                      setImage(e.target.files);
-                    }}
-                  />
+                  <div class="input-group mb-3">
+                    <input
+                      type="file"
+                      class="form-control"
+                      id="inputGroupFile02"
+                      onChange={(e) => {
+                        setImage([...e.target.files]);
+                      }}
+                      multiple
+                    />
+                  </div>
                 </div>
               </form>
             </div>
@@ -1166,109 +1298,6 @@ function Dashboard() {
                     {bhk.map((e, i) => {
                       return <p style={{ display: "inline" }}>{e},</p>;
                     })}
-
-                    <div className="d-flex my-2">
-                      <input
-                        name="bhk"
-                        placeholder="bhk"
-                        className="form-control"
-                        onChange={handleFormChange}
-                      />
-                      <input
-                        name="Price"
-                        placeholder="Price"
-                        className="form-control"
-                        onChange={handleFormChange}
-                      />
-                      <input
-                        name="Area"
-                        className="form-control"
-                        placeholder="Area"
-                        onChange={handleFormChange}
-                      />
-                    </div>
-
-                    <button
-                      style={{ display: "inline" }}
-                      type="submit"
-                      className="btn btn-primary mx-2"
-                      onClick={addFields}
-                    >
-                      +
-                    </button>
-                    <button
-                      style={{ display: "inline" }}
-                      type="submit"
-                      className="btn btn-primary"
-                      onClick={removeFields}
-                    >
-                      -
-                    </button>
-                    <button
-                      style={{ display: "inline" }}
-                      type="submit"
-                      className="btn btn-primary mx-2"
-                    >
-                      Add Details into DB
-                    </button>
-                    {bhkDet?.map((i) => {
-                      return (
-                        <>
-                          <div className="d-flex">
-                            <p>
-                              <strong>BHK: </strong>
-                              {i.bhk}
-                            </p>
-                            {"  "}
-                            <p>
-                              <strong>Price: </strong>
-                              {i.Price}
-                            </p>
-                            {"  "}
-                            <p>
-                              <strong>Area: </strong>
-                              {i.Area}
-                            </p>
-                            {"  "}
-                          </div>
-                        </>
-                      );
-                    })}
-                  </div>
-
-                  <div className="mb-3">
-                    <label for="exampleInputPassword1" className="form-label">
-                      BHK details:
-                    </label>
-                    <InputForm
-                      addProperty={addProperty}
-                      setBhkDet={setBhkDet}
-                      bhkDet={bhkDet}
-                    />
-                    <h6>BHK Details Added: </h6>
-                    {bhkDet?.map((i) => {
-                      return (
-                        <>
-                          <div className="d-flex">
-                            <p>
-                              <strong>BHK: </strong>
-                              {i.bhk}
-                            </p>
-                            {"  "}
-                            <p>
-                              <strong>Price: </strong>
-                              {i.Price}
-                            </p>
-                            {"  "}
-                            <p>
-                              <strong>Area: </strong>
-                              {i.Area}
-                            </p>
-                            {"  "}
-                          </div>
-                        </>
-                      );
-                    })}
                   </div>
                   <div className="mb-3">
                     <label
@@ -1304,18 +1333,23 @@ function Dashboard() {
                   </div>
 
                   <div className="mb-3">
-                    <label for="exampleInputPassword1" className="form-label">
-                      Website
+                    <label for="basic-url" className="form-label">
+                      Website URL
                     </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="exampleInputPassword1"
-                      name="ewebsite_property"
-                      value={inputProp.ewebsite_property}
-                      placeholder="Ex: https://www.example.com"
-                      onChange={handleChange}
-                    />
+                    <div className="input-group mb-3">
+                      <span className="input-group-text" id="basic-addon3">
+                        https://example.com/users/
+                      </span>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="basic-url"
+                        name="ewebsite_property"
+                        value={inputProp.ewebsite_property}
+                        aria-describedby="basic-addon3"
+                        onChange={handleChange}
+                      />
+                    </div>
                   </div>
                   <div className="mb-3 ">
                     <label for="exampleInputPassword1" className="form-label">
@@ -1558,9 +1592,9 @@ function Dashboard() {
                     </label>
                     <div className="row">
                       <div className="col-4">
-                        <div class="form-check">
+                        <div className="form-check">
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="checkbox"
                             value="Hospital"
                             id="flexCheckDefault"
@@ -1569,7 +1603,7 @@ function Dashboard() {
                             }}
                           />
                           <label
-                            class="form-check-label"
+                            className="form-check-label"
                             for="flexCheckDefault"
                           >
                             Hospital
@@ -1577,9 +1611,9 @@ function Dashboard() {
                         </div>
                       </div>
                       <div className="col-4">
-                        <div class="form-check">
+                        <div className="form-check">
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="checkbox"
                             value="Park"
                             id="flexCheckDefault"
@@ -1588,7 +1622,7 @@ function Dashboard() {
                             }}
                           />
                           <label
-                            class="form-check-label"
+                            className="form-check-label"
                             for="flexCheckDefault"
                           >
                             Park
@@ -1596,9 +1630,9 @@ function Dashboard() {
                         </div>
                       </div>
                       <div className="col-4">
-                        <div class="form-check">
+                        <div className="form-check">
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="checkbox"
                             value="School"
                             id="flexCheckDefault"
@@ -1607,7 +1641,7 @@ function Dashboard() {
                             }}
                           />
                           <label
-                            class="form-check-label"
+                            className="form-check-label"
                             for="flexCheckDefault"
                           >
                             School
@@ -1615,9 +1649,9 @@ function Dashboard() {
                         </div>
                       </div>
                       <div className="col-4">
-                        <div class="form-check">
+                        <div className="form-check">
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="checkbox"
                             value="Club House"
                             id="flexCheckDefault"
@@ -1626,7 +1660,7 @@ function Dashboard() {
                             }}
                           />
                           <label
-                            class="form-check-label"
+                            className="form-check-label"
                             for="flexCheckDefault"
                           >
                             Club House
@@ -1634,9 +1668,9 @@ function Dashboard() {
                         </div>
                       </div>
                       <div className="col-4">
-                        <div class="form-check">
+                        <div className="form-check">
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="checkbox"
                             value="Play Area"
                             id="flexCheckDefault"
@@ -1645,7 +1679,7 @@ function Dashboard() {
                             }}
                           />
                           <label
-                            class="form-check-label"
+                            className="form-check-label"
                             for="flexCheckDefault"
                           >
                             Play Area
@@ -1653,9 +1687,9 @@ function Dashboard() {
                         </div>
                       </div>
                       <div className="col-4">
-                        <div class="form-check">
+                        <div className="form-check">
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="checkbox"
                             value="Collage"
                             id="flexCheckDefault"
@@ -1664,7 +1698,7 @@ function Dashboard() {
                             }}
                           />
                           <label
-                            class="form-check-label"
+                            className="form-check-label"
                             for="flexCheckDefault"
                           >
                             Collage
@@ -1672,9 +1706,9 @@ function Dashboard() {
                         </div>
                       </div>
                       <div className="col-4">
-                        <div class="form-check">
+                        <div className="form-check">
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="checkbox"
                             value="Metro Station"
                             id="flexCheckDefault"
@@ -1683,7 +1717,7 @@ function Dashboard() {
                             }}
                           />
                           <label
-                            class="form-check-label"
+                            className="form-check-label"
                             for="flexCheckDefault"
                           >
                             Metro Station
@@ -1691,9 +1725,9 @@ function Dashboard() {
                         </div>
                       </div>
                       <div className="col-4">
-                        <div class="form-check">
+                        <div className="form-check">
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="checkbox"
                             value="Police Station"
                             id="flexCheckDefault"
@@ -1702,7 +1736,7 @@ function Dashboard() {
                             }}
                           />
                           <label
-                            class="form-check-label"
+                            className="form-check-label"
                             for="flexCheckDefault"
                           >
                             Police Station
@@ -1710,9 +1744,9 @@ function Dashboard() {
                         </div>
                       </div>
                       <div className="col-4">
-                        <div class="form-check">
+                        <div className="form-check">
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="checkbox"
                             value="Mall"
                             id="flexCheckDefault"
@@ -1721,7 +1755,7 @@ function Dashboard() {
                             }}
                           />
                           <label
-                            class="form-check-label"
+                            className="form-check-label"
                             for="flexCheckDefault"
                           >
                             Mall
@@ -1729,9 +1763,9 @@ function Dashboard() {
                         </div>
                       </div>
                       <div className="col-4">
-                        <div class="form-check">
+                        <div className="form-check">
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="checkbox"
                             value="Shopping Mall"
                             id="flexCheckDefault"
@@ -1740,7 +1774,7 @@ function Dashboard() {
                             }}
                           />
                           <label
-                            class="form-check-label"
+                            className="form-check-label"
                             for="flexCheckDefault"
                           >
                             Shopping Mall
@@ -1748,9 +1782,9 @@ function Dashboard() {
                         </div>
                       </div>
                       <div className="col-4">
-                        <div class="form-check">
+                        <div className="form-check">
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="checkbox"
                             value="Cinema"
                             id="flexCheckDefault"
@@ -1759,7 +1793,7 @@ function Dashboard() {
                             }}
                           />
                           <label
-                            class="form-check-label"
+                            className="form-check-label"
                             for="flexCheckDefault"
                           >
                             Cinema Hall
@@ -1794,6 +1828,116 @@ function Dashboard() {
                   type="button"
                   className="btn btn-primary"
                   onClick={updatePropDB}
+                >
+                  Save changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="overwrite">
+        <div
+          className="modal fade"
+          id="myModal2"
+          tabindex="-1"
+          aria-labelledby="myModal2"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="myModal2">
+                  Modal title
+                </h1>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body">
+                <div className="d-flex my-2">
+                  <form>
+                    <h4>BHK Details: </h4>
+                    <div className="form-group">
+                      <InputForm
+                        setBhkDet={setBhkDet}
+                        setDataImage={setDataImage}
+                      />
+                      <h5>Added Bhk: </h5>
+                      {bhkDet?.map((i, index) => {
+                        const image = inputImage;
+                        return (
+                          <>
+                            <div className="row">
+                              <div className="col">
+                                <p>
+                                  <strong>BHK: </strong>
+                                  {i.bhk}
+                                </p>
+                              </div>
+
+                              {"  "}
+                              <div className="col">
+                                <p>
+                                  <strong>Price: </strong>
+                                  {i.Price}
+                                </p>
+                                {"  "}
+                              </div>
+                              <div className="col">
+                                <p>
+                                  <strong>Area: </strong>
+                                  {i.Area}
+                                </p>
+                                {"  "}
+                              </div>
+                              <div className="col">
+                                <p>
+                                  <strong>Image: {index}</strong>
+                                  <img
+                                    src={image[index] ? `${image[index]}` : ""}
+                                    alt=""
+                                    style={{ width: "100%" }}
+                                  />
+                                </p>
+                                {"  "}
+                              </div>
+                            </div>
+                          </>
+                        );
+                      })}
+                    </div>
+                    <h4>Upload Property Image</h4>
+                    <div className="input-group mb-3">
+                      <input
+                        type="file"
+                        className="form-control"
+                        id="inputGroupFile02"
+                        multiple
+                        onChange={(e) => {
+                          console.log([...e.target.files]);
+                          setImage([...e.target.files]);
+                        }}
+                      />
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={patchproperty}
                 >
                   Save changes
                 </button>

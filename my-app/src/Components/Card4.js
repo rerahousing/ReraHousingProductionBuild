@@ -15,7 +15,7 @@ function Card4() {
           </p>
         </div>
         <div className="profile d-flex align-items-center">
-          <img src={test} className="card-img-top rounded-circle" alt="..." />
+          <img style={{width: "17%"}} src={test} className="card-img-top rounded-circle" alt="..." />
           <div className="profile-text">
             <p className="profile-name">Lorem ipsum dolor sit amet.</p>
             <p className="profile-designation">Lorem ipsum dolor sit.</p>

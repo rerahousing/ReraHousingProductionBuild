@@ -49,3 +49,8 @@ table .overflow {
   overflow-y: auto;
   overflow-x: hidden;
 } */
+
+.upload_image {
+  width: 50%;
+  display: inherit;
+}

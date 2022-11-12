@@ -2,23 +2,31 @@ import React from "react";
 import SimilarProperties from "./SimilarProperties";
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import image1 from "../Resources/home1.webp";
-import image2 from "../Resources/home2.jpg";
-import image3 from "../Resources/home3.webp";
+import CarosulImage from "./CarosulImage";
 import "../Styles/ProductPage.css";
 import PropertyContext from "../Context/Property/PropertyContext";
 import OwlCarousel from "react-owl-carousel";
 import FloorPlanBox from "./FloorPlanBox";
+import LoadingComponent from "./LoadingComponent";
 import seal from "../Resources/seal.png";
 import { Link } from "react-scroll";
 import { Box, Tab, Tabs, Typography } from "@mui/material";
+import FloorPlan_Wrapper from "./FloorPlan_Wrapper";
+
 function ProductPage() {
+  const [load, setLoad] = useState(true);
   const context = useContext(PropertyContext);
-  const { specProp, getSpecificProperty } = context;
-  const { pricingmin } = specProp;
+  const { specProp, getSpecificProperty, bhkNo } = context;
+  console.log("Hello bhk");
+  console.log(bhkNo);
+
+  const { image } = specProp;
+
   const params = useParams();
   useEffect(() => {
+    setLoad(true);
     getSpecificProperty(params.id);
+    setLoad(false);
   }, []);
 
   const [drop, setDrop] = useState("");
@@ -49,90 +57,20 @@ function ProductPage() {
   const toggleDrop = (e) => {
     setDrop(e.target.id);
   };
-  // console.log(specProp.website_property);
+
   const removeDrop = () => {
     setDrop("");
   };
 
-  return (
+  const page = (
     <div className="product-page">
       <div
         id="carouselExampleIndicators"
         className="carousel slide"
         data-bs-ride="true"
       >
-        <div className="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="0"
-            className="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
-        </div>
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img
-              width="1400"
-              height="418"
-              src={image1}
-              className="bg-img"
-              alt="..."
-            />
-            <img
-              width="1400"
-              height="418"
-              src={image1}
-              className="bg-blur d-block w-100"
-              alt="..."
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              width="1400"
-              height="418"
-              src={image2}
-              className="bg-img"
-              alt="..."
-            />
-            <img
-              width="1400"
-              height="418"
-              src={image2}
-              className="bg-blur d-block w-100"
-              alt="..."
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              width="1400"
-              height="418"
-              src={image3}
-              className="bg-img"
-              alt="..."
-            />
-            <img
-              width="1400"
-              height="418"
-              src={image3}
-              className="bg-blur d-block w-100"
-              alt="..."
-            />
-          </div>
-        </div>
+        <CarosulImage image={specProp.imgCollection} />
+
         <button
           className="carousel-control-prev"
           type="button"
@@ -257,7 +195,7 @@ function ProductPage() {
               </div>
               <div className="rupee">
                 <i class="fa fa-inr" aria-hidden="true"></i>{" "}
-                {specProp.pricingmin} - {specProp.pricing_max}
+                {specProp.priceMinFormated} - {specProp.priceMaxFormated}
               </div>
 
               <a
@@ -336,42 +274,9 @@ function ProductPage() {
                           setActiveTab(0);
                         }}
                       />
-                      {specProp.bhk?.map((e) => {
-                        return (
-                          <Tab
-                            classes={{ root: "tab_link" }}
-                            label={`${e} BHK`}
-                            onFocus={(event) => {
-                              setActiveTab(e);
-                            }}
-                          />
-                        );
-                      })}
                     </Tabs>
                   </ul>{" "}
-                  <div className="tab_content">
-                    <Box sx={{ padding: 2 }}>
-                      <div className="tab-pane">
-                        <OwlCarousel
-                          className="owl-theme"
-                          loop={false}
-                          responsive={resp}
-                          margin={30}
-                          dots={true}
-                          nav
-                        >
-                          {specProp.bhk_no
-                            ?.filter(
-                              (item) =>
-                                item.bhk === activeTab || activeTab === 0
-                            )
-                            .map((item) => {
-                              return <FloorPlanBox price={item.Price} />;
-                            })}
-                        </OwlCarousel>
-                      </div>
-                    </Box>
-                  </div>
+                  <FloorPlan_Wrapper parsedBhkNo={bhkNo} image={image} />
                 </div>
               </div>
             </div>
@@ -383,9 +288,9 @@ function ProductPage() {
               </div>
               <div className="detail_data amenities_box">
                 <div className="row row-cols-3">
-                  {specProp.amenites?.map((e) => {
+                  {specProp.amenites?.map((e, index) => {
                     return (
-                      <div className="col">
+                      <div className="col" key={index}>
                         <span className="a_name">
                           {" "}
                           <span className="bullet_point">&bull;</span> {e}
@@ -576,6 +481,8 @@ function ProductPage() {
       </section>
     </div>
   );
+
+  return <>{load ? <LoadingComponent /> : page}</>;
 }
 
 export default ProductPage;

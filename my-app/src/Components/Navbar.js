@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logo from "../Resources/companylogo-foundermeet.png";
 import "../Styles/Navbar.css";
+import { Link } from "react-scroll";
 
 function Navbar() {
   const [scroll, setScroll] = useState(0);
@@ -47,24 +48,40 @@ function Navbar() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/projects">
+                <a
+                  className="nav-link"
+                  href="/rera-approved-projects-villa-duplex-flats"
+                >
                   RERA Projects
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/image">
+                <a className="nav-link" href="/real-estate-online-cources">
                   Learn
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/services">
+                <a className="nav-link" href="/real-estate-service-providers">
                   Services
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="https://blog.rerahousing.in">
                   Blog
                 </a>
+              </li>
+              <li className="nav-item">
+                <Link
+                  activeClass="active-custom"
+                  to="footer"
+                  spy={true}
+                  smooth={true}
+                  offset={-40}
+                >
+                  <a className="nav-link" href="https://blog.rerahousing.in">
+                    More
+                  </a>
+                </Link>
               </li>
             </ul>
             <form className="d-flex search-button" role="search">

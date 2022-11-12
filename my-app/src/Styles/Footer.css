@@ -65,8 +65,9 @@
 
 .social {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-end;
+  justify-content: space-between;
 }
 
 .social li i {
@@ -75,6 +76,8 @@
 }
 .clearfix {
   clear: both;
+  justify-content: space-between;
+  width: 50%;
 }
 
 .social ul li {

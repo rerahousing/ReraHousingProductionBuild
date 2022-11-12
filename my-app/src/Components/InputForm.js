@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 function InputForm(props) {
   const [inputFields, setInputFields] = useState([
-    { bhk: "", Price: "", Area: "", image: "" },
+    { bhk: "", Price: "", Area: "" },
   ]);
-
+  const [inputImage, setInputImage] = useState([]);
   const handleFormChange = (index, event) => {
     let data = [...inputFields];
     data[index][event.target.name] = event.target.value;
@@ -12,60 +12,78 @@ function InputForm(props) {
   };
   const submit = (e) => {
     e.preventDefault();
-    console.log(inputFields);
     setBhkDet(inputFields);
+    const image = [...inputImage];
+    setDataImage(image);
   };
-  const { setBhkDet, bhkDet, setImageData } = props;
+  const { setBhkDet, setDataImage } = props;
 
   const addFields = (e) => {
     e.preventDefault();
-    let newfield = { bhk: "", Price: "", Area: "", image: "" };
+    let newfield = { bhk: "", Price: "", Area: "" };
     setInputFields([...inputFields, newfield]);
   };
 
   const removeField = (e) => {
     e.preventDefault();
     const newField = [...inputFields];
+    const newImage = [...inputImage];
     newField.pop();
+    newImage.pop();
+
     setInputFields(newField);
+    setInputImage(newImage);
   };
   return (
     <div>
       <form>
         {inputFields.map((input, index) => {
           return (
-            <div className="d-flex my-2" key={index}>
-              <input
-                name="bhk"
-                placeholder="bhk"
-                className="form-control"
-                value={input.bhk}
-                onChange={(event) => handleFormChange(index, event)}
-              />
-              <input
-                name="Price"
-                placeholder="Price"
-                className="form-control"
-                value={input.Price}
-                onChange={(event) => handleFormChange(index, event)}
-              />
-              <input
-                name="Area"
-                className="form-control"
-                placeholder="Area"
-                value={input.Area}
-                onChange={(event) => handleFormChange(index, event)}
-              />
-              <div className="form-group">
+            <div className="row my-2" key={index}>
+              <div className="col">
                 <input
-                  type="file"
-                  name="image"
-                  onChange={(e) => {
-                    const data = [...inputFields];
-                    data[index][e.target.name] = [e.target.files];
-                    setImageData(data);
-                  }}
+                  name="bhk"
+                  placeholder="bhk"
+                  className="form-control"
+                  value={input.bhk}
+                  onChange={(event) => handleFormChange(index, event)}
                 />
+              </div>
+
+              <div className="col">
+                <input
+                  name="Price"
+                  placeholder="Price"
+                  className="form-control"
+                  value={input.Price}
+                  onChange={(event) => handleFormChange(index, event)}
+                />
+              </div>
+
+              <div className="col">
+                <input
+                  name="Area"
+                  className="form-control"
+                  placeholder="Area"
+                  value={input.Area}
+                  onChange={(event) => handleFormChange(index, event)}
+                />
+              </div>
+
+              <div className="form-group col-12 my-2">
+                <div class="input-group mb-3">
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="inputGroupFile02"
+                    name="image"
+                    onChange={(e) => {
+                      const data = [...inputImage];
+                      data[index] = e.target.files[0];
+                      setInputImage(data);
+                    }}
+                  />
+                </div>
               </div>
             </div>
           );
@@ -88,7 +106,7 @@ function InputForm(props) {
         </button>
         <button
           style={{ display: "inline" }}
-          type="submit"
+          type="button"
           className="btn btn-primary mx-2"
           onClick={submit}
         >

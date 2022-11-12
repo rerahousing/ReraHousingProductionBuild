@@ -2,34 +2,9 @@ import React, { useState } from "react";
 import "../Styles/Search.css";
 
 function Search() {
-  const [buy, setBuy] = useState(true);
-  const [consultant, setConsultant] = useState(false);
-
-  const toggleActive = () => {
-    setBuy(!buy);
-    setConsultant(!consultant);
-  };
   return (
     <>
-      <div className="tabs d-flex">
-        <button
-          type="button"
-          className={`btn btn-primary rounded-0 ${buy == true ? "Active" : ""}`}
-          onClick={toggleActive}
-        >
-          Buy
-        </button>
-        <button
-          type="button"
-          className={`btn btn-primary rounded-0 ${
-            consultant == true ? "Active" : ""
-          }`}
-          onClick={toggleActive}
-        >
-          Consultants
-        </button>
-      </div>
-      <div className="box">
+      {/* <div className="box">
         <form action="" className="d-flex">
           <div className="seclect-group d-flex">
             <select>
@@ -48,6 +23,26 @@ function Search() {
           </div>
           <input type="submit" value="Search" />
         </form>
+      </div> */}
+
+      <div className="box">
+        <a
+          className="btn btn-primary btn-custom"
+          href="/rera-approved-projects-villa-duplex-flats"
+          role="button"
+        >
+          Find RERA Projects{"   "}
+          <i class="bi bi-arrow-right"></i>
+        </a>
+
+        <a
+          className="btn btn-primary btn-custom mx-4"
+          href="/real-estate-service-providers"
+          role="button"
+        >
+          Find Agents & Service provider{"   "}
+          <i class="bi bi-arrow-right"></i>
+        </a>
       </div>
     </>
   );

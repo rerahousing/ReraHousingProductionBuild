@@ -9,16 +9,9 @@ const PropertySchema = new Schema({
   city: { type: String },
   state: { type: String },
   bhk: [{ type: String }],
-  bhk_no: [
-    // {
-    //   bhk: { type: String },
-    //   Price: { type: String },
-    //   Area: { type: String },
-    // },
-    { type: String },
-  ],
+  bhk_no: [{ type: String }],
   pricingmin: { type: String },
-  pricing_max: { type: String },
+  pricing_max: { type: Number },
   website_property: { type: String },
   possession: { type: String },
   configuration: { type: String },
@@ -31,6 +24,8 @@ const PropertySchema = new Schema({
   amenites: [{ type: String }],
   imgCollection: [{ type: String }],
   image: [{ type: String }],
+  priceMaxFormated: { type: String },
+  priceMinFormated: { type: String },
 });
 
 module.exports = mongoose.model("properties", PropertySchema);

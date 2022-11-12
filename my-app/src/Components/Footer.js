@@ -3,54 +3,54 @@ import "../Styles/Footer.css";
 
 function Footer() {
   return (
-    <div className="footer">
+    <div className="footer" id="footer">
       <div className="contain">
         <div className="row">
           <div className="col">
-            <h1>For Sellers</h1>
+            <h1>For Buyers</h1>
             <ul>
-              <li>About</li>
-              <li>Mission</li>
-              <li>Services</li>
-              <li>Social</li>
-              <li>Get in touch</li>
+              <li>Find RERA House on Sale</li>
+              <li>Buyer Resource Center</li>
+              <li>Home Loan Calculator</li>
+              <li>Blogs for Buyers</li>
             </ul>
           </div>
           <div className="col">
-            <h1>for buyers</h1>
+            <h1>For Builders</h1>
             <ul>
-              <li>About</li>
-              <li>Mission</li>
-              <li>Services</li>
-              <li>Social</li>
-              <li>Get in touch</li>
+              <li>RERA Project Listing</li>
+              <li>Builder Resource Center</li>
+              <li>Sell out your project fast</li>
+              <li>Partnership Sign Up</li>
             </ul>
           </div>
           <div className="col">
-            <h1>for consultants</h1>
+            <h1>For Realtors</h1>
             <ul>
-              <li>About</li>
-              <li>Mission</li>
-              <li>Services</li>
-              <li>Social</li>
-              <li>Get in touch</li>
+              <li>Service Provider Directory</li>
+              <li>Service Provider Sign Up</li>
+              <li>RERA Agents Directory </li>
+              <li>RERA Agents Signup</li>
             </ul>
           </div>
           <div className="col">
             <h1>company</h1>
             <ul>
-              <li>Webmail</li>
-              <li>Redeem code</li>
-              <li>WHOIS lookup</li>
-              <li>Site map</li>
-              <li>Web templates</li>
-              <li>Email templates</li>
+              <li>About RERA Housing</li>
+              <li>Contact Us</li>
+              <li>RERA Estate Investor</li>
+              <li>Press Kit</li>
             </ul>
           </div>
         </div>
         <div className="row">
           <hr />
           <div className="col social">
+            <div className="clearfix d-flex">
+              <p>@ 2022 RERAhousing.in</p>
+              <p>Terms of Services</p>
+              <p>Privacy Policy</p>
+            </div>
             <ul>
               <li>
                 <i class="bi bi-twitter"></i>
@@ -67,7 +67,6 @@ function Footer() {
             </ul>
           </div>
         </div>
-        <div className="clearfix"></div>
       </div>
     </div>
   );

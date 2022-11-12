@@ -19,14 +19,7 @@ function Card_3(props) {
       onMouseLeave={changeStyleBack}
     >
       <div className="row g-0 align-items-center">
-        <div className="col-md-4 p-4 p-md-1">
-          <img
-            src={props.image}
-            className="img-fluid rounded-start card_image"
-            alt="..."
-          />
-        </div>
-        <div className="col-md-8">
+        <div className="col">
           <div className="card-body d-flex flex-column">
             <h5 className="card-title">{props.text}</h5>
 

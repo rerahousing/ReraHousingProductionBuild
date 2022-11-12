@@ -30,7 +30,10 @@ function Card6(props) {
     why,
     other_fet,
     amenites,
+    priceMaxFormated,
+    priceMinFormated,
   } = props.data;
+
   console.log(state);
 
   const promptText = () => {
@@ -107,13 +110,13 @@ function Card6(props) {
           </p>
           <div className="price-bottom">
             <span className="price">
-              <i class="fa fa-inr" aria-hidden="true"></i> {pricingmin} -{" "}
-              {pricing_max}
+              <i class="fa fa-inr" aria-hidden="true"></i>
+              {priceMinFormated} - {priceMaxFormated}
             </span>
             <a
               type="button"
               className="btn btn-primary rounded-circle"
-              href={`/projects/${_id}`}
+              href={`/rera-approved-projects-villa-duplex-flats/${_id}`}
             >
               <i className="bi bi-arrow-right"></i>
             </a>

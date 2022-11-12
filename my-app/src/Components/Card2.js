@@ -16,7 +16,7 @@ function Card_2(props) {
           </div>
           <div className="button">
             <button type="button" className="btn btn-light">
-              Search {props.category}
+              Search RERA {props.category}
             </button>
           </div>
         </article>

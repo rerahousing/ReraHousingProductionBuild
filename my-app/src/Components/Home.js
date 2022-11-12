@@ -10,14 +10,12 @@ import noida from "../Resources/greaternoida.webp";
 import Testimnial from "./Testimonial";
 import Partnership from "./Partnership";
 import "../Styles/Partnership.css";
-import image2 from "../Resources/LessMoney.svg";
 import image3 from "../Resources/no-money-icon.svg";
 import image4 from "../Resources/readyToMove.svg";
 import image5 from "../Resources/house.svg";
 import image6 from "../Resources/icon (1).svg";
 import image7 from "../Resources/icon (2).svg";
 import image8 from "../Resources/icon (3).svg";
-import image9 from "../Resources/project.jpg";
 import image20 from "../Resources/finance.svg";
 import image21 from "../Resources/homeInspection.svg";
 import image22 from "../Resources/verifiedConsultant.svg";
@@ -37,16 +35,93 @@ function Home() {
       <section className="d-flex">
         <div className="container banner">
           <div className="content">
-            <h1 className="heading">Find the Perfect place</h1>
+            <h1 className="heading">
+              Find RERA Approved <br />
+              Housing Projects in India
+            </h1>
             <p className="body">
-              A good Real Estate Agent does not disapper once the closing Papers
-              are Signed
+              For best affordable Villas, Duplex, and Flats
             </p>
             <div className="search my-5">
               <Search />
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="section-12">
+        <div className="text-center my-5">
+          <h2 className="title">
+            What <span className="highlight">RERA</span>Housing.in do ?
+          </h2>
+        </div>
+        <section className="section-6 services2">
+          <div className="container-fluid container ">
+            <div className="row align-items-center gy-5 gx-6">
+              <div className="col-lg-4 col-md-6 our-services-card">
+                <div className="row g-0 align-items-center">
+                  <div className="col">
+                    <div className="card-body d-flex flex-column">
+                      <h5 className="card-title">
+                        <span className="highlight">RERA</span> Projects
+                      </h5>
+
+                      <p className="text">
+                        Search RERA approved projects of villas, duplex, and
+                        flats of 1bhk, 2bhk, 3bhk and more.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 col-md-6">
+                <Card_3
+                  text={"Home Inspection"}
+                  des={
+                    "A home inspection examination by experienced civil engineers of the condition and safety of a property."
+                  }
+                  setColor={setColor}
+                />
+              </div>
+              <div className="col-lg-4 col-md-6">
+                <Card_3
+                  text={"Property Law Consultant"}
+                  des={
+                    "Find property lawyer nearby your location or online around India. And avoid legal issues in long term."
+                  }
+                  setColor={setColor}
+                />
+              </div>
+              <div className="col-lg-4 col-md-6">
+                <Card_3
+                  text={"Rera Agents"}
+                  des={
+                    "Find RERA approved agents nearby your location or online around India. And get everything smoothly."
+                  }
+                  setColor={setColor}
+                />
+              </div>
+              <div className="col-lg-4 col-md-6 ">
+                <Card_3
+                  text={"Interior Designer & Decorator"}
+                  des={
+                    "Hire Interior designer & decorator nearby your location or online around whole India easily."
+                  }
+                  setColor={setColor}
+                />
+              </div>
+              <div className="col-lg-4 col-md-6 ">
+                <Card_3
+                  text={"Transpiracy"}
+                  des={
+                    "We Know to be for bringing complete transpiracy during the whole complete process."
+                  }
+                  setColor={setColor}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
       </section>
 
       <section className="section-2">
@@ -59,7 +134,6 @@ function Home() {
           <div className="row w-100 gx-5">
             <div className="col ">
               <Card_1
-                image={image2}
                 head={"Bottom Rate Guarantee"}
                 body={
                   "Rock Bottom Prices are Guaranteed in return otherwise, you get double the discount from us."
@@ -120,49 +194,10 @@ function Home() {
         </div>
       </section>
 
-      <section className="section-4">
-        <div className="text my-5">
-          <h2 className="title">
-            <span className="highlight">Extra</span> Benefits
-          </h2>
-        </div>
-        <div className="body container d-flex justify-content-center">
-          <div className="row w-100 gx-5">
-            <div className="col">
-              <Card_1
-                image={image6}
-                head={"Group Offers"}
-                body={
-                  "Our mission is to promote the concept of group buying which helps both the buyer and the seller"
-                }
-              />
-            </div>
-            <div className="col">
-              <Card_1
-                image={image8}
-                head={"Free Online Presentation"}
-                body={
-                  "Complete Project analysis with overview, location, amenities, plans, pros & cons, builder profile etc.."
-                }
-              />
-            </div>
-            <div className="col">
-              <Card_1
-                image={image7}
-                head={"Virtual 360 Tour"}
-                body={
-                  "Experience the 3D Tour & feel the view, facing, & amenities of the projects by sitting in your home."
-                }
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="section-5">
         <div className="text-container d-flex justify-content-center align-items-center">
           <h2 className="text-center my-5 title">
-            <span className="highlight">RERA</span> Projects
+            Find <span className="highlight mx-3">RERA </span> Approved Projects
           </h2>
           <div className="view-button">
             <button className="btn btn-primary">
@@ -188,45 +223,47 @@ function Home() {
           </div>
         </div>
       </section>
-      <section className="section-5">
-        <div className="text-container d-flex justify-content-center align-items-center">
-          <h2 className="text-center my-5 title">
-            <span className="highlight">RERA</span> Consultants
+
+      <section className="section-4">
+        <div className="text my-5">
+          <h2 className="title">
+            Work with<span className="highlight mx-2">RERA</span>Housing
           </h2>
-          <div className="view-button">
-            <button className="btn btn-primary">
-              <p>View All</p> <i class="bi bi-chevron-right"></i>
-            </button>
-          </div>
         </div>
-        <div className="container">
-          <div className="card_group ">
-            <div className="row g-5 w-100 m-0">
-              <Card_2 image={dehradun} category={"Consultants"} />
-              <Card_2 image={gurugram} category={"Consultants"} />
-              <Card_2 image={noida} category={"Consultants"} />
+        <div className="body container d-flex justify-content-center">
+          <div className="row w-100 gx-5">
+            <div className="col">
+              <Card_1
+                head={"RERA builder"}
+                body={
+                  "Are you a builder with RERA approved projects with proper documentation and to ready to momve. Let's build RERA Housing together. Click Here"
+                }
+              />
+            </div>
+            <div className="col">
+              <Card_1
+                head={"RERA Agents"}
+                body={
+                  "Are you a RERA approved Agent with proper past record or fresher. Let's build RERA Housing together. Click Here"
+                }
+              />
+            </div>
+            <div className="col">
+              <Card_1
+                image={image7}
+                head={"Service Provider"}
+                body={
+                  "Are you a Real estate Service provider with proper past experience or portfolio. Let's build RERA Housing together. Click Here"
+                }
+              />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section-6 services2">
+      {/* <section className="section-6 services2">
         <div className="container-fluid container ">
           <div className="row align-items-center gy-5 gx-6">
-            {/* <div className="col-lg-4 col-md-6 our-services-card">
-              <div className="head ">
-                <h2 className="title" style={{ marginBottom: "0" }}>
-                  {" "}
-                  <span className="highlight">Our</span> Services
-                </h2>
-              </div>
-              <div className="body">
-                <p className="text">
-                  Now, everything you need to successfully buy your home is on
-                  one platform.
-                </p>
-              </div>
-            </div> */}
             <div className="col-lg-4 col-md-6 our-services-card">
               <div className="row g-0 align-items-center">
                 <div className="col-md-4 p-4">
@@ -260,7 +297,6 @@ function Home() {
             </div>
             <div className="col-lg-4 col-md-6">
               <Card_3
-                image={image21}
                 text={"Home Inspection"}
                 des={"Inspect you home to get best price"}
                 setColor={setColor}
@@ -268,7 +304,6 @@ function Home() {
             </div>
             <div className="col-lg-4 col-md-6">
               <Card_3
-                image={image22}
                 text={"Vrified Consultants"}
                 des={"Consultant with Civil Engineering Degree"}
                 setColor={setColor}
@@ -276,7 +311,6 @@ function Home() {
             </div>
             <div className="col-lg-4 col-md-6 ">
               <Card_3
-                image={image23}
                 text={"Transparent Process"}
                 des={"Our Process is Fully Transparent"}
                 setColor={setColor}
@@ -284,7 +318,6 @@ function Home() {
             </div>
             <div className="col-lg-4 col-md-6 ">
               <Card_3
-                image={image24}
                 text={"Interior"}
                 des={"Detailed Analysis of Interior"}
                 setColor={setColor}
@@ -292,7 +325,7 @@ function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="section-9 my-5 py-5">
         <Testimnial />
@@ -327,7 +360,9 @@ function Home() {
       </section>
 
       <section className="section-11">
-        <h4 className="text-center title">Are you an Agent?</h4>
+        <h4 className="text-center title">
+          Are you looking to do partnership with us?
+        </h4>
         <p className="description text-center">
           Learn how you can leverage our platform &amp; products with your{" "}
           <span className="link">clients</span>{" "}
@@ -336,9 +371,11 @@ function Home() {
 
       <section className="section-10 text-center">
         <div className="wrapper">
-          <h4 className="title">Ready to get Started ?</h4>
+          <h4 className="title">
+            List of all RERA Approved Housing Projects in India
+          </h4>
           <p className="description">
-            Search your favourite property on the go.
+            Best affordable Villas, Duplex and Flats
           </p>
           <div className="search">
             <Search />

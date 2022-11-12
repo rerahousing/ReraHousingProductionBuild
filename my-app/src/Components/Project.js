@@ -8,6 +8,10 @@ import "../Styles/Project.css";
 function Project() {
   const context = useContext(PropertyContext);
   const { property, getProperty } = context;
+  const [minPrice, setMinPrice] = useState();
+  const [maxPrice, setMaxPrice] = useState();
+  const [suffixMax, setSuffixMax] = useState();
+  const [suffixMin, setSuffixMin] = useState();
   useEffect(() => {
     getProperty();
   }, []);
@@ -68,9 +72,18 @@ function Project() {
         </div>
         <div className="card-group-custom container my-3">
           <div className="row">
-            {property.map((item) => {
+            {property.map((item, index) => {
               if (view === "List") {
-                return <Card6 data={item} />;
+                return (
+                  <Card6
+                    data={item}
+                    maxPrice={maxPrice}
+                    minPrice={minPrice}
+                    suffixMax={suffixMax}
+                    suffixMin={suffixMin}
+                    index={index}
+                  />
+                );
               } else if (view === "Grid") {
                 return (
                   <Card6Grid
@@ -81,6 +94,10 @@ function Project() {
                     bhk={item.bhk}
                     view={view}
                     data={item}
+                    maxPrice={maxPrice}
+                    minPrice={minPrice}
+                    suffixMax={suffixMax}
+                    suffixMin={suffixMin}
                   />
                 );
               }

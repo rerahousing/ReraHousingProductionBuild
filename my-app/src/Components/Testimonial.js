@@ -7,7 +7,9 @@ function Testimnial() {
   return (
     <div className="container">
       <p className="text-center section-lable">OUR TESTIMONIALS</p>
-      <h2 className="text-center title">What our Customers Have to Say.</h2>
+      <h2 className="text-center title">
+        Customer Feedback Regarding RERA Housing
+      </h2>
       <div className="row">
         <div className="col-md-12">
           <div

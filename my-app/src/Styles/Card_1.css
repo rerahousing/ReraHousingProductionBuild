@@ -1,6 +1,10 @@
-section .card-img-top {
+/* section .card-img-top {
   width: 100px;
   height: 100px;
+} */
+.card-1 .card-body {
+  line-height: 1.5;
+  padding: 30px 53px;
 }
 
 .card-body {
@@ -31,11 +35,11 @@ section .card-img-top {
   left: 0 !important;
 }
 
-.section-3 .image {
+/* .section-3 .image {
   width: 100%;
   border: none;
   margin-right: -2px;
-}
+} */
 
 .section-3 .text {
   text-align: left;
