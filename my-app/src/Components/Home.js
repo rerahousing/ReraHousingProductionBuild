@@ -24,6 +24,7 @@ import image24 from "../Resources/interior.svg";
 import image25 from "../Resources/blog-1.jpg";
 import image26 from "../Resources/blog-2.jpg";
 import ourService from "../Resources/our-service.svg";
+import { Helmet } from "react-helmet";
 
 import "../Styles/Home.css";
 
@@ -32,6 +33,17 @@ function Home() {
 
   return (
     <div>
+      <Helmet>
+        <title>Find RERA Approved Housing Projects in India</title>
+        <meta
+          name="description"
+          content="Find the best affordable Villas, Duplex, and Flats for sale in India and all are RERA approved"
+        />
+        <meta
+          name="keywords"
+          content="RERA, projects, agents, flats, duplex, villa, interior designer, property lawyer"
+        />
+      </Helmet>
       <section className="d-flex">
         <div className="container banner">
           <div className="content">
@@ -103,7 +115,7 @@ function Home() {
               </div>
               <div className="col-lg-4 col-md-6 ">
                 <Card_3
-                  text={"Interior Designer & Decorator"}
+                  text={"Interior Decorator"}
                   des={
                     "Hire Interior designer & decorator nearby your location or online around whole India easily."
                   }
@@ -236,7 +248,7 @@ function Home() {
               <Card_1
                 head={"RERA builder"}
                 body={
-                  "Are you a builder with RERA approved projects with proper documentation and to ready to momve. Let's build RERA Housing together. Click Here"
+                  "Are you a builder with RERA approved projects with proper documentation and to ready to momve. Let's build RERA Housing together."
                 }
               />
             </div>
@@ -244,7 +256,7 @@ function Home() {
               <Card_1
                 head={"RERA Agents"}
                 body={
-                  "Are you a RERA approved Agent with proper past record or fresher. Let's build RERA Housing together. Click Here"
+                  "Are you a RERA approved Agent with proper past record or fresher and want to grow your carrier in real estate. Let's build RERA Housing together."
                 }
               />
             </div>
@@ -260,72 +272,6 @@ function Home() {
           </div>
         </div>
       </section>
-
-      {/* <section className="section-6 services2">
-        <div className="container-fluid container ">
-          <div className="row align-items-center gy-5 gx-6">
-            <div className="col-lg-4 col-md-6 our-services-card">
-              <div className="row g-0 align-items-center">
-                <div className="col-md-4 p-4">
-                  <img
-                    src={ourService}
-                    className="img-fluid rounded-start card_image p-md-0"
-                    alt="..."
-                  />
-                </div>
-                <div className="col-md-8">
-                  <div className="card-body d-flex flex-column">
-                    <h5 className="card-title">
-                      <span className="highlight">Our</span> Services
-                    </h5>
-
-                    <p className="text">
-                      Now, everything you need to successfully buy your home is
-                      on one platform.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6">
-              <Card_3
-                image={image20}
-                text={"Finance"}
-                des={"Finace your Property"}
-                setColor={setColor}
-              />
-            </div>
-            <div className="col-lg-4 col-md-6">
-              <Card_3
-                text={"Home Inspection"}
-                des={"Inspect you home to get best price"}
-                setColor={setColor}
-              />
-            </div>
-            <div className="col-lg-4 col-md-6">
-              <Card_3
-                text={"Vrified Consultants"}
-                des={"Consultant with Civil Engineering Degree"}
-                setColor={setColor}
-              />
-            </div>
-            <div className="col-lg-4 col-md-6 ">
-              <Card_3
-                text={"Transparent Process"}
-                des={"Our Process is Fully Transparent"}
-                setColor={setColor}
-              />
-            </div>
-            <div className="col-lg-4 col-md-6 ">
-              <Card_3
-                text={"Interior"}
-                des={"Detailed Analysis of Interior"}
-                setColor={setColor}
-              />
-            </div>
-          </div>
-        </div>
-      </section> */}
 
       <section className="section-9 my-5 py-5">
         <Testimnial />

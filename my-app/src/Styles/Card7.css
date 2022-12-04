@@ -50,7 +50,61 @@ table .overflow {
   overflow-x: hidden;
 } */
 
+.col-custom {
+  width: 29.333333%;
+}
+
 .upload_image {
   width: 50%;
   display: inherit;
+}
+
+.services-card {
+  background-color: #fff;
+  border: 2px solid #dadada;
+}
+
+.card-image-top {
+  background-color: #d3d3d3;
+  border-radius: 50%;
+  height: 150px;
+  margin-top: 20px;
+  width: 150px;
+}
+
+.card-details .name {
+  font-weight: 700;
+}
+
+.card-details .services p {
+  font-size: 18px;
+  display: flex;
+}
+
+.card-link i {
+  color: #000;
+  text-decoration: none;
+}
+
+.card-details .services p span,
+.card-link i {
+  margin-right: 10px;
+}
+
+.location {
+  display: flex;
+}
+
+.location-details {
+  margin-left: 10px;
+}
+
+.image_col {
+  display: block;
+  height: 100px;
+  object-fit: contain;
+}
+
+.image_col img {
+  width: 100%;
 }

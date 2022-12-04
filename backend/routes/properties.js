@@ -21,10 +21,12 @@ router.post(
     {
       name: "image",
     },
+    {
+      name: "developer_logo",
+    },
   ]),
 
   async (req, res) => {
-    console.log(req.files);
     try {
       const {
         rera_no,
@@ -48,7 +50,12 @@ router.post(
         amenites,
         priceMaxFormated,
         priceMinFormated,
+        project_status,
+        hot_deal,
+        views,
+        property_type,
       } = req.body;
+
       let newProp = new Property({
         rera_no,
         title,
@@ -71,8 +78,12 @@ router.post(
         amenites,
         priceMaxFormated,
         priceMinFormated,
+        project_status,
+        hot_deal,
+        views,
+        property_type,
       });
-      console.log(req.files);
+
       if (req.files) {
         if (req.files.imgCollection) {
           req.files.imgCollection.forEach(function (files, index, arr) {
@@ -89,9 +100,18 @@ router.post(
             newProp.image.push(path);
           });
         }
+
+        if (req.files.developer_logo) {
+          req.files.developer_logo.forEach(function (files, index, arr) {
+            let path = "/uploads/";
+            path = path + files.filename;
+            newProp.developer_logo.push(path);
+          });
+        }
       }
 
       const savedProp = await newProp.save();
+      console.log(req.body);
       res.json(savedProp);
     } catch (err) {
       return res
@@ -189,6 +209,10 @@ router.post("/updateproperty/:id", upload.none(), async (req, res) => {
     amenites,
     priceMaxFormated,
     priceMinFormated,
+    project_status,
+    hot_deal,
+    views,
+    property_type,
   } = req.body;
   console.log(req);
   const newProp = {};
@@ -255,44 +279,19 @@ router.post("/updateproperty/:id", upload.none(), async (req, res) => {
   if (priceMinFormated) {
     newProp.priceMinFormated = priceMinFormated;
   }
+  if (project_status) {
+    newProp.project_status = project_status;
+  }
+  if (views) {
+    newProp.views = views;
+  }
+  if (hot_deal) {
+    newProp.hot_deal = hot_deal;
+  }
+  if (property_type) {
+    newProp.property_type = property_type;
+  }
 
-  // console.log(req.body.image);
-  // if (req.files) {
-  //   if (req.files.imgCollection) {
-  //     req.files.imgCollection.forEach(function (files, index, arr) {
-  //       let path = "";
-  //       path = path + files.path;
-  //       newProp.imgCollection.push(path);
-  //       path = "";
-  //     });
-  //   }
-
-  //   if (req.files.image) {
-  //     req.files.image.forEach(function (files, index, arr) {
-  //       let path = "";
-  //       path = path + files.path;
-  //       newProp.image.push(path);
-  //     });
-  //   }
-  // }
-
-  // if (req.files) {
-  //   if (req.files.imgCollection) {
-  //     req.files.imgCollection.forEach(function (files, index, arr) {
-  //       let path = "/uploads/";
-  //       path = path + files.filename;
-  //       newProp.imgCollection.push(path);
-  //     });
-  //   }
-
-  //   if (req.files.image) {
-  //     req.files.image.forEach(function (files, index, arr) {
-  //       let path = "/uploads/";
-  //       path = path + files.filename;
-  //       newProp.image.push(path);
-  //     });
-  //   }
-  // }
   let property = await Property.findById(req.params.id);
   if (!property) {
     return res.status(404).send("Not Found");
@@ -317,14 +316,18 @@ router.patch(
     {
       name: "image",
     },
+    {
+      name: "developer_logo",
+    },
   ]),
   async (req, res) => {
-    console.log(req);
     let property = await Property.findById(req.params.id);
-    const newProp = { image: [], imgCollection: [] };
+    const newProp = { image: [], imgCollection: [], developer_logo: [] };
     if (req.body.bhk_no) {
       newProp.bhk_no = req.body.bhk_no;
     }
+
+    console.log(req.files);
     if (req.files) {
       if (req.files.imgCollection) {
         req.files.imgCollection.forEach(function (files, index, arr) {
@@ -366,6 +369,33 @@ router.patch(
         });
 
         property.image?.forEach((item) => {
+          const path = "../my-app/public" + item;
+          fs.stat(path, function (err, stats) {
+            console.log(stats); //here we got all information of file in stats variable
+
+            if (err) {
+              return console.error(err);
+            }
+
+            fs.unlink(path, function (err) {
+              if (err) return console.log(err);
+            });
+          });
+        });
+      }
+      if (!req.files.developer_logo) {
+        property.developer_logo.forEach((item) => {
+          newProp.developer_logo.push(item);
+        });
+      }
+      if (req.files.developer_logo) {
+        req.files.developer_logo.forEach(function (files, index, arr) {
+          let path = "/uploads/";
+          path = path + files.filename;
+          newProp.developer_logo.push(path);
+        });
+
+        property.developer_logo?.forEach((item) => {
           const path = "../my-app/public" + item;
           fs.stat(path, function (err, stats) {
             console.log(stats); //here we got all information of file in stats variable

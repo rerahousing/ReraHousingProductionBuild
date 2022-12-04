@@ -7,6 +7,7 @@ import CurrencyFormat from "react-currency-format";
 function Dashboard() {
   // States
   const ref = useRef(null);
+  const [logo, setLogo] = useState();
   const [imageData, setImageData] = useState([]);
   const context = useContext(PropertyContext);
   const [inputImage, setInputImage] = useState([""]);
@@ -14,7 +15,6 @@ function Dashboard() {
   const [why, setWhy] = useState([]);
   const [fetures, setFetures] = useState([]);
   const [bhkDet, setBhkDet] = useState([] || "");
-  const [maxPriceFormat, setMaxPriceFormat] = useState("");
   const [inputProp, setInputProp] = useState({
     id: "",
     etitle: "",
@@ -31,6 +31,10 @@ function Dashboard() {
     floor: 0,
     apartment_per_floor: 0,
     other_fet: [],
+    project_status: "",
+    hot_deal: false,
+    views: "0",
+    property_type: "",
   });
   const [image, setImage] = useState([]);
   const {
@@ -57,6 +61,10 @@ function Dashboard() {
     tower: 0,
     floor: 0,
     apartment_per_floor: 0,
+    project_status: "",
+    hot_deal: false,
+    views: "0",
+    property_type: "",
   });
 
   const [propertyData, setPropertyData] = useState({
@@ -74,12 +82,15 @@ function Dashboard() {
     floor: 0,
     apartment_per_floor: 0,
     other_fet: [],
+    project_status: "",
+    hot_deal: false,
+    views: "0",
+    property_type: "",
   });
 
-  const [inputDet, setInputDet] = useState([]);
   const [suffix, setSuffix] = useState(" ft");
-  const [price_min, setPrice_min] = useState();
-  const [price_max, setPrice_max] = useState();
+  const [price_min, setPrice_min] = useState(0);
+  const [price_max, setPrice_max] = useState(0);
 
   // Functions;
   const checkBoxes = () => {
@@ -94,6 +105,21 @@ function Dashboard() {
     getProperty();
   }, []);
 
+  const formatCurrency = (price) => {
+    let data;
+    if (price > 999 && price <= 99999) {
+      data = price / 1000;
+      data = data.toString() + " K";
+    } else if (price > 99999 && price <= 9999999) {
+      data = price / 100000;
+      data = data.toString() + " Lacs";
+    } else if (price > 9999999) {
+      data = price / 10000000;
+      data = data.toString() + " Cr";
+    }
+    return data;
+  };
+
   const updateProp = (currentProp) => {
     setAmenites(currentProp.amenites);
     setInputProp({
@@ -105,17 +131,28 @@ function Dashboard() {
       estate: currentProp.state,
       ebhk: currentProp.bhk,
       ewebsite_property: currentProp.website_property,
-      epossession: currentProp.possession,
       econfiguration: currentProp.configuration,
       ecarpet_area: currentProp.carpet_area,
+      possession: currentProp.prossession,
       etower: currentProp.tower,
       efloor: currentProp.floor,
       eapartment_per_floor: currentProp.apartment_per_floor,
       ewhy: currentProp.why,
       eother_fet: currentProp.other_fet,
       eamenites: currentProp.amenites,
+      epricing_max: currentProp.pricing_max,
+      epricing_min: currentProp.pricingmin,
+      eproject_status: currentProp.project_status,
+      ehot_deal: currentProp.hot_deal,
+      views: currentProp.views,
     });
-
+    const data = document.getElementById("einput_hot_deal");
+    data.checked = currentProp.hot_deal;
+    const selectBox = document.getElementById("eproject_status");
+    selectBox.value = currentProp.project_status;
+    const selectBox2 = document.getElementById("eproperty_type");
+    console.log(selectBox2);
+    selectBox2.value = currentProp.property_type;
     setBhk(currentProp.bhk);
     setImage([]);
     setImageData([]);
@@ -124,9 +161,6 @@ function Dashboard() {
     setFetures(currentProp.other_fet);
     setPrice_min(currentProp.pricingmin);
     setPrice_max(currentProp.pricing_max);
-  };
-  const handleFormChange = (e) => {
-    setInputDet({ ...inputDet, [e.target.name]: e.target.value });
   };
 
   const updatePropDB = () => {
@@ -141,45 +175,26 @@ function Dashboard() {
     formData.append("pricingmin", price_min);
     formData.append("pricing_max", price_max);
     formData.append("website_property", inputProp.ewebsite_property);
-    formData.append("possession", inputProp.epossession);
+    formData.append("possession", inputProp.possession);
     formData.append("configuration", inputProp.econfiguration);
     formData.append("carpet_area", inputProp.ecarpet_area);
     formData.append("tower", inputProp.etower);
     formData.append("floor", inputProp.efloor);
-    formData.append("apartment_per_floor", propertyData.apartment_per_floor);
+    formData.append("apartment_per_floor", inputProp.eapartment_per_floor);
     fetures.forEach((item) => formData.append("other_fet", item));
     why.forEach((item) => formData.append("why", item));
     amenites.forEach((item) => formData.append("amenites", item));
-    const max = price_max;
-    let data;
-    if (max > 999 && max <= 99999) {
-      data = max / 1000;
-      data = data.toString() + " K";
-    } else if (max > 99999 && max <= 9999999) {
-      data = max / 100000;
-      data = data.toString() + " Lacs";
-    } else if (max > 9999999) {
-      data = max / 10000000;
-      data = data.toString() + " Cr";
-    }
-
+    formData.append("project_status", inputProp.eproject_status);
+    let data = formatCurrency(price_max);
     formData.append("priceMaxFormated", data);
-
-    const min = price_min;
-    let data2;
-    if (min > 999 && min <= 99999) {
-      data2 = min / 1000;
-      data2 = data2.toString() + " K";
-    } else if (min > 99999 && min <= 9999999) {
-      data2 = min / 100000;
-      data2 = data2.toString() + " Lacs";
-    } else if (min > 9999999) {
-      data2 = min / 10000000;
-      data2 = data2.toString() + " Cr";
-    }
-
-    formData.append("priceMinFormated", data2);
+    data = formatCurrency(price_min);
+    formData.append("priceMinFormated", data);
+    formData.append("views", inputProp.views);
+    data = document.getElementById("einput_hot_deal").checked;
+    formData.append("hot_deal", data);
+    formData.append("property_type", inputProp.property_type);
     editProp(inputProp.id, formData);
+
     window.location.reload();
   };
   const setDataImage = (image) => {
@@ -217,42 +232,23 @@ function Dashboard() {
     formData.append("floor", propertyData.floor);
     imageData.forEach((item) => formData.append("image", item));
     formData.append("apartment_per_floor", propertyData.apartment_per_floor);
+    formData.append("project_status", propertyData.project_status);
     image.forEach((item) => formData.append("imgCollection", item));
     bhkDet.forEach((item) => formData.append("bhk_no", JSON.stringify(item)));
     fetures.forEach((item) => formData.append("other_fet", item));
     why.forEach((item) => formData.append("why", item));
     amenites.forEach((item) => formData.append("amenites", item));
-    const max = price_max;
-    let data;
-    if (max > 999 && max <= 99999) {
-      data = max / 1000;
-      data = data.toString() + " K";
-    } else if (max > 99999 && max <= 9999999) {
-      data = max / 100000;
-      data = data.toString() + " Lacs";
-    } else if (max > 9999999) {
-      data = max / 10000000;
-      data = data.toString() + " Cr";
-    }
-
+    let data = formatCurrency(price_max);
     formData.append("priceMaxFormated", data);
-
-    const min = price_min;
-    let data2;
-    if (min > 999 && min <= 99999) {
-      data2 = min / 1000;
-      data2 = data2.toString() + " K";
-    } else if (min > 99999 && min <= 9999999) {
-      data2 = min / 100000;
-      data2 = data2.toString() + " Lacs";
-    } else if (min > 9999999) {
-      data2 = min / 10000000;
-      data2 = data2.toString() + " Cr";
-    }
-
-    formData.append("priceMinFormated", data2);
-
+    data = formatCurrency(price_min);
+    formData.append("priceMinFormated", data);
+    formData.append("views", propertyData.views);
+    data = document.getElementById("input_hot_deal").checked;
+    formData.append("hot_deal", data);
+    logo?.forEach((item) => formData.append("developer_logo", item));
+    formData.append("property_type", propertyData.property_type);
     addProperty(formData, bhkDet);
+    console.log(propertyData.property_type);
     window.location.reload();
   };
 
@@ -261,6 +257,7 @@ function Dashboard() {
   };
 
   const onChangeArrayEdit = (e) => {
+    console.log(e.target.value);
     setInput(e.target.value);
   };
 
@@ -297,6 +294,7 @@ function Dashboard() {
     imageData.forEach((item) => formData.append("image", item));
     image.forEach((item) => formData.append("imgCollection", item));
     bhkDet.forEach((item) => formData.append("bhk_no", JSON.stringify(item)));
+    logo.forEach((item) => formData.append("developer_logo", item));
     patchProp(inputProp.id, formData);
     window.location.reload();
   };
@@ -333,6 +331,11 @@ function Dashboard() {
             <th scope="col">Tower</th>
             <th scope="col">Floors</th>
             <th scope="col">Apartments per floor</th>
+            <th scope="col">Project Status</th>
+            <th scope="col">Project Type</th>
+            <th scope="col">Views</th>
+            <th scope="col">Developer Logo</th>
+            <th scope="col">Hot Deal</th>
             <th scope="col">Why this property</th>
             <th scope="col">Other Features</th>
             <th scope="col">Property Images</th>
@@ -400,6 +403,19 @@ function Dashboard() {
                 <td>{e.tower}</td>
                 <td>{e.floor}</td>
                 <td>{e.apartment_per_floor}</td>
+                <td>{e.project_status}</td>
+                <td>{e.property_type}</td>
+                <td>{e.views}</td>
+                <td>
+                  <td className="image_col">
+                    {" "}
+                    <img
+                      src={`http://localhost:3000${e.developer_logo}`}
+                      alt="No Developer Logo"
+                    />
+                  </td>
+                </td>
+                <td>{e.hot_deal ? "✅" : "❌"}</td>
                 <td>
                   <ul>
                     {e.why.map((i) => {
@@ -497,7 +513,7 @@ function Dashboard() {
                     RERA ID
                   </label>
                   <input
-                    type="number"
+                    type="text"
                     className="form-control"
                     id="exampleInputPassword1"
                     name="rera_no"
@@ -553,9 +569,71 @@ function Dashboard() {
                   />
                 </div>
                 <div className="mb-3">
+                  <label for="project_stataus" className="form-label">
+                    Project Status
+                  </label>
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    id="project_stataus"
+                    name="project_status"
+                    onChange={onChange}
+                  >
+                    <option selected>Property Status</option>
+                    <option value="Under Construction">
+                      Under Construction
+                    </option>
+                    <option value="Ready to Move">Ready to Move</option>
+                  </select>
+                </div>
+
+                <div className="mb-3">
+                  <label for="property_type" className="form-label">
+                    Property Type
+                  </label>
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    id="property_type"
+                    name="property_type"
+                    onChange={onChange}
+                  >
+                    <option selected>Property Type</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Row House / Villa">Row House / Villa</option>
+                    <option value="Independent Floor">Independent Floor</option>
+                  </select>
+                </div>
+
+                <div className="mb-3">
+                  <label for="input_views" className="form-label">
+                    Views
+                  </label>
+                  <input
+                    type="number"
+                    id="input_views"
+                    className="form-control"
+                    name="views"
+                    onChange={onChange}
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    name="hot_deal"
+                    id="input_hot_deal"
+                    onChange={onChange}
+                  />
+                  <label className="form-check-label" for="input_hot_deal">
+                    Hot Deal Tag
+                  </label>
+                </div>
+                <div className="mb-3">
                   <label for="exampleInputPassword1" className="form-label">
                     Total BHK
                   </label>
+
                   <div className="input-box">
                     <input
                       type="number"
@@ -644,24 +722,20 @@ function Dashboard() {
                     Pricing
                   </label>
                   <div className="d-flex my-2">
-                    <CurrencyFormat
-                      thousandSeparator={false}
-                      thousandSpacing={"2s"}
+                    <input
+                      type="number"
                       className="form-control"
                       placeholder="Min"
-                      onValueChange={(values) => {
-                        const { formattedValue, value } = values;
-                        setPrice_min(value);
+                      onChange={(e) => {
+                        setPrice_min(e.target.value);
                       }}
                     />
-                    <CurrencyFormat
-                      thousandSeparator={false}
-                      thousandSpacing={"2s"}
+                    <input
+                      type="number"
                       className="form-control"
                       placeholder="Max"
-                      onValueChange={(values) => {
-                        const { formattedValue, value } = values;
-                        setPrice_max(value);
+                      onChange={(e) => {
+                        setPrice_max(e.target.value);
                       }}
                     />
                   </div>
@@ -770,6 +844,7 @@ function Dashboard() {
                     type="date"
                     className="form-control"
                     id="exampleInputPassword1"
+                    value={inputProp.possession}
                     name="possession"
                     placeholder="Ex: 2022-12-31"
                     onChange={onChange}
@@ -1143,15 +1218,34 @@ function Dashboard() {
                 </div>
 
                 <div className="form-group">
-                  <div class="input-group mb-3">
+                  <div className="input-group mb-3">
+                    <label for="add_image_collection" className="form-label">
+                      Add Property Images
+                    </label>
                     <input
                       type="file"
-                      class="form-control"
-                      id="inputGroupFile02"
+                      className="form-control"
+                      id="add_image_collection"
                       onChange={(e) => {
                         setImage([...e.target.files]);
                       }}
                       multiple
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label for="add_developer_logo" className="form-label">
+                    Add Developer Logo
+                  </label>
+                  <div className="input-group mb-3">
+                    <input
+                      type="file"
+                      className="form-control"
+                      id="add_developer_logo"
+                      onChange={(e) => {
+                        setLogo([...e.target.files]);
+                      }}
                     />
                   </div>
                 </div>
@@ -1265,6 +1359,74 @@ function Dashboard() {
                     />
                   </div>
                   <div className="mb-3">
+                    <label for="eproject_status" className="form-label">
+                      Project Status
+                    </label>
+                    <select
+                      class="form-select"
+                      aria-label="Default select example"
+                      id="eproject_status"
+                      name="eproject_status"
+                      onChange={handleChange}
+                    >
+                      <option selected value="Not Specified">
+                        Property Status
+                      </option>
+                      <option value="Under Construction">
+                        Under Construction
+                      </option>
+                      <option value="Ready to Move">Ready to Move</option>
+                    </select>
+                  </div>
+
+                  <div className="mb-3">
+                    <label for="property_type" className="form-label">
+                      Property Type
+                    </label>
+                    <select
+                      class="form-select"
+                      aria-label="Default select example"
+                      id="eproperty_type"
+                      name="property_type"
+                      onChange={handleChange}
+                    >
+                      <option selected>Property Type</option>
+                      <option value="Apartment">Apartment</option>
+                      <option value="Row House / Villa">
+                        Row House / Villa
+                      </option>
+                      <option value="Independent Floor">
+                        Independent Floor
+                      </option>
+                    </select>
+                  </div>
+
+                  <div className="mb-3">
+                    <label for="einput_views" className="form-label">
+                      Views
+                    </label>
+                    <input
+                      type="number"
+                      id="einput_views"
+                      className="form-control"
+                      name="views"
+                      value={inputProp.views}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      name="ehot_deal"
+                      id="einput_hot_deal"
+                      onChange={handleChange}
+                    />
+                    <label className="form-check-label" for="einput_hot_deal">
+                      Hot Deal Tag
+                    </label>
+                  </div>
+                  <div className="mb-3">
                     <label for="exampleInputPassword1" className="form-label">
                       Total BHK
                     </label>
@@ -1307,26 +1469,22 @@ function Dashboard() {
                       Pricing
                     </label>
                     <div className="d-flex my-2">
-                      <CurrencyFormat
-                        thousandSeparator={false}
-                        thousandSpacing={"2s"}
+                      <input
+                        type="number"
                         className="form-control"
                         placeholder="Min"
                         value={price_min}
-                        onValueChange={(values) => {
-                          const { formattedValue, value } = values;
-                          setPrice_min(value);
+                        onChange={(e) => {
+                          setPrice_min(e.target.value);
                         }}
                       />
-                      <CurrencyFormat
-                        thousandSeparator={false}
-                        thousandSpacing={"2s"}
+                      <input
+                        type="number"
                         className="form-control"
                         placeholder="Max"
                         value={price_max}
-                        onValueChange={(values) => {
-                          const { formattedValue, value } = values;
-                          setPrice_max(value);
+                        onChange={(e) => {
+                          setPrice_max(e.target.value);
                         }}
                       />
                     </div>
@@ -1848,7 +2006,7 @@ function Dashboard() {
             <div className="modal-content">
               <div className="modal-header">
                 <h1 className="modal-title fs-5" id="myModal2">
-                  Modal title
+                  Overwrite Image files
                 </h1>
                 <button
                   type="button"
@@ -1918,10 +2076,24 @@ function Dashboard() {
                         id="inputGroupFile02"
                         multiple
                         onChange={(e) => {
-                          console.log([...e.target.files]);
                           setImage([...e.target.files]);
                         }}
                       />
+                    </div>
+                    <div className="form-group">
+                      <label for="add_developer_logo" className="form-label">
+                        Add Developer Logo
+                      </label>
+                      <div className="input-group mb-3">
+                        <input
+                          type="file"
+                          className="form-control"
+                          id="add_developer_logo"
+                          onChange={(e) => {
+                            setLogo([e.target.files[0]]);
+                          }}
+                        />
+                      </div>
                     </div>
                   </form>
                 </div>

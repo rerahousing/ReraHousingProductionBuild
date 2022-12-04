@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logo from "../Resources/companylogo-foundermeet.png";
+import logo from "../Resources/rera-approved-housing-projects-logo.png";
 import "../Styles/Navbar.css";
 import { Link } from "react-scroll";
 
@@ -27,7 +27,11 @@ function Navbar() {
       >
         <div className="container-fluid p-0">
           <a className="navbar-brand d-flex justify-content-start" href="#">
-            <img src={logo} alt="No Image" />
+            <img
+              className="header image"
+              src={logo}
+              alt="Find RERA Approved Housing Projects in India for best affordable Villas, Duplex, and Flats"
+            />
           </a>
           <button
             className="navbar-toggler"
@@ -56,11 +60,6 @@ function Navbar() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/real-estate-online-cources">
-                  Learn
-                </a>
-              </li>
-              <li className="nav-item">
                 <a className="nav-link" href="/real-estate-service-providers">
                   Services
                 </a>
@@ -68,6 +67,11 @@ function Navbar() {
               <li className="nav-item">
                 <a className="nav-link" href="https://blog.rerahousing.in">
                   Blog
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/real-estate-online-cources">
+                  Learn
                 </a>
               </li>
               <li className="nav-item">
@@ -88,7 +92,7 @@ function Navbar() {
               <a
                 className="btn btn-outline-success"
                 type="submit"
-                href="/dashboard"
+                href="/login"
               >
                 Search Property
               </a>

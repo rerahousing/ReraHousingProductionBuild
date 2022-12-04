@@ -47,8 +47,8 @@ function Footer() {
           <hr />
           <div className="col social">
             <div className="clearfix d-flex">
-              <p>@ 2022 RERAhousing.in</p>
-              <p>Terms of Services</p>
+              <p style={{ marginRight: "117px" }}>@ 2023 RERAhousing.in</p>
+              <p style={{ marginRight: "168px" }}>Terms of Services</p>
               <p>Privacy Policy</p>
             </div>
             <ul>

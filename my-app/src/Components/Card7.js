@@ -2,48 +2,86 @@ import React from "react";
 import "../Styles/Card7.css";
 import profileImage from "../Resources/profile.svg";
 
-function Card7() {
+function Card7(props) {
+  const {
+    name,
+    services,
+    loc_area,
+    loc_state,
+    loc_city,
+    availability,
+    facebook_link,
+    whatsapp_link,
+    instagram_link,
+    website_link,
+    profile_pic,
+  } = props.data;
+
   return (
     <>
-      <div className="services-card col m-4">
+      <div className="services-card col-custom m-4">
         <div className="card-image text-center">
           <img
-            src={profileImage}
+            src={`http://localhost:7000${profile_pic}`}
             alt=""
             className="card-image-top
           "
           />
         </div>
         <div className="card-details">
-          <div className="name my-2-  text-center">Sumit Sharma</div>
+          <div className="name my-2  text-center">{name}</div>
           <div className="services my-3">
             <p>
               <span>Services: </span>
-              Interior Designer
+              <div className="service_list">
+                {services?.map((item) => {
+                  return (
+                    <>
+                      {item},{"  "}
+                    </>
+                  );
+                })}
+              </div>
             </p>
             <div className="location">
               <label>Location: </label>
-              <div className="loaction-details">Area, Location, Locality</div>
+              <div className="location-details">
+                {loc_area},
+                <br /> {loc_state},
+                <br /> {loc_city}
+              </div>
             </div>
             <p>
               <span>Availability: </span>
-              Online / Offline
+              {availability}
             </p>
             <p>
               <span>Connect Me: </span>
-              <a href="" className="card-link">
+              <a
+                href={`${facebook_link ? facebook_link : "#"}`}
+                className="card-link"
+              >
                 <i class="bi bi-facebook"></i>
               </a>
-              <a href="" className="card-link">
+              <a
+                href={`${whatsapp_link ? whatsapp_link : "#"} `}
+                className="card-link"
+              >
                 <i class="bi bi-whatsapp"></i>
               </a>
-              <a href="" className="card-link">
+              <a
+                href={`${instagram_link ? instagram_link : "#"} `}
+                className="card-link"
+              >
                 <i class="bi bi-instagram"></i>
               </a>
             </p>
             <p>
               <span>Website: </span>
-              <a href="" className="card-link">
+              <a
+                href={`${website_link ? website_link : "#"} `}
+                className="card-link"
+              >
                 <i class="bi bi-link-45deg"></i>Visit Website
               </a>
             </p>

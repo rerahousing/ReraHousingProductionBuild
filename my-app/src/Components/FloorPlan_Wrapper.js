@@ -1,9 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { Box, Tab, Tabs, Typography } from "@mui/material";
-import FloorPlanBox from "./FloorPlanBox";
-
 import OwlCarousel from "react-owl-carousel";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 function FloorPlan_Wrapper(props) {
@@ -56,8 +53,8 @@ function FloorPlan_Wrapper(props) {
                           <label>{item.Area}</label>
                         </div>
                         <div className="col">
-                          <span>Price: </span>
-                          <label>{item.Price}</label>
+                          <span>BHK: </span>
+                          <label>{item.bhk}</label>
                         </div>
                         <div className="col">
                           <span>Price: </span>

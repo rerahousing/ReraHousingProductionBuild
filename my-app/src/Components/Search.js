@@ -36,7 +36,7 @@ function Search() {
         </a>
 
         <a
-          className="btn btn-primary btn-custom mx-4"
+          className="btn btn-primary btn-custom mx-md-3"
           href="/real-estate-service-providers"
           role="button"
         >

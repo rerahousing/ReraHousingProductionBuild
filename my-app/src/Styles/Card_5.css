@@ -12,6 +12,7 @@
 
 .card_body .info {
   display: flex;
+  float: right;
   color: lightgray;
 }
 

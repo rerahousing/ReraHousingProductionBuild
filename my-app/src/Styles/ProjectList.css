@@ -182,6 +182,10 @@ body .project-list {
   display: inline-block;
 }
 
+.range {
+  padding: 17px;
+}
+
 #navbarSupportedContent2 {
   float: right;
   position: relative;
@@ -294,6 +298,11 @@ body .project-list {
   .left-list .button button.active .bi-arrow-right {
     left: 40px;
   }
+
+  #navbarSupportedContent2 .filter-options {
+    display: block !important;
+  }
+  
 }
 
 @media (max-width: 426px) and (min-width: 402px) {

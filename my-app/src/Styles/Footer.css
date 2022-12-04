@@ -77,7 +77,6 @@
 .clearfix {
   clear: both;
   justify-content: space-between;
-  width: 50%;
 }
 
 .social ul li {
@@ -131,5 +130,11 @@
 
   .footer .col {
     width: 100%;
+  }
+}
+
+@media (max-width: 426px) {
+  .clearfix {
+    flex-direction: column;
   }
 }

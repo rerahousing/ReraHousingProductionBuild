@@ -7,13 +7,18 @@ import ProjectList from "./Components/ProjectList";
 import ProductPage from "./Components/ProductPage";
 import ServicePage from "./Components/ServicePage";
 import PropertyState from "./Context/Property/PropertyState";
-import Dashboard from "./Components/Dashboard";
+import DashboardTab from "./Components/DashboardTab";
+import Test from "./Components/Test";
+import Login from "./Components/Login";
 
 function App() {
   return (
     <div>
       <PropertyState>
-        <Navbar />
+        {window.location.pathname === "/dashboard" ||
+        window.location.pathname === "/login" ? null : (
+          <Navbar />
+        )}
         <Router>
           <Routes>
             <Route element={<Home />} path={"/"} />
@@ -29,10 +34,14 @@ function App() {
               path="/real-estate-service-providers"
               element={<ServicePage />}
             />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<DashboardTab />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </Router>
-        <Footer />
+        {window.location.pathname === "/dashboard" ||
+        window.location.pathname === "/login" ? null : (
+          <Footer />
+        )}
       </PropertyState>
     </div>
   );

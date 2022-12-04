@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../Styles/Project.css";
-import image from "../Resources/blog-1.jpg";
 import bed from "../Resources/bed.svg";
 import fire from "../Resources/fire.svg";
 import logo from "../Resources/ex-logo.svg";
@@ -32,13 +31,33 @@ function Card6(props) {
     amenites,
     priceMaxFormated,
     priceMinFormated,
+    project_status,
+    views,
+    hot_deal,
+    developer_logo,
   } = props.data;
 
-  console.log(state);
+  const { image } = props;
+
+  const changeFormatPrice = (price) => {
+    let min = Math.abs(price);
+    let data2 = 0;
+    if (min > 999 && min <= 99999) {
+      data2 = min / 1000.0;
+      data2 = data2.toString() + " K";
+    } else if (min > 99999 && min <= 9999999) {
+      data2 = min / 100000.0;
+      data2 = data2.toString() + " Lacs";
+    } else if (min > 9999999) {
+      data2 = min / 10000000.0;
+      data2 = data2.toString() + " Cr";
+    }
+    return data2;
+  };
 
   const promptText = () => {
     let url = window.location.href;
-    navigator.clipboard.writeText(url + `/${props.id}`);
+    navigator.clipboard.writeText(url + `/${_id}`);
     setShow(true);
     setTimeout(() => {
       setShow(false);
@@ -51,16 +70,24 @@ function Card6(props) {
           props.view === "Grid" ? "hide" : ""
         }`}
       >
-        <span className="badge rounded-pill">
-          {" "}
-          <img src={fire} alt="" style={{ width: "20%" }} /> Hot Deals
-        </span>
+        {hot_deal ? (
+          <span className="badge rounded-pill">
+            {" "}
+            <img src={fire} alt="" style={{ width: "20%" }} /> Hot Deals
+          </span>
+        ) : (
+          ""
+        )}
         <span class="badge rounded-pill Featured">
-          <i class="fi fi-rs-eye"></i> 10k
+          <i class="fi fi-rs-eye"></i> {changeFormatPrice(views)}
         </span>
 
         <span className="dev-logo rounded-circle">
-          <img src={logo} alt="" style={{ width: "100%" }} />
+          <img
+            src={`http://localhost:3000${developer_logo}`}
+            alt=""
+            style={{ width: "100%" }}
+          />
         </span>
         <button
           type="button"
@@ -77,7 +104,11 @@ function Card6(props) {
           Copied to clipboard !!
         </div>
 
-        <img src={image} className="card-img-top" alt="..." />
+        <img
+          src={`http://localhost:3000${props.image}`}
+          className="card-img-top"
+          alt="..."
+        />
         <div className="card-body">
           <span className="seal rounded-circle">
             <img src={seal} alt="" />

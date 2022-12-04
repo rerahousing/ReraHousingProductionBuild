@@ -13,6 +13,9 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/properties", require("./routes/properties"));
+app.use("/api/services", require("./routes/services"));
+app.use("/api/contacts", require("./routes/contact"));
+app.use("/api/admin", require("./routes/admin"));
 app.use(express.static("public"));
 app.get("/", (req, res) => {
   res.send("Hello World");

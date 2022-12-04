@@ -113,4 +113,8 @@
     width: 123px;
     font-size: 14px;
   }
+
+  .mt-sm-3 {
+    margin-top: 10px;
+  }
 }

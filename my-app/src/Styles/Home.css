@@ -8,7 +8,8 @@ body {
 }
 
 .banner {
-  background: url("../Resources/pic1.jpg") top right,
+  background: url("../Resources/rera-approved-housing-projects-header.jpg") top
+      right,
     linear-gradient(
       0deg,
       #265eba 0%,
@@ -20,10 +21,8 @@ body {
     );
   width: 100%;
   height: 640px;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
-  float: right;
-  overflow: hidden;
 }
 
 .content {
@@ -158,6 +157,7 @@ body {
   line-height: 28px;
   color: #273653;
   font-weight: bold;
+  margin-bottom: 22px;
 }
 
 .card-text {
@@ -355,6 +355,10 @@ body {
 
   .section-5 .view-button {
     justify-content: center !important;
+  }
+
+  .content .body {
+    line-height: 1.5;
   }
 }
 

@@ -5,18 +5,17 @@ import { useParams } from "react-router-dom";
 import CarosulImage from "./CarosulImage";
 import "../Styles/ProductPage.css";
 import PropertyContext from "../Context/Property/PropertyContext";
-import OwlCarousel from "react-owl-carousel";
-import FloorPlanBox from "./FloorPlanBox";
 import LoadingComponent from "./LoadingComponent";
 import seal from "../Resources/seal.png";
 import { Link } from "react-scroll";
-import { Box, Tab, Tabs, Typography } from "@mui/material";
+import { Tab, Tabs } from "@mui/material";
 import FloorPlan_Wrapper from "./FloorPlan_Wrapper";
 
 function ProductPage() {
   const [load, setLoad] = useState(true);
   const context = useContext(PropertyContext);
-  const { specProp, getSpecificProperty, bhkNo } = context;
+  const { specProp, getSpecificProperty, bhkNo, addContact } = context;
+  const [contactDet, setContactDet] = useState([]);
   console.log("Hello bhk");
   console.log(bhkNo);
 
@@ -60,6 +59,26 @@ function ProductPage() {
 
   const removeDrop = () => {
     setDrop("");
+  };
+
+  const inputContact = (e) => {
+    console.log(typeof e.target.value);
+    setContactDet({ ...contactDet, [e.target.name]: e.target.value });
+  };
+
+  const addContactForm = () => {
+    console.log("added");
+    console.log(contactDet);
+    const formData = new FormData();
+    formData.append("name", contactDet.name);
+    formData.append("mobile", contactDet.mobile);
+    formData.append("email", contactDet.email);
+    formData.append("project_name", contactDet.project_name);
+    formData.append("project_city", contactDet.project_city);
+    formData.append("project_state", contactDet.project_state);
+    formData.append("budget", contactDet.budget);
+    formData.append("remarks", contactDet.remarks);
+    addContact(formData);
   };
 
   const page = (
@@ -317,118 +336,121 @@ function ProductPage() {
               </div>
             </div>
           </div>
-
-          <div className="contact_form" id="contact_form">
-            <h5>Contact Now</h5>
-            <div className="form-group">
-              <label className="lable">Name</label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                className="form-control"
-                placeholder="Full Name"
-              />
-            </div>
-            <div className="form-group">
-              <label className="lable">Mobile No.</label>
-              <input
-                type="number"
-                name="mobile"
-                id="mobile"
-                className="form-control"
-                placeholder="Mobile No"
-              />
-            </div>
-            <div className="form-group">
-              <label className="lable">Email ID</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                className="form-control"
-                placeholder="Email ID"
-              />
-            </div>
-            <div className="form-group">
-              <label className="lable">Project Name</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                className="form-control"
-                placeholder="Enter Project Name"
-              />
-            </div>
-            <div className="form-group ">
-              <label className="lable">Select Project City</label>
-              <div className="drop">
-                <input
-                  type="text"
-                  name=""
-                  id="city"
-                  placeholder="City Name"
-                  onFocus={toggleDrop}
-                  onBlur={removeDrop}
-                />
-                <div className={`drop_box ${drop == "city" ? "" : "hide"}`}>
-                  <ul className="all-list">
-                    <li>Greater Noida</li>
-                    <li>Gurugram</li>
-                    <li>Deharadun</li>
-                    <li>Noida</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="form-group ">
-              <label className="lable">Select Project State</label>
-              <div className="drop">
-                <input
-                  type="text"
-                  name=""
-                  id="state"
-                  placeholder="City Name"
-                  onFocus={toggleDrop}
-                  onBlur={removeDrop}
-                />
-                <div className={`drop_box ${drop == "state" ? "" : "hide"}`}>
-                  <ul className="all-list">
-                    <li>Greater Noida</li>
-                    <li>Gurugram</li>
-                    <li>Deharadun</li>
-                    <li>Noida</li>
-                  </ul>
-                </div>
-              </div>
+          <form>
+            <div className="contact_form" id="contact_form">
+              <h5>Contact Now</h5>
               <div className="form-group">
-                <label className="lable">Budget</label>
+                <label className="lable">Name</label>
                 <input
                   type="text"
-                  name="budget"
-                  id="budget"
+                  name="name"
+                  id="name"
                   className="form-control"
-                  placeholder="in Lakhs (INR)"
+                  placeholder="Full Name"
+                  onChange={inputContact}
                 />
               </div>
               <div className="form-group">
-                <label className="lable">Remarks</label>
-                <textarea
-                  className="form-control Remarks"
-                  placeholder="Remarks"
-                  name="remark"
-                  id="remark"
-                  maxchar="250"
-                  rows="1"
-                ></textarea>
+                <label className="lable">Mobile No.</label>
+                <input
+                  type="number"
+                  name="mobile"
+                  id="mobile"
+                  className="form-control"
+                  placeholder="Mobile No"
+                  onChange={inputContact}
+                />
               </div>
-              <div className="form-group btns">
-                <button type="button" className="btn btn-primary rounded-pill">
-                  Request a Callback
-                </button>
+              <div className="form-group">
+                <label className="lable">Email ID</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  className="form-control"
+                  onChange={inputContact}
+                  placeholder="Email ID"
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="lable">Project Name</label>
+                <input
+                  type="email"
+                  name="project_name"
+                  id="email"
+                  className="form-control"
+                  placeholder="Enter Project Name"
+                  onChange={inputContact}
+                />
+              </div>
+              <div className="form-group ">
+                <label className="lable">Select Project City</label>
+
+                <select
+                  className="form-select drop"
+                  aria-label="Default select example"
+                  name="project_city"
+                  onChange={inputContact}
+                >
+                  <option>City Name</option>
+                  <option value="One">One</option>
+                  <option value="Two">Two</option>
+                  <option value="Three">Three</option>
+                </select>
+              </div>
+
+              <div className="form-group ">
+                <label className="lable">Select Project State</label>
+
+                <select
+                  className="form-select drop"
+                  aria-label="Default select example"
+                  placeholder="State Name"
+                  name="project_state"
+                  onChange={inputContact}
+                >
+                  <option selected>State Name</option>
+                  <option value="One">One</option>
+                  <option value="Two">Two</option>
+                  <option value="Three">Three</option>
+                </select>
+
+                <div className="form-group">
+                  <label className="lable">Budget</label>
+                  <input
+                    type="text"
+                    name="budget"
+                    id="budget"
+                    className="form-control"
+                    placeholder="in Lakhs (INR)"
+                    onChange={inputContact}
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="lable">Remarks</label>
+                  <textarea
+                    className="form-control Remarks"
+                    placeholder="Remarks"
+                    name="remarks"
+                    id="remark"
+                    maxchar="250"
+                    rows="1"
+                    onChange={inputContact}
+                  ></textarea>
+                </div>
+                <div className="form-group btns">
+                  <button
+                    type="reset"
+                    className="btn btn-primary rounded-pill"
+                    onClick={addContactForm}
+                  >
+                    Request a Callback
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
 
         <div className="section disclaimer">
