@@ -24,7 +24,6 @@ function DashboardContact() {
 
   const updateinput = (id) => {
     const currentContact = contact.filter((item) => item._id === id);
-    console.log(currentContact);
     setInput({
       id: currentContact[0]._id,
       name: currentContact[0].name,
@@ -39,8 +38,6 @@ function DashboardContact() {
   };
 
   const changeInput = (e) => {
-    console.log(e.target.value);
-    console.log({ ...input, [e.target.name]: e.target.value });
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
@@ -55,9 +52,6 @@ function DashboardContact() {
     formData.append("project_state", input.project_state);
     formData.append("budget", input.budget);
     formData.append("remarks", input.remarks);
-    console.log("updated");
-    console.log(input);
-
     updateContact(input.id, formData);
   };
 
@@ -154,38 +148,38 @@ function DashboardContact() {
                 />
               </div>
               <div className="mb-3">
-                <label for="exampleFormControlInput1" className="form-label">
+                <label for="exampleFormControlInput2" className="form-label">
                   Email
                 </label>
                 <input
                   type="email"
                   className="form-control"
                   name="email"
-                  id="exampleFormControlInput1"
+                  id="exampleFormControlInput2"
                   value={input.email}
                   onChange={changeInput}
                 />
               </div>
               <div className="mb-3">
-                <label for="exampleFormControlInput1" className="form-label">
+                <label for="exampleFormControlInput3" className="form-label">
                   Mobile No.
                 </label>
                 <input
                   type="number"
                   className="form-control"
-                  id="exampleFormControlInput1"
+                  id="exampleFormControlInput3"
                   value={input.mobile}
                   onChange={changeInput}
                 />
               </div>
               <div className="mb-3">
-                <label for="exampleFormControlInput1" className="form-label">
+                <label for="exampleFormControlInput4" className="form-label">
                   Project Name
                 </label>
                 <input
                   type="text"
                   className="form-control"
-                  id="exampleFormControlInput1"
+                  id="exampleFormControlInput4"
                   name="project_name"
                   value={input.project_name}
                   onChange={changeInput}
@@ -226,13 +220,13 @@ function DashboardContact() {
                 </select>
               </div>
               <div className="mb-3">
-                <label for="exampleFormControlInput1" className="form-label">
+                <label for="exampleFormControlInput5" className="form-label">
                   Budget
                 </label>
                 <input
                   type="text"
                   className="form-control"
-                  id="exampleFormControlInput1"
+                  id="exampleFormControlInput5"
                   name="budget"
                   value={input.budget}
                   onChange={changeInput}

@@ -60,6 +60,7 @@ table .overflow {
 }
 
 .services-card {
+  padding: 20px;
   background-color: #fff;
   border: 2px solid #dadada;
 }
@@ -107,4 +108,16 @@ table .overflow {
 
 .image_col img {
   width: 100%;
+}
+
+@media (max-width: 1025px) and (min-width: 767px) {
+  .col-custom {
+    width: 43.333333%;
+  }
+}
+
+@media (max-width: 426px) {
+  .col-custom {
+    width: 89%;
+  }
 }

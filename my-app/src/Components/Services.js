@@ -14,6 +14,7 @@ function Services(props) {
   useEffect(() => {
     getService();
   }, []);
+
   const page = (
     <>
       <Helmet>
@@ -40,6 +41,18 @@ function Services(props) {
               filter.services !== "All"
                 ? item.services.includes(filter.services)
                 : filter.services !== ""
+            )
+            .filter((item) =>
+              filter.state !== "Select State"
+                ? item.loc_state === filter.state ||
+                  item.availability === "Online"
+                : true
+            )
+            .filter((item) =>
+              filter.city !== "Select City"
+                ? item.loc_city === filter.city ||
+                  item.availability === "Online"
+                : true
             )
             .map((item) => {
               return <Card7 data={item} />;

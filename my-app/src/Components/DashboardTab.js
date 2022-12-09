@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Dashboard from "./Dashboard";
 import DashboardServices from "./DashboardServices";
 import DashboardContact from "./DashboardContact";
+import DashboardAdmin from "./DashboardAdmin";
 import { useNavigate } from "react-router-dom";
 
 function DashboardTab() {
@@ -75,6 +76,23 @@ function DashboardTab() {
               Contact Form
             </button>
           </li>
+          <li className="nav-item" role="presentation">
+            <button
+              className={`nav-link ${active === "admins-tab" ? "active" : ""}`}
+              id="admins-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#contact-tab-pane"
+              type="button"
+              role="tab"
+              onClick={(e) => {
+                setActive(e);
+              }}
+              aria-controls="contact-tab-pane"
+              aria-selected="false"
+            >
+              Admins
+            </button>
+          </li>
         </ul>
         <div className="button-box d-flex w-100 justify-content-end">
           <button
@@ -122,6 +140,17 @@ function DashboardTab() {
           tabindex="0"
         >
           <DashboardContact />
+        </div>
+        <div
+          className={`tab-pane fade ${
+            active === "admins-tab" ? "show active" : ""
+          } my-5`}
+          id="contact-tab-pane"
+          role="tabpanel"
+          aria-labelledby="contact-tab"
+          tabindex="0"
+        >
+          <DashboardAdmin />
         </div>
       </div>
     </div>

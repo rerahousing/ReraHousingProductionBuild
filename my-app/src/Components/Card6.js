@@ -147,6 +147,7 @@ function Card6(props) {
             <a
               type="button"
               className="btn btn-primary rounded-circle"
+              target="_blank"
               href={`/rera-approved-projects-villa-duplex-flats/${_id}`}
             >
               <i className="bi bi-arrow-right"></i>

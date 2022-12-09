@@ -9,37 +9,103 @@ function Footer() {
           <div className="col">
             <h1>For Buyers</h1>
             <ul>
-              <li>Find RERA House on Sale</li>
-              <li>Buyer Resource Center</li>
-              <li>Home Loan Calculator</li>
-              <li>Blogs for Buyers</li>
+              <li>
+                <a target="_blank" href="">
+                  Find RERA House on Sale
+                </a>
+              </li>
+              <li>
+                <a target="_blank" href="">
+                  Buyer Resource Center
+                </a>
+              </li>
+              <li>
+                <a target="_blank" href="">
+                  Home Loan Calculator
+                </a>
+              </li>
+              <li>
+                <a target="_blank" href="">
+                  Blogs for Buyers
+                </a>
+              </li>
             </ul>
           </div>
           <div className="col">
             <h1>For Builders</h1>
             <ul>
-              <li>RERA Project Listing</li>
-              <li>Builder Resource Center</li>
-              <li>Sell out your project fast</li>
-              <li>Partnership Sign Up</li>
+              <li>
+                <a target="_blank" href="">
+                  RERA Project Listing
+                </a>
+              </li>
+              <li>
+                <a target="_blank" href="">
+                  Builder Resource Center
+                </a>
+              </li>
+              <li>
+                <a target="_blank" href="">
+                  {" "}
+                  Sell out your project fast
+                </a>
+              </li>
+              <li>
+                {" "}
+                <a target="_blank" href="/partnershipsignup">
+                  Partnership Sign Up
+                </a>{" "}
+              </li>
             </ul>
           </div>
           <div className="col">
             <h1>For Realtors</h1>
             <ul>
-              <li>Service Provider Directory</li>
-              <li>Service Provider Sign Up</li>
-              <li>RERA Agents Directory </li>
-              <li>RERA Agents Signup</li>
+              <li>
+                <a target="_blank" href="">
+                  Service Provider Directory
+                </a>
+              </li>
+              <li>
+                <a target="_blank" href="/servicesignup">
+                  Service Provider Sign Up
+                </a>
+              </li>
+              <li>
+                <a target="_blank" href="">
+                  RERA Agents Directory{" "}
+                </a>
+              </li>
+              <li>
+                <a target="_blank" href="/servicesignup">
+                  RERA Agents Signup
+                </a>
+              </li>
             </ul>
           </div>
           <div className="col">
             <h1>company</h1>
             <ul>
-              <li>About RERA Housing</li>
-              <li>Contact Us</li>
-              <li>RERA Estate Investor</li>
-              <li>Press Kit</li>
+              <li>
+                <a target="_blank" href="">
+                  About RERA Housing
+                </a>
+              </li>
+              <li>
+                <a target="_blank" href="">
+                  Contact Us
+                </a>
+              </li>
+              <li>
+                <a target="_blank" href="">
+                  RERA Estate Investor
+                </a>
+              </li>
+              <li>
+                <a target="_blank" href="">
+                  Press Kit
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -47,9 +113,30 @@ function Footer() {
           <hr />
           <div className="col social">
             <div className="clearfix d-flex">
-              <p style={{ marginRight: "117px" }}>@ 2023 RERAhousing.in</p>
-              <p style={{ marginRight: "168px" }}>Terms of Services</p>
-              <p>Privacy Policy</p>
+              <a
+                target="_blank"
+                style={{ marginRight: "117px", textDecoration: "none" }}
+              >
+                @ 2023 RERAhousing.in
+              </a>
+              <a
+                target="_blank"
+                href="/termsandconditions"
+                style={{
+                  marginRight: "168px",
+                  textDecoration: "none",
+                  color: "black",
+                }}
+              >
+                Terms and Conditions
+              </a>
+              <a
+                target="_blank"
+                href="/privacypolicy"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                Privacy Policy
+              </a>
             </div>
             <ul>
               <li>

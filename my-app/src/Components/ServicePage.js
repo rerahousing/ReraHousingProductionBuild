@@ -1,30 +1,43 @@
 import React, { useState, useEffect } from "react";
 import "../Styles/ServicePage.css";
 import Services from "./Services";
+import data from "./Data";
 
 function ServicePage() {
-  const [filter, setFilter] = useState({
-    availability: "All",
-    services: "All",
-  });
-  
+  const [filter, setFilter] = useState({});
   const [effect, setEffect] = useState(0);
   useEffect(() => {
     const availability = sessionStorage.getItem("availability");
     const services = sessionStorage.getItem("services");
+    const state = sessionStorage.getItem("state");
+    const city = sessionStorage.getItem("city");
     setFilter({
       availability: availability ? availability : "All",
       services: services ? services : "All",
+      state: state ? state : "Select State",
+      city: city ? city : "Select City",
     });
+    selectBox();
   }, [effect]);
-
+  const selectBox = () => {
+    const state = sessionStorage.getItem("state");
+    const city = sessionStorage.getItem("city");
+    const stateSelectBox = document.getElementById("stateSelect");
+    stateSelectBox.value = state ? state : "Select State";
+    setSelectedState(state);
+    setSelectedCity(city);
+  };
+  const [selectedState, setSelectedState] = useState("Select State");
+  const [selectedCity, setSelectedCity] = useState("Select City");
+  const availableCity = data.state.find((s) => s.name === selectedState);
   const [input, setInput] = useState({
     availability: "All",
     services: "All",
+    state: "Select State",
+    city: "Select City",
   });
 
   const setFilterOpt = (e) => {
-    sessionStorage.setItem(e.target.name, e.target.value);
     setInput({ ...input, [e.target.name]: e.target.value });
   };
   return (
@@ -38,30 +51,61 @@ function ServicePage() {
       <nav className="navbar navbar-expand-lg bg-transparent project-list">
         <div className="container-fluid filter-container">
           <div id="navbarSupportedContent2">
-            <div className="me-auto mb-2 mb-lg-0 w-100 justify-content-end d-flex">
+            <div className="me-auto mb-2 mb-lg-0 w-100 row-cols-12">
               <div className="nav-item col m-2">
                 <select
                   className="form-select"
                   aria-label="Default select example"
+                  name="state"
+                  id="stateSelect"
+                  onChange={(e) => {
+                    setSelectedState(e.target.value);
+                    setInput({
+                      ...input,
+                      city: "Select City",
+                      state: e.target.value,
+                    });
+
+                    setSelectedCity("Select City");
+                  }}
+                  defaultValue="All"
                 >
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option selected value="Select State">
+                    Select State
+                  </option>
+                  {data.state.map((item, index) => {
+                    return (
+                      <option value={item.name} key={index}>
+                        {item.name}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
               <div className="nav-item col m-2">
                 <select
                   className="form-select"
                   aria-label="Default select example"
+                  name="city"
+                  value={selectedCity}
+                  onChange={(e) => {
+                    setSelectedCity(e.target.value);
+                    setFilterOpt(e);
+                  }}
                 >
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option selected value="Select City">
+                    Select City
+                  </option>
+                  {availableCity?.city.map((item, index) => {
+                    return (
+                      <option value={item} key={index}>
+                        {item}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
-              <div className="nav-item dropdown m-2">
+              <div className="nav-item col dropdown m-2">
                 <select
                   className="form-select"
                   aria-label="Default select example"
@@ -77,7 +121,7 @@ function ServicePage() {
                 </select>
               </div>
 
-              <div className="nav-item dropdown m-2">
+              <div className="nav-item col dropdown m-2">
                 <select
                   className="form-select"
                   aria-label="Default select example"
@@ -106,12 +150,16 @@ function ServicePage() {
                 </select>
               </div>
 
-              <div className="nav-item filter-submit m-2">
+              <div className="nav-item col filter-submit m-2">
                 <button
                   type="button"
                   className="btn btn-secondary rounded-pill"
                   onClick={() => {
-                    setFilter(input);
+                    sessionStorage.setItem("state", input.state);
+                    sessionStorage.setItem("city", input.city);
+                    sessionStorage.setItem("availability", input.availability);
+                    sessionStorage.setItem("services", input.services);
+                    setFilter({ ...input });
                   }}
                 >
                   Search

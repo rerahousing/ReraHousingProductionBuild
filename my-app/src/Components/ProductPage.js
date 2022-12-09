@@ -10,14 +10,15 @@ import seal from "../Resources/seal.png";
 import { Link } from "react-scroll";
 import { Tab, Tabs } from "@mui/material";
 import FloorPlan_Wrapper from "./FloorPlan_Wrapper";
+import data from "./Data";
 
 function ProductPage() {
   const [load, setLoad] = useState(true);
+  const [showValid, setShowValid] = useState(false);
+  const [showInvalid, setShowInvalid] = useState(false);
   const context = useContext(PropertyContext);
   const { specProp, getSpecificProperty, bhkNo, addContact } = context;
   const [contactDet, setContactDet] = useState([]);
-  console.log("Hello bhk");
-  console.log(bhkNo);
 
   const { image } = specProp;
 
@@ -32,6 +33,24 @@ function ProductPage() {
   const [activeTab, setActiveTab] = useState(0);
   const [active, setActive] = useState("1");
   const [value, setValue] = useState(0);
+  const [selectedState, setSelectedState] = useState("Select State");
+  const [selectedCity, setSelectedCity] = useState("Select City");
+  const availableCity = data.state.find((s) => s.name === selectedState);
+
+  const checkSubmit = (e) => {
+    const forms = document.querySelectorAll(".needs-validation");
+    Array.from(forms).forEach((form) => {
+      if (!form.checkValidity()) {
+        setShowInvalid(true);
+        e.preventDefault();
+        e.stopPropagation();
+      } else {
+        setShowValid(true);
+        addContactForm(e);
+        form.reset();
+      }
+    });
+  };
 
   const resp = {
     320: {
@@ -62,13 +81,10 @@ function ProductPage() {
   };
 
   const inputContact = (e) => {
-    console.log(typeof e.target.value);
     setContactDet({ ...contactDet, [e.target.name]: e.target.value });
   };
 
   const addContactForm = () => {
-    console.log("added");
-    console.log(contactDet);
     const formData = new FormData();
     formData.append("name", contactDet.name);
     formData.append("mobile", contactDet.mobile);
@@ -227,7 +243,11 @@ function ProductPage() {
               </a>
 
               <div className="emi list_row">
-                <a href="" className="emi_estimation">
+                <a
+                  href="https://www.paisabazaar.com/home-loan-emi-calculator/"
+                  target="_blank"
+                  className="emi_estimation"
+                >
                   Calculate estimated EMI
                 </a>
               </div>
@@ -336,11 +356,61 @@ function ProductPage() {
               </div>
             </div>
           </div>
-          <form>
-            <div className="contact_form" id="contact_form">
-              <h5>Contact Now</h5>
+          <div className="contact_form" id="contact_form">
+            <h5>Contact Now</h5>
+            {showValid && (
+              <div
+                className="alert alert-success alert-dismissible fade show"
+                role="alert"
+              >
+                <i
+                  className="bi bi-check-circle-fill me-2"
+                  style={{ Color: "green" }}
+                ></i>
+
+                <div style={{ display: "inline" }}>
+                  Form Submitted Successfully!
+                </div>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                  onClick={() => {
+                    setShowValid(false);
+                  }}
+                ></button>
+              </div>
+            )}
+            {showInvalid && (
+              <div
+                className="alert alert-danger alert-dismissible fade show"
+                role="alert"
+              >
+                <i
+                  className="bi bi-exclamation-triangle-fill me-2"
+                  style={{ Color: "red" }}
+                ></i>
+
+                <div style={{ display: "inline" }}>
+                  Please Enter your Name, Email, Mobile & Project Name to get
+                  Callback from Us!
+                </div>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                  onClick={() => {
+                    setShowInvalid(false);
+                  }}
+                ></button>
+              </div>
+            )}
+            <form id="contact-form" className="needs-validation">
               <div className="form-group">
                 <label className="lable">Name</label>
+
                 <input
                   type="text"
                   name="name"
@@ -348,6 +418,7 @@ function ProductPage() {
                   className="form-control"
                   placeholder="Full Name"
                   onChange={inputContact}
+                  required
                 />
               </div>
               <div className="form-group">
@@ -359,6 +430,7 @@ function ProductPage() {
                   className="form-control"
                   placeholder="Mobile No"
                   onChange={inputContact}
+                  required
                 />
               </div>
               <div className="form-group">
@@ -370,18 +442,20 @@ function ProductPage() {
                   className="form-control"
                   onChange={inputContact}
                   placeholder="Email ID"
+                  required
                 />
               </div>
 
               <div className="form-group">
                 <label className="lable">Project Name</label>
                 <input
-                  type="email"
+                  type="text"
                   name="project_name"
-                  id="email"
+                  id="text"
                   className="form-control"
                   placeholder="Enter Project Name"
                   onChange={inputContact}
+                  required
                 />
               </div>
               <div className="form-group ">
@@ -391,12 +465,16 @@ function ProductPage() {
                   className="form-select drop"
                   aria-label="Default select example"
                   name="project_city"
-                  onChange={inputContact}
+                  value={selectedCity}
+                  onChange={(e) => {
+                    inputContact(e);
+                    setSelectedCity(e.target.value);
+                  }}
                 >
                   <option>City Name</option>
-                  <option value="One">One</option>
-                  <option value="Two">Two</option>
-                  <option value="Three">Three</option>
+                  {availableCity?.city.map((item) => {
+                    return <option value={item}>{item}</option>;
+                  })}
                 </select>
               </div>
 
@@ -408,12 +486,20 @@ function ProductPage() {
                   aria-label="Default select example"
                   placeholder="State Name"
                   name="project_state"
-                  onChange={inputContact}
+                  required
+                  onChange={(e) => {
+                    inputContact(e);
+                    setSelectedState(e.target.value);
+                    setSelectedCity("City Name");
+                  }}
                 >
                   <option selected>State Name</option>
-                  <option value="One">One</option>
-                  <option value="Two">Two</option>
-                  <option value="Three">Three</option>
+                  {data.state.map((item) => {
+                    return <option value={item.name}>{item.name}</option>;
+                  })}
+                  <div className="invalid-feedback">
+                    Please select a valid state.
+                  </div>
                 </select>
 
                 <div className="form-group">
@@ -440,40 +526,38 @@ function ProductPage() {
                   ></textarea>
                 </div>
                 <div className="form-group btns">
-                  <button
-                    type="reset"
+                  <input
+                    type="submit"
                     className="btn btn-primary rounded-pill"
-                    onClick={addContactForm}
-                  >
-                    Request a Callback
-                  </button>
+                    value="Request Callback"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      checkSubmit(e);
+                    }}
+                  />
                 </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
 
         <div className="section disclaimer">
           <div className="container">
             <p>
               <strong>Disclaimer</strong> <br />
-              SBICAP Securities Limited through its division SBI Realty
-              solutions deals in Pre Launch, Under construction, Ready
-              Possession. SBICAP Securities Limited through its division SBI
-              Realty solutions provides a unified platform for exchange of
-              information & facts for buyers, builders & sellers. SBICAP
-              Securities Limited through its division SBI Realty solutions is
-              merely an intermediary for exchange of information to facilitate
-              the transactions between Builder, Developers / Seller and Customer
-              / Buyer and is not and cannot be a party to or control in any
-              manner any transactions/disputes between the Seller and the Buyer.
-              Projects featured on www.sbirealty.in are SBI approved projects
-              only. SBICAP Securities Limited through its division SBI Realty
-              solutions shall neither be responsible nor liable to mediate or
-              resolve any disputes or disagreements arising between the Buyer &
-              Seller and both Seller and Buyer shall settle all such disputes
-              without involving SBICAP Securities Limited through its division
-              SBI Realty solutions in any manner whatsoever. The Website
+              RERAhousing.in deals in Pre Launch, Under construction, Ready
+              Possession. RERAhousing.in provides a unified platform for
+              exchange of information & facts for buyers, builders & sellers.
+              RERAhousing.in is merely an intermediary for exchange of
+              information to facilitate the transactions between Builder,
+              Developers / Seller and Customer / Buyer and is not and cannot be
+              a party to or control in any manner any transactions/disputes
+              between the Seller and the Buyer. Projects featured on
+              www.rerahousing.in are RERA approved projects only. RERAhousing.in
+              shall neither be responsible nor liable to mediate or resolve any
+              disputes or disagreements arising between the Buyer & Seller and
+              both Seller and Buyer shall settle all such disputes without
+              involving rerahousing.in in any manner whatsoever. The Website
               provides in depth analysis of the Property Market with more than
               2400 Under Construction Projects developed, which are currently
               under development by more than 800 Developers. The website

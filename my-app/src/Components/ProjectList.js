@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Project from "./Project";
 import "../Styles/ProjectList.css";
 import { Helmet } from "react-helmet";
+import data from "./Data";
 
 function ProjectList() {
   const [arr, setArr] = useState([] || "");
@@ -16,6 +17,8 @@ function ProjectList() {
     search_keyword: "All",
     amenities: [],
     sub_type: [],
+    project_city: "Select City",
+    project_state: "Select State",
   });
   const [formatPrice, setFormatPrice] = useState("0");
   const [filter, setFilter] = useState({
@@ -25,6 +28,8 @@ function ProjectList() {
     search_keyword: "All",
     amenities: [],
     sub_type: [],
+    project_city: "Select City",
+    project_state: "Select State",
   });
   const changeFilter = (e) => {
     sessionStorage.setItem("price", Number(e.target.value * 100000));
@@ -48,11 +53,17 @@ function ProjectList() {
     const bhk = sessionStorage.getItem("bhk");
     const project_status = sessionStorage.getItem("project_status");
     const range = document.getElementById("budget");
+    const project_state = sessionStorage.getItem("project_state");
+    const project_city = sessionStorage.getItem("project_city");
+    setSelectedState(project_state);
+    setSelectedCity(project_city);
+    const selectBox = document.getElementById("stateSelect");
+    selectBox.value = project_state || "Select State";
     const arr = JSON.parse(sessionStorage.getItem("amenities"));
     const arr2 = JSON.parse(sessionStorage.getItem("sub-type"));
     setFilterActive(arr);
     setArr(arr);
-    setCount(arr?.length + arr2?.length);
+    setCount((arr?.length || 0) + (arr2?.length || 0));
     toggleActiveOnLoad(arr, arr2);
     range.value = price;
     changeFormatPrice(price);
@@ -64,21 +75,26 @@ function ProjectList() {
       price: price ? Number(price) : 0,
       bhk: bhk ? bhk : 0,
       project_status: project_status ? project_status : "Not Specified",
+      project_state: project_state ? project_state : "Select State",
+      project_city: project_city ? project_city : "Select City",
     });
-    console.log(Number(price));
-    console.log(typeof Number(price));
+    setInput({
+      ...input,
+      project_city: project_city,
+      project_state: project_state,
+    });
   }, [effect]);
 
   const toggleActiveOnLoad = (arr, arr2) => {
     const box = document.querySelectorAll(".amenities");
     const box2 = document.querySelectorAll(".sub-type");
     box2.forEach((item) => {
-      if (arr2.includes(item.value)) {
+      if (arr2?.includes(item.value)) {
         item.classList.add("active");
       }
     });
     box.forEach((item) => {
-      if (arr.includes(item.value)) {
+      if (arr?.includes(item.value)) {
         item.classList.add("active");
       }
     });
@@ -122,6 +138,9 @@ function ProjectList() {
     const data = filterSubType.filter((item) => item != e.target.value);
     setArr2(data);
   };
+  const [selectedState, setSelectedState] = useState();
+  const [selectedCity, setSelectedCity] = useState();
+  const availableCity = data.state.find((s) => s.name === selectedState);
 
   const toggleActive = (e) => {
     if (e.target.name !== "sub-type") {
@@ -164,7 +183,6 @@ function ProjectList() {
   };
 
   const done = () => {
-    console.log(arr);
     const data = arr === null ? [] : [...arr];
     const data2 = arr2 === null ? [] : [...arr2];
     sessionStorage.setItem("amenities", JSON.stringify(data));
@@ -179,12 +197,15 @@ function ProjectList() {
     let bhkSt = sessionStorage.getItem("bhk");
     let project_status = sessionStorage.getItem("project_status");
     let search_keyword = sessionStorage.getItem("search_keyword");
-    console.log(input.bhk);
+    let project_city = sessionStorage.getItem("project_city");
+    let project_state = sessionStorage.getItem("project_state");
     setFilter({
       price: priceSt ? Number(priceSt) : 0,
       bhk: bhkSt ? bhkSt : 0,
       project_status: project_status ? project_status : "Not Specified",
       search_keyword: search_keyword ? search_keyword : "All",
+      project_city: project_city ? project_city : "Select City",
+      project_state: project_state ? project_state : "Select State",
     });
   };
   return (
@@ -204,7 +225,37 @@ function ProjectList() {
         <form className="d-flex input-row align-items-center" role="search">
           <div className="dropdown-group">
             <div className="dropdown">
-              <button
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                name="project_state"
+                id="stateSelect"
+                style={{ border: "none" }}
+                onChange={(e) => {
+                  setSelectedState(e.target.value);
+                  setInput({
+                    ...input,
+                    project_city: "Select City",
+                    project_state: e.target.value,
+                  });
+                  setSelectedCity("Select City");
+                  sessionStorage.setItem("project_state", e.target.value);
+                  sessionStorage.setItem("project_city", "Select City");
+                }}
+                defaultValue="All"
+              >
+                <option selected value="Select State">
+                  Select State
+                </option>
+                {data.state.map((item, index) => {
+                  return (
+                    <option value={item.name} key={index}>
+                      {item.name}
+                    </option>
+                  );
+                })}
+              </select>
+              {/* <button
                 className="btn btn-dropdown dropdown-toggle"
                 type="button"
                 data-bs-toggle="dropdown"
@@ -228,10 +279,33 @@ function ProjectList() {
                     Haryana
                   </a>
                 </li>
-              </ul>
+              </ul> */}
             </div>
             <div className="dropdown">
-              <button
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                name="project_city"
+                id="citySelect"
+                value={selectedCity}
+                style={{ border: "none" }}
+                onChange={(e) => {
+                  setSelectedCity(e.target.value);
+                  changeFilterInput(e);
+                }}
+              >
+                <option selected value="Select City">
+                  Select City
+                </option>
+                {availableCity?.city.map((item, index) => {
+                  return (
+                    <option value={item} key={index}>
+                      {item}
+                    </option>
+                  );
+                })}
+              </select>
+              {/* <button
                 className="btn btn-dropdown dropdown-toggle"
                 type="button"
                 data-bs-toggle="dropdown"
@@ -255,7 +329,7 @@ function ProjectList() {
                     Dehradun
                   </a>
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
           <input
@@ -271,6 +345,11 @@ function ProjectList() {
               className="btn btn-outline-success btn-search rounded-circle"
               type="button"
               onClick={() => {
+                setFilter({
+                  ...filter,
+                  project_city: input.project_city,
+                  project_state: input.project_state,
+                });
                 setKeyword(input.search_keyword);
               }}
             >

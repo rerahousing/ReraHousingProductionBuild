@@ -21,8 +21,9 @@ import image21 from "../Resources/homeInspection.svg";
 import image22 from "../Resources/verifiedConsultant.svg";
 import image23 from "../Resources/transparentProcess.svg";
 import image24 from "../Resources/interior.svg";
-import image25 from "../Resources/blog-1.jpg";
-import image26 from "../Resources/blog-2.jpg";
+import image25 from "../Resources/rera-blog-image-1.png";
+import image26 from "../Resources/rera-blog-image-2.png";
+import image27 from "../Resources/rera-blog-image-3.png";
 import ourService from "../Resources/our-service.svg";
 import { Helmet } from "react-helmet";
 
@@ -70,21 +71,14 @@ function Home() {
         <section className="section-6 services2">
           <div className="container-fluid container ">
             <div className="row align-items-center gy-5 gx-6">
-              <div className="col-lg-4 col-md-6 our-services-card">
-                <div className="row g-0 align-items-center">
-                  <div className="col">
-                    <div className="card-body d-flex flex-column">
-                      <h5 className="card-title">
-                        <span className="highlight">RERA</span> Projects
-                      </h5>
-
-                      <p className="text">
-                        Search RERA approved projects of villas, duplex, and
-                        flats of 1bhk, 2bhk, 3bhk and more.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+              <div className="col-lg-4 col-md-6">
+                <Card_3
+                  text={"RERA Projects"}
+                  des={
+                    "Search RERA approved projects of villas, duplex, and flats of 1bhk, 2bhk, 3bhk and more."
+                  }
+                  setColor={setColor}
+                />
               </div>
               <div className="col-lg-4 col-md-6">
                 <Card_3
@@ -213,7 +207,13 @@ function Home() {
           </h2>
           <div className="view-button">
             <button className="btn btn-primary">
-              <p>View All</p> <i class="bi bi-chevron-right"></i>
+              <a
+                href="/rera-approved-projects-villa-duplex-flats"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                View All
+              </a>{" "}
+              <i class="bi bi-chevron-right"></i>
             </button>
           </div>
         </div>
@@ -293,13 +293,31 @@ function Home() {
         <div className="container blog">
           <div className="row">
             <div className="col-sm-4 col-12 my-2">
-              <Card_5 image={image25} />
+              <Card_5
+                image={image25}
+                date="06 Dec, 2022"
+                likes="10K"
+                title="Buying a RERA Registered Property? Here are 9 things you should know"
+                link="https://blog.rerahousing.in/2022/12/why-rera-act-is-so-important.html"
+              />
             </div>
             <div className="col-sm-4 col-12 my-2">
-              <Card_5 image={image26} />
+              <Card_5
+                image={image26}
+                date="05 Dec, 2022"
+                likes="10K"
+                title="50+ Points for House Evaluation by Yourself"
+                link="https://blog.rerahousing.in/2022/12/50-points-for-house-evaluation-by.html"
+              />
             </div>
             <div className="col-sm-4 col-12 my-2">
-              <Card_5 image={image26} />
+              <Card_5
+                image={image27}
+                date="05 Dec, 2022"
+                likes="10K"
+                title="Check these 10 documents, to avoid legal disputes!"
+                link="https://blog.rerahousing.in/2022/12/dont-invest-in-property-before-checking.html"
+              />
             </div>
           </div>
         </div>

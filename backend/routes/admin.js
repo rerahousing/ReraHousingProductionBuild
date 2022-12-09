@@ -70,7 +70,6 @@ router.post(
   "/login",
   body("password", "Password cannot be blank").exists(),
   async (req, res) => {
-    console.log(req.body.password);
     const errors = validationResult(req);
     console.log(errors);
     if (!errors.isEmpty()) {
@@ -105,5 +104,33 @@ router.post(
     }
   }
 );
+
+// Route 3 : Get all admins
+router.get("/getalladmins", async (req, res) => {
+  try {
+    let admin = await Admin.find({});
+    res.send(admin);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Route 4 : Delete a admin
+router.delete("/deleteadmin/:id", async (req, res) => {
+  try {
+    let admin = await Admin.findById(req.params.id);
+    console.log(admin);
+    if (!admin) {
+      return res.status(404).send("Not Found");
+    }
+
+    admin = await Admin.findByIdAndDelete(req.params.id);
+    res.json({ Success: "Admin has been delete", admin });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 module.exports = router;

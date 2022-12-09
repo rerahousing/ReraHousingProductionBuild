@@ -68,6 +68,16 @@ function Project(props) {
                   subType !== null || ""
                     ? subType?.every((val) => item.property_type.includes(val))
                     : true
+                )
+                .filter((item) =>
+                  filter.project_state !== "Select State"
+                    ? item.state === filter.project_state
+                    : true
+                )
+                .filter((item) =>
+                  filter.project_city !== "Select City"
+                    ? item.city === filter.project_city
+                    : true
                 ).length
             }
           </h2>
@@ -135,13 +145,23 @@ function Project(props) {
                   : filter.keyword !== "xyz"
               )
               .filter((item) =>
-                amenities !== null || ""
+                amenities !== null
                   ? amenities?.every((val) => item.amenites.includes(val))
                   : true
               )
               .filter((item) =>
                 subType !== null || ""
                   ? subType?.every((val) => item.property_type.includes(val))
+                  : true
+              )
+              .filter((item) =>
+                filter.project_state !== "Select State"
+                  ? item.state === filter.project_state
+                  : true
+              )
+              .filter((item) =>
+                filter.project_city !== "Select City"
+                  ? item.city === filter.project_city
                   : true
               )
               .map((item, index) => {

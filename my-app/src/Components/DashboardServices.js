@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import PropertyContext from "../Context/Property/PropertyContext";
 import "../Styles/Card7.css";
+import data from "./Data";
 
 function DashboardServices() {
   const [image, setImage] = useState([]);
@@ -18,6 +19,9 @@ function DashboardServices() {
     instagram_link: "",
     website_link: "",
   });
+  const [selectCity, setSelectedCity] = useState("Select City");
+  const [selectState, setSelectedState] = useState("Select State");
+  const availableCity = data.state.find((s) => s.name === selectState);
 
   const [currentValue, setCurrentValue] = useState({
     ename: "",
@@ -91,6 +95,7 @@ function DashboardServices() {
       instagram_link: currentService[0].instagram_link,
       website_link: currentService[0].website_link,
     });
+    setSelectedState(currentService[0].loc_state);
     setServiceRole(currentService[0].services);
     checkBoxes(currentService[0].services);
     checkRadioButtons(currentService[0].availability);
@@ -246,25 +251,25 @@ function DashboardServices() {
             <div className="modal-body">
               <form>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="exampleInputPassword18" className="form-label">
                     Name
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword18"
                     name="name"
                     onChange={onChange}
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="exampleInputPassword19" className="form-label">
                     Area
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword19"
                     name="loc_area"
                     onChange={onChange}
                   />
@@ -273,25 +278,54 @@ function DashboardServices() {
                   <label for="exampleInputPassword1" className="form-label">
                     State
                   </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="exampleInputPassword1"
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
                     name="loc_state"
-                    onChange={onChange}
-                  />
+                    id="stateSelect"
+                    onChange={(e) => {
+                      onChange(e);
+                      setSelectedState(e.target.value);
+                    }}
+                  >
+                    <option selected value="Select State">
+                      Select State
+                    </option>
+                    {data.state.map((item, index) => {
+                      return (
+                        <option value={item.name} key={index}>
+                          {item.name}
+                        </option>
+                      );
+                    })}
+                  </select>
                 </div>
                 <div className="mb-3">
                   <label for="exampleInputPassword1" className="form-label">
                     City
                   </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="exampleInputPassword1"
+
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
                     name="loc_city"
-                    onChange={onChange}
-                  />
+                    value={selectCity}
+                    onChange={(e) => {
+                      onChange(e);
+                      setSelectedCity(e.target.value);
+                    }}
+                  >
+                    <option selected value="Select City">
+                      Select City
+                    </option>
+                    {availableCity?.city.map((item, index) => {
+                      return (
+                        <option value={item} key={index}>
+                          {item}
+                        </option>
+                      );
+                    })}
+                  </select>
                 </div>
                 <div className="mb-3 row">
                   <label for="exampleInputPassword1" className="form-label">
@@ -304,7 +338,7 @@ function DashboardServices() {
                       name="availability"
                       value="Online"
                       onChange={onChange}
-                      id="flexRadioDefault1"
+                      id="flexRadioDefault4"
                     />
                     <label class="form-check-label" for="flexRadioDefault1">
                       Online
@@ -320,7 +354,7 @@ function DashboardServices() {
                       onChange={onChange}
                       id="flexRadioDefault2"
                     />
-                    <label class="form-check-label" for="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault3">
                       Offline
                     </label>
                   </div>
@@ -332,58 +366,58 @@ function DashboardServices() {
                       name="availability"
                       value="Online/Offline"
                       onChange={onChange}
-                      id="flexRadioDefault2"
+                      id="flexRadioDefault3"
                     />
-                    <label class="form-check-label" for="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault3">
                       Online/Offline
                     </label>
                   </div>
                 </div>
 
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="exampleInputPassword20" className="form-label">
                     Facebook Link
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword20"
                     name="facebook_link"
                     onChange={onChange}
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="exampleInputPassword21" className="form-label">
                     Whatsapp Link
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword21"
                     name="whatsapp_link"
                     onChange={onChange}
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="exampleInputPassword22" className="form-label">
                     Instagram Link
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword22"
                     name="instagram_link"
                     onChange={onChange}
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="exampleInputPassword28" className="form-label">
                     Website Link
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword28"
                     name="website_link"
                     onChange={onChange}
                   />
@@ -393,7 +427,7 @@ function DashboardServices() {
                     <input
                       type="file"
                       className="form-control"
-                      id="inputGroupFile02"
+                      id="inputGroupFile01"
                       onChange={(e) => {
                         setImage([e.target.files[0]]);
                       }}
@@ -568,56 +602,86 @@ function DashboardServices() {
             <div className="modal-body">
               <form>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="exampleInputPassword23" className="form-label">
                     Name
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword23"
                     name="name"
                     value={currentValue.name}
                     onChange={onChangeEdit}
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="exampleInputPassword24" className="form-label">
                     Area
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword24"
                     name="loc_area"
                     value={currentValue.loc_area}
                     onChange={onChangeEdit}
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="stateSelectEdit" className="form-label">
                     State
                   </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="exampleInputPassword1"
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
                     name="loc_state"
                     value={currentValue.loc_state}
-                    onChange={onChangeEdit}
-                  />
+                    id="stateSelectEdit"
+                    onChange={(e) => {
+                      onChangeEdit(e);
+                      setSelectedState(e.target.value);
+                    }}
+                    defaultValue="All"
+                  >
+                    <option selected value="Select State">
+                      Select State
+                    </option>
+                    {data.state.map((item, index) => {
+                      return (
+                        <option value={item.name} key={index}>
+                          {item.name}
+                        </option>
+                      );
+                    })}
+                  </select>
                 </div>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="citySelectEdit" className="form-label">
                     City
                   </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="exampleInputPassword1"
+
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
                     name="loc_city"
+                    id="citySelectEdit"
                     value={currentValue.loc_city}
-                    onChange={onChangeEdit}
-                  />
+                    onChange={(e) => {
+                      onChangeEdit(e);
+                      setSelectedCity(e.target.value);
+                    }}
+                  >
+                    <option selected value="Select City">
+                      Select City
+                    </option>
+                    {availableCity?.city.map((item, index) => {
+                      return (
+                        <option value={item} key={index}>
+                          {item}
+                        </option>
+                      );
+                    })}
+                  </select>
                 </div>
                 <div className="mb-3 row">
                   <label for="exampleInputPassword1" className="form-label">
@@ -630,7 +694,7 @@ function DashboardServices() {
                       name="availability"
                       value="Online"
                       onChange={onChangeEdit}
-                      id="flexRadioDefault22"
+                      id="flexRadioDefault1"
                     />
                     <label class="form-check-label" for="flexRadioDefault1">
                       Online
@@ -644,7 +708,7 @@ function DashboardServices() {
                       name="availability"
                       value="Offline"
                       onChange={onChangeEdit}
-                      id="flexRadioDefault22"
+                      id="flexRadioDefault5"
                     />
                     <label class="form-check-label" for="flexRadioDefault2">
                       Offline
@@ -656,7 +720,7 @@ function DashboardServices() {
                       class="form-check-input"
                       type="radio"
                       name="availability"
-                      id="flexRadioDefault22"
+                      id="flexRadioDefault6"
                       value="Online/Offline"
                       onChange={onChangeEdit}
                     />
@@ -672,47 +736,47 @@ function DashboardServices() {
                   </label>
                   <input
                     type="text"
-                    className="form-control"
-                    id="exampleInputPassword1"
+                    className="form-contro27"
+                    id="exampleInputPassword27"
                     name="facebook_link"
                     value={currentValue.facebook_link}
                     onChange={onChangeEdit}
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="exampleInputPassword25" className="form-label">
                     Whatsapp Link
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword25"
                     name="whatsapp_link"
                     value={currentValue.whatsapp_link}
                     onChange={onChangeEdit}
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="exampleInputPassword26" className="form-label">
                     Instagram Link
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword26"
                     name="instagram_link"
                     value={currentValue.instagram_link}
                     onChange={onChangeEdit}
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="exampleInputPassword29" className="form-label">
                     Website Link
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword29"
                     name="website_link"
                     value={currentValue.website_link}
                     onChange={onChangeEdit}
@@ -742,7 +806,7 @@ function DashboardServices() {
                           className="form-check-input"
                           type="checkbox"
                           value="RERA Agent"
-                          id="agent"
+                          id="agent_2"
                           onChange={(e) => {
                             addServiceRole(e);
                           }}

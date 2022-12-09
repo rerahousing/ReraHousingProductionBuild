@@ -3,6 +3,7 @@ import PropertyContext from "../Context/Property/PropertyContext";
 import "../Styles/Card7.css";
 import InputForm from "./InputForm";
 import CurrencyFormat from "react-currency-format";
+import data from "./Data";
 
 function Dashboard() {
   // States
@@ -36,6 +37,9 @@ function Dashboard() {
     views: "0",
     property_type: "",
   });
+  const [selectCity, setSelectedCity] = useState("Select City");
+  const [selectState, setSelectedState] = useState("Select State");
+  const availableCity = data.state.find((s) => s.name === selectState);
   const [image, setImage] = useState([]);
   const {
     property,
@@ -122,6 +126,7 @@ function Dashboard() {
 
   const updateProp = (currentProp) => {
     setAmenites(currentProp.amenites);
+    setSelectedState(currentProp.state);
     setInputProp({
       id: currentProp._id,
       etitle: currentProp.title,
@@ -151,7 +156,6 @@ function Dashboard() {
     const selectBox = document.getElementById("eproject_status");
     selectBox.value = currentProp.project_status;
     const selectBox2 = document.getElementById("eproperty_type");
-    console.log(selectBox2);
     selectBox2.value = currentProp.property_type;
     setBhk(currentProp.bhk);
     setImage([]);
@@ -248,7 +252,6 @@ function Dashboard() {
     logo?.forEach((item) => formData.append("developer_logo", item));
     formData.append("property_type", propertyData.property_type);
     addProperty(formData, bhkDet);
-    console.log(propertyData.property_type);
     window.location.reload();
   };
 
@@ -257,7 +260,6 @@ function Dashboard() {
   };
 
   const onChangeArrayEdit = (e) => {
-    console.log(e.target.value);
     setInput(e.target.value);
   };
 
@@ -521,25 +523,25 @@ function Dashboard() {
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="exampleInputPassword2" className="form-label">
                     Title
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword2"
                     name="title"
                     onChange={onChange}
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="exampleInputPassword3" className="form-label">
                     Developer
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword3"
                     name="developer"
                     onChange={onChange}
                   />
@@ -548,25 +550,55 @@ function Dashboard() {
                   <label for="exampleInputPassword1" className="form-label">
                     City
                   </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="exampleInputPassword1"
+
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
                     name="city"
-                    onChange={onChange}
-                  />
+                    value={selectCity}
+                    onChange={(e) => {
+                      onChange(e);
+                      setSelectedCity(e.target.value);
+                    }}
+                  >
+                    <option selected value="Select City">
+                      Select City
+                    </option>
+                    {availableCity?.city.map((item, index) => {
+                      return (
+                        <option value={item} key={index}>
+                          {item}
+                        </option>
+                      );
+                    })}
+                  </select>
                 </div>
                 <div className="mb-3">
                   <label for="exampleInputPassword1" className="form-label">
                     State
                   </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="exampleInputPassword1"
+
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
                     name="state"
-                    onChange={onChange}
-                  />
+                    id="stateSelect"
+                    onChange={(e) => {
+                      onChange(e);
+                      setSelectedState(e.target.value);
+                    }}
+                  >
+                    <option selected value="Select State">
+                      Select State
+                    </option>
+                    {data.state.map((item, index) => {
+                      return (
+                        <option value={item.name} key={index}>
+                          {item.name}
+                        </option>
+                      );
+                    })}
+                  </select>
                 </div>
                 <div className="mb-3">
                   <label for="project_stataus" className="form-label">
@@ -752,7 +784,6 @@ function Dashboard() {
                     <input
                       type="text"
                       className="form-control"
-                      id="basic-url"
                       name="website_property"
                       aria-describedby="basic-addon3"
                       onChange={onChange}
@@ -824,26 +855,26 @@ function Dashboard() {
                   </div>
                 </div>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="exampleInputPassword4" className="form-label">
                     Configuration:
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword4"
                     name="configuration"
                     placeholder="Ex: 123 ft"
                     onChange={onChange}
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="exampleInputPassword5" className="form-label">
                     Possession in:
                   </label>
                   <input
                     type="date"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword5"
                     value={inputProp.possession}
                     name="possession"
                     placeholder="Ex: 2022-12-31"
@@ -851,39 +882,39 @@ function Dashboard() {
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="exampleInputPassword6" className="form-label">
                     Tower:
                   </label>
                   <input
                     type="number"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword6"
                     name="tower"
                     placeholder="Ex: 2"
                     onChange={onChange}
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="exampleInputPassword7" className="form-label">
                     Floor:
                   </label>
                   <input
                     type="number"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword7"
                     name="floor"
                     placeholder="Ex: 3"
                     onChange={onChange}
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">
+                  <label for="exampleInputPassword8" className="form-label">
                     Apartments per floor:
                   </label>
                   <input
                     type="number"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword8"
                     name="apartment_per_floor"
                     placeholder="Ex: 5"
                     onChange={onChange}
@@ -1000,7 +1031,6 @@ function Dashboard() {
                           className="form-check-input"
                           type="checkbox"
                           value="Hospital"
-                          id="flexCheckDefault"
                           onChange={(e) => {
                             addAminity(e);
                           }}
@@ -1019,7 +1049,6 @@ function Dashboard() {
                           className="form-check-input"
                           type="checkbox"
                           value="Park"
-                          id="flexCheckDefault"
                           onChange={(e) => {
                             addAminity(e);
                           }}
@@ -1038,7 +1067,6 @@ function Dashboard() {
                           className="form-check-input"
                           type="checkbox"
                           value="School"
-                          id="flexCheckDefault"
                           onChange={(e) => {
                             addAminity(e);
                           }}
@@ -1057,7 +1085,6 @@ function Dashboard() {
                           className="form-check-input"
                           type="checkbox"
                           value="Club House"
-                          id="flexCheckDefault"
                           onChange={(e) => {
                             addAminity(e);
                           }}
@@ -1076,7 +1103,6 @@ function Dashboard() {
                           className="form-check-input"
                           type="checkbox"
                           value="Play Area"
-                          id="flexCheckDefault"
                           onChange={(e) => {
                             addAminity(e);
                           }}
@@ -1095,7 +1121,6 @@ function Dashboard() {
                           className="form-check-input"
                           type="checkbox"
                           value="Collage"
-                          id="flexCheckDefault"
                           onChange={(e) => {
                             addAminity(e);
                           }}
@@ -1114,7 +1139,6 @@ function Dashboard() {
                           className="form-check-input"
                           type="checkbox"
                           value="Metro Station"
-                          id="flexCheckDefault"
                           onChange={(e) => {
                             addAminity(e);
                           }}
@@ -1133,7 +1157,6 @@ function Dashboard() {
                           className="form-check-input"
                           type="checkbox"
                           value="Police Station"
-                          id="flexCheckDefault"
                           onChange={(e) => {
                             addAminity(e);
                           }}
@@ -1152,7 +1175,6 @@ function Dashboard() {
                           className="form-check-input"
                           type="checkbox"
                           value="Mall"
-                          id="flexCheckDefault"
                           onChange={(e) => {
                             addAminity(e);
                           }}
@@ -1171,7 +1193,6 @@ function Dashboard() {
                           className="form-check-input"
                           type="checkbox"
                           value="Shopping Mall"
-                          id="flexCheckDefault"
                           onChange={(e) => {
                             addAminity(e);
                           }}
@@ -1190,7 +1211,6 @@ function Dashboard() {
                           className="form-check-input"
                           type="checkbox"
                           value="Cinema"
-                          id="flexCheckDefault"
                           onChange={(e) => {
                             addAminity(e);
                           }}
@@ -1295,68 +1315,99 @@ function Dashboard() {
               <div className="modal-body" onMouseEnter={checkBoxes}>
                 <form>
                   <div className="mb-3">
-                    <label for="exampleInputPassword1" className="form-label">
+                    <label for="exampleInputPassword9" className="form-label">
                       RERA ID
                     </label>
                     <input
                       value={inputProp.erera_no}
                       type="number"
                       className="form-control"
-                      id="exampleInputPassword1"
+                      id="exampleInputPassword9"
                       name="erera_no"
                       onChange={handleChange}
                     />
                   </div>
                   <div className="mb-3">
-                    <label for="exampleInputPassword1" className="form-label">
+                    <label for="exampleInputPassword10" className="form-label">
                       Title
                     </label>
                     <input
                       value={inputProp.etitle}
                       type="text"
                       className="form-control"
-                      id="exampleInputPassword1"
+                      id="exampleInputPassword10"
                       name="etitle"
                       onChange={handleChange}
                     />
                   </div>
                   <div className="mb-3">
-                    <label for="exampleInputPassword1" className="form-label">
+                    <label for="exampleInputPassword11" className="form-label">
                       Developer
                     </label>
                     <input
                       value={inputProp.edeveloper}
                       type="text"
                       className="form-control"
-                      id="exampleInputPassword1"
+                      id="exampleInputPassword11"
                       name="edeveloper"
                       onChange={handleChange}
                     />
                   </div>
                   <div className="mb-3">
                     <label for="exampleInputPassword1" className="form-label">
-                      city
+                      City
                     </label>
-                    <input
-                      value={inputProp.ecity}
-                      type="text"
-                      className="form-control"
+
+                    <select
+                      className="form-select"
+                      aria-label="Default select example"
                       name="ecity"
-                      onChange={handleChange}
-                    />
+                      value={inputProp.ecity}
+                      onChange={(e) => {
+                        handleChange(e);
+                        setSelectedCity(e.target.value);
+                      }}
+                    >
+                      <option selected value="Select City">
+                        Select City
+                      </option>
+                      {availableCity?.city.map((item, index) => {
+                        return (
+                          <option value={item} key={index}>
+                            {item}
+                          </option>
+                        );
+                      })}
+                    </select>
                   </div>
                   <div className="mb-3">
                     <label for="exampleInputPassword1" className="form-label">
                       State
                     </label>
-                    <input
-                      value={inputProp.estate}
-                      type="text"
-                      className="form-control"
-                      id="exampleInputPassword1"
+
+                    <select
+                      className="form-select"
+                      aria-label="Default select example"
                       name="estate"
-                      onChange={handleChange}
-                    />
+                      value={inputProp.estate}
+                      id="stateSelectEdit"
+                      onChange={(e) => {
+                        handleChange(e);
+                        setSelectedState(e.target.value);
+                      }}
+                      defaultValue="All"
+                    >
+                      <option selected value="Select State">
+                        Select State
+                      </option>
+                      {data.state.map((item, index) => {
+                        return (
+                          <option value={item.name} key={index}>
+                            {item.name}
+                          </option>
+                        );
+                      })}
+                    </select>
                   </div>
                   <div className="mb-3">
                     <label for="eproject_status" className="form-label">
@@ -1370,7 +1421,7 @@ function Dashboard() {
                       onChange={handleChange}
                     >
                       <option selected value="Not Specified">
-                        Property Status
+                        Project Status
                       </option>
                       <option value="Under Construction">
                         Under Construction
@@ -1501,7 +1552,6 @@ function Dashboard() {
                       <input
                         type="text"
                         className="form-control"
-                        id="basic-url"
                         name="ewebsite_property"
                         value={inputProp.ewebsite_property}
                         aria-describedby="basic-addon3"
@@ -1575,55 +1625,55 @@ function Dashboard() {
                     </div>
                   </div>
                   <div className="mb-3">
-                    <label for="exampleInputPassword1" className="form-label">
+                    <label for="exampleInputPassword12" className="form-label">
                       Configuration:
                     </label>
                     <input
                       type="text"
                       className="form-control"
                       value={inputProp.econfiguration}
-                      id="exampleInputPassword1"
+                      id="exampleInputPassword12"
                       name="econfiguration"
                       placeholder="Ex: 123 ft"
                       onChange={handleChange}
                     />
                   </div>
                   <div className="mb-3">
-                    <label for="exampleInputPassword1" className="form-label">
+                    <label for="exampleInputPassword13" className="form-label">
                       Possession in:
                     </label>
                     <input
                       type="date"
                       className="form-control"
                       value={inputProp.epossession}
-                      id="exampleInputPassword1"
+                      id="exampleInputPassword13"
                       name="possession"
                       placeholder="Ex: 2022-12-31"
                       onChange={handleChange}
                     />
                   </div>
                   <div className="mb-3">
-                    <label for="exampleInputPassword1" className="form-label">
+                    <label for="exampleInputPassword14" className="form-label">
                       Tower:
                     </label>
                     <input
                       type="number"
                       className="form-control"
                       value={inputProp.etower}
-                      id="exampleInputPassword1"
+                      id="exampleInputPassword14"
                       name="etower"
                       placeholder="Ex: 2"
                       onChange={handleChange}
                     />
                   </div>
                   <div className="mb-3">
-                    <label for="exampleInputPassword1" className="form-label">
+                    <label for="exampleInputPassword15" className="form-label">
                       Floor:
                     </label>
                     <input
                       type="number"
                       className="form-control"
-                      id="exampleInputPassword1"
+                      id="exampleInputPassword15"
                       value={inputProp.efloor}
                       name="efloor"
                       placeholder="Ex: 3"
@@ -1631,13 +1681,13 @@ function Dashboard() {
                     />
                   </div>
                   <div className="mb-3">
-                    <label for="exampleInputPassword1" className="form-label">
+                    <label for="exampleInputPassword16" className="form-label">
                       Apartments per floor:
                     </label>
                     <input
                       type="number"
                       className="form-control"
-                      id="exampleInputPassword1"
+                      id="exampleInputPassword16"
                       value={inputProp.eapartment_per_floor}
                       name="eapartment_per_floor"
                       placeholder="Ex: 5"
@@ -1755,7 +1805,6 @@ function Dashboard() {
                             className="form-check-input"
                             type="checkbox"
                             value="Hospital"
-                            id="flexCheckDefault"
                             onChange={(e) => {
                               addAminity(e);
                             }}
@@ -1774,7 +1823,6 @@ function Dashboard() {
                             className="form-check-input"
                             type="checkbox"
                             value="Park"
-                            id="flexCheckDefault"
                             onChange={(e) => {
                               addAminity(e);
                             }}
@@ -1793,7 +1841,6 @@ function Dashboard() {
                             className="form-check-input"
                             type="checkbox"
                             value="School"
-                            id="flexCheckDefault"
                             onChange={(e) => {
                               addAminity(e);
                             }}
@@ -1812,7 +1859,6 @@ function Dashboard() {
                             className="form-check-input"
                             type="checkbox"
                             value="Club House"
-                            id="flexCheckDefault"
                             onChange={(e) => {
                               addAminity(e);
                             }}
@@ -1831,7 +1877,6 @@ function Dashboard() {
                             className="form-check-input"
                             type="checkbox"
                             value="Play Area"
-                            id="flexCheckDefault"
                             onChange={(e) => {
                               addAminity(e);
                             }}
@@ -1850,7 +1895,6 @@ function Dashboard() {
                             className="form-check-input"
                             type="checkbox"
                             value="Collage"
-                            id="flexCheckDefault"
                             onChange={(e) => {
                               addAminity(e);
                             }}
@@ -1869,7 +1913,6 @@ function Dashboard() {
                             className="form-check-input"
                             type="checkbox"
                             value="Metro Station"
-                            id="flexCheckDefault"
                             onChange={(e) => {
                               addAminity(e);
                             }}
@@ -1888,7 +1931,6 @@ function Dashboard() {
                             className="form-check-input"
                             type="checkbox"
                             value="Police Station"
-                            id="flexCheckDefault"
                             onChange={(e) => {
                               addAminity(e);
                             }}
@@ -1907,7 +1949,6 @@ function Dashboard() {
                             className="form-check-input"
                             type="checkbox"
                             value="Mall"
-                            id="flexCheckDefault"
                             onChange={(e) => {
                               addAminity(e);
                             }}
@@ -1926,7 +1967,6 @@ function Dashboard() {
                             className="form-check-input"
                             type="checkbox"
                             value="Shopping Mall"
-                            id="flexCheckDefault"
                             onChange={(e) => {
                               addAminity(e);
                             }}
@@ -1945,7 +1985,6 @@ function Dashboard() {
                             className="form-check-input"
                             type="checkbox"
                             value="Cinema"
-                            id="flexCheckDefault"
                             onChange={(e) => {
                               addAminity(e);
                             }}
@@ -2073,7 +2112,7 @@ function Dashboard() {
                       <input
                         type="file"
                         className="form-control"
-                        id="inputGroupFile02"
+                        id="inputGroupFile03"
                         multiple
                         onChange={(e) => {
                           setImage([...e.target.files]);
@@ -2081,14 +2120,17 @@ function Dashboard() {
                       />
                     </div>
                     <div className="form-group">
-                      <label for="add_developer_logo" className="form-label">
+                      <label
+                        for="add_developer_logo_edit"
+                        className="form-label"
+                      >
                         Add Developer Logo
                       </label>
                       <div className="input-group mb-3">
                         <input
                           type="file"
                           className="form-control"
-                          id="add_developer_logo"
+                          id="add_developer_logo_edit"
                           onChange={(e) => {
                             setLogo([e.target.files[0]]);
                           }}

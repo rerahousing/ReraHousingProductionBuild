@@ -17,7 +17,6 @@ function Login() {
         navigate("/dashboard");
       })
       .catch((err) => {
-        console.log(err);
         setShow(true);
       });
     e.preventDefault();

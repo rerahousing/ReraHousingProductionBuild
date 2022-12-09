@@ -7,7 +7,7 @@ function Card_1(props) {
       <div className="card-body ">
         <h5 className="card-title text-center">{props.head}</h5>
         <p className="card-text">{props.body}</p>
-        <a href="" className="link">
+        <a href="/rera-approved-projects-villa-duplex-flats" className="link">
           Learn more <i class="bi bi-chevron-right"></i>
         </a>
       </div>

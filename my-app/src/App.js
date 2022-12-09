@@ -8,7 +8,10 @@ import ProductPage from "./Components/ProductPage";
 import ServicePage from "./Components/ServicePage";
 import PropertyState from "./Context/Property/PropertyState";
 import DashboardTab from "./Components/DashboardTab";
-import Test from "./Components/Test";
+import PrivacyPolicy from "./Components/PrivacyPolicy";
+import TermsAndCondition from "./Components/TermsAndCondition";
+import PartnershipSignup from "./Components/PartnershipSignup";
+import ServiceSignup from "./Components/ServiceSignup";
 import Login from "./Components/Login";
 
 function App() {
@@ -36,6 +39,10 @@ function App() {
             />
             <Route path="/dashboard" element={<DashboardTab />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+            <Route path="/termsandconditions" element={<TermsAndCondition />} />
+            <Route path="/partnershipsignup" element={<PartnershipSignup />} />
+            <Route path="/servicesignup" element={<ServiceSignup />} />
           </Routes>
         </Router>
         {window.location.pathname === "/dashboard" ||
