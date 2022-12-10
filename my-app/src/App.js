@@ -22,7 +22,7 @@ function App() {
         window.location.pathname === "/login" ? null : (
           <Navbar />
         )}
-        <Router basename="/">
+        <Router>
           <Routes>
             <Route element={<Home />} path={"/"} />
             <Route
