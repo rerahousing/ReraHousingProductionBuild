@@ -1,12 +1,11 @@
 const mongoose = require("mongoose");
+const MONGOURI = require("./config/keys");
 
 // connecting server to monogoDB using compass
 // mongoURI = "MONGO_SERVER/DATABASE_NAME"
 
-const mongoURI = "mongodb://127.0.0.1:27017/ReraHousing";
-
 const connectMongo = () => {
-  mongoose.connect(mongoURI, () => {
+  mongoose.connect(MONGOURI, () => {
     console.log("Connect to mongo sucessfully");
   });
 };

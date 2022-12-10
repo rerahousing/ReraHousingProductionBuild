@@ -4,7 +4,7 @@ const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Admin = require("../models/admin");
-const JWT_SECRET = "rera$housing$.in";
+const JWT_SECRET = require("../config/keys");
 
 // Route 1:  Create a admin using post "/api/auth/createadmin". Doesn't require Auth
 router.post(
