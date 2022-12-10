@@ -3,6 +3,10 @@
     {
       "src": "./backend/index.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "./my-app/build/index.js",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
