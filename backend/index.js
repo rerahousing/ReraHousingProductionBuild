@@ -17,11 +17,11 @@ app.use("/api/properties", require("./routes/properties"));
 app.use("/api/services", require("./routes/services"));
 app.use("/api/contacts", require("./routes/contact"));
 app.use("/api/admin", require("./routes/admin"));
-app.use(express.static("public"));
+
 if (NODE_ENV == "production") {
   const path = require("path");
 
-  app.get("*", (req, res) => {
+  app.get("/", (req, res) => {
     app.use(express.static(path.join(__dirname, "../my-app", "build")));
     res.sendFile(path.join(__dirname, "../my-app", "build", "index.html")),
       function (err) {
