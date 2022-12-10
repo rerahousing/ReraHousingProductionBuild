@@ -8,11 +8,5 @@
       "src": "./my-app/build",
       "use": "@vercel/static"
     }
-  ],
-  "rewrites": [
-    {
-      "src": "/.*",
-      "dest": "/backend/index.js"
-    }
   ]
 }
