@@ -24,10 +24,10 @@ function App() {
         )}
         <Router>
           <Routes>
-            <Route element={<Home />} exact path={"/"} />
+            <Route element={<Home />} exact path="/" />
             <Route
               element={<ProjectList />}
-              path={"/rera-approved-projects-villa-duplex-flats"}
+              path="/rera-approved-projects-villa-duplex-flats"
             />
             <Route
               path="/rera-approved-projects-villa-duplex-flats/:id"
