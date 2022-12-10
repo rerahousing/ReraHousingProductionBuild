@@ -3,20 +3,12 @@
     {
       "src": "./backend/index.js",
       "use": "@vercel/node"
-    },
-    {
-      "src": "./my-app/build/index.html",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
       "dest": "/backend/index.js"
-    },
-    {
-      "src": "/[^.]+",
-      "dest": "/my-app/build/index.html"
     }
   ]
 }
