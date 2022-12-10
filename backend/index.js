@@ -5,6 +5,7 @@ const connectMongo = require("./db");
 var cors = require("cors");
 var bodyParser = require("body-parser");
 const path = require("path");
+const NODE_ENV = process.env.NODE_ENV;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
