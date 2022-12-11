@@ -148,7 +148,7 @@ function Card6(props) {
               type="button"
               className="btn btn-primary rounded-circle"
               target="_blank"
-              href={`https://rera-housing-production-build-2ybt.vercel.app/rera-approved-projects-villa-duplex-flats/${_id}`}
+              href={`/${_id}`}
             >
               <i className="bi bi-arrow-right"></i>
             </a>
