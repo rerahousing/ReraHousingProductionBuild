@@ -4,7 +4,7 @@ import PropertyContext from "./PropertyContext";
 import axios from "axios";
 
 const PropertyState = (props) => {
-  const host = "http://localhost:7000";
+  const host = "rera-housing-production-build-2ybt.vercel.app";
   const [load, setLoad] = useState();
   const [loadProperty, setLoadProperty] = useState();
   // States for Property Section
