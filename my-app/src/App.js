@@ -26,6 +26,7 @@ function App() {
           <Routes>
             <Route element={<Home />} exact path="/" />
             <Route
+              exact
               element={<ProjectList />}
               path="/rera-approved-projects-villa-duplex-flats"
             />
