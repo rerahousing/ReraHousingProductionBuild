@@ -84,7 +84,7 @@ function Card6(props) {
 
         <span className="dev-logo rounded-circle">
           <img
-            src={`http://localhost:3000${developer_logo}`}
+            src={`https://rera-housing-production-build-2ybt.vercel.app${developer_logo}`}
             alt=""
             style={{ width: "100%" }}
           />
@@ -105,7 +105,7 @@ function Card6(props) {
         </div>
 
         <img
-          src={`http://localhost:3000${props.image}`}
+          src={`https://rera-housing-production-build-2ybt.vercel.app${props.image}`}
           className="card-img-top"
           alt="..."
         />

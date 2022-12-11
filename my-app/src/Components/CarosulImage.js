@@ -14,14 +14,14 @@ function CarosulImage(props) {
                 <img
                   width="1400"
                   height="418"
-                  src={`http://localhost:3000${item}`}
+                  src={`https://rera-housing-production-build-2ybt.vercel.app${item}`}
                   className="bg-img"
                   alt="..."
                 />
                 <img
                   width="1400"
                   height="418"
-                  src={`http://localhost:3000${item}`}
+                  src={`https://rera-housing-production-build-2ybt.vercel.app${item}`}
                   className="bg-blur d-block w-100"
                   alt="..."
                 />

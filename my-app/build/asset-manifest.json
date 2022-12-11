@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.8a3f78ab.css",
-    "main.js": "./static/js/main.6d39f87f.js",
+    "main.js": "./static/js/main.e70379e7.js",
     "static/js/787.28cb0dcd.chunk.js": "./static/js/787.28cb0dcd.chunk.js",
     "static/media/gurugram.jpg": "./static/media/gurugram.97861660936eb7eee69e.jpg",
     "static/media/rera-approved-housing-projects-header.jpg": "./static/media/rera-approved-housing-projects-header.fdac6cc9fca143a7e104.jpg",
@@ -37,11 +37,11 @@
     "static/media/no-money-icon.svg": "./static/media/no-money-icon.aa0f74080c2071474ed5e8a67a4e3601.svg",
     "static/media/quote.svg": "./static/media/quote.1fa145d0b88812f66078ea977a1d4cd7.svg",
     "main.8a3f78ab.css.map": "./static/css/main.8a3f78ab.css.map",
-    "main.6d39f87f.js.map": "./static/js/main.6d39f87f.js.map",
+    "main.e70379e7.js.map": "./static/js/main.e70379e7.js.map",
     "787.28cb0dcd.chunk.js.map": "./static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8a3f78ab.css",
-    "static/js/main.6d39f87f.js"
+    "static/js/main.e70379e7.js"
   ]
 }

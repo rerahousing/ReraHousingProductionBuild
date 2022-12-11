@@ -11,7 +11,8 @@ function DashboardAdmin() {
   const [show, setShow] = useState(false);
   const [admins, setAdmins] = useState([]);
   const getAllAdmins = () => {
-    let url = "http://localhost:7000/api/admin/getalladmins";
+    let url =
+      "https://rera-housing-production-build-2ybt.vercel.app/api/admin/getalladmins";
     axios
       .get(url)
       .then((res) => {
@@ -23,7 +24,7 @@ function DashboardAdmin() {
   };
 
   const deleteAdmin = (id) => {
-    let url = `http://localhost:7000/api/admin/deleteadmin/${id}`;
+    let url = `https://rera-housing-production-build-2ybt.vercel.app/api/admin/deleteadmin/${id}`;
     axios
       .delete(url)
       .then((res) => {
@@ -124,7 +125,8 @@ function DashboardAdmin() {
                 type="button"
                 className="btn btn-primary"
                 onClick={() => {
-                  let url = "http://localhost:7000/api/admin/signup";
+                  let url =
+                    "https://rera-housing-production-build-2ybt.vercel.app/api/admin/signup";
                   axios.post(url, { username: username, password: password });
                   window.location.reload();
                 }}
