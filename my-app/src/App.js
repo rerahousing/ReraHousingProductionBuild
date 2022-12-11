@@ -31,6 +31,7 @@ function App() {
               path="/rera-approved-projects-villa-duplex-flats"
             />
             <Route
+              exact
               path="/rera-approved-projects-villa-duplex-flats/:id"
               element={<ProductPage />}
             />
