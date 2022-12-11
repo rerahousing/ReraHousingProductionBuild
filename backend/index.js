@@ -21,8 +21,8 @@ app.use("/api/admin", require("./routes/admin"));
 if (NODE_ENV == "production") {
   const path = require("path");
 
+  app.use(express.static(path.join(__dirname, "../my-app", "build")));
   app.get("/*", (req, res) => {
-    app.use(express.static(path.join(__dirname, "../my-app", "build")));
     res.sendFile(path.join(__dirname, "../my-app", "build", "index.html")),
       function (err) {
         if (err) {
