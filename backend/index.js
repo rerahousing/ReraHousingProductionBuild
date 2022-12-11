@@ -22,17 +22,7 @@ if (NODE_ENV == "production") {
   const path = require("path");
 
   app.use(express.static(path.join(__dirname, "../my-app", "build")));
-  app.get("/*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../my-app", "build", "index.html")),
-      function (err) {
-        if (err) {
-          res.status(500).send({
-            err,
-          });
-        }
-      };
-  });
-  app.get("/rera-approved-projects-villa-duplex-flats/*", (req, res) => {
+  app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../my-app", "build", "index.html")),
       function (err) {
         if (err) {
