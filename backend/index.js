@@ -32,6 +32,16 @@ if (NODE_ENV == "production") {
         }
       };
   });
+  app.get("/rera-approved-projects-villa-duplex-flats/*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../my-app", "build", "index.html")),
+      function (err) {
+        if (err) {
+          res.status(500).send({
+            err,
+          });
+        }
+      };
+  });
 } else {
   const path = require("path");
 
