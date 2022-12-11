@@ -412,7 +412,7 @@ function Dashboard() {
                   <td className="image_col">
                     {" "}
                     <img
-                      src={`http://localhost:3000${e.developer_logo}`}
+                      src={`https://rera-housing-production-build-2ybt.vercel.app${e.developer_logo}`}
                       alt="No Developer Logo"
                     />
                   </td>
