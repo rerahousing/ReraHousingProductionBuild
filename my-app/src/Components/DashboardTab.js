@@ -81,13 +81,13 @@ function DashboardTab() {
               className={`nav-link ${active === "admins-tab" ? "active" : ""}`}
               id="admins-tab"
               data-bs-toggle="tab"
-              data-bs-target="#contact-tab-pane"
+              data-bs-target="#admins-tab-pane"
               type="button"
               role="tab"
               onClick={(e) => {
                 setActive(e);
               }}
-              aria-controls="contact-tab-pane"
+              aria-controls="admins-tab-pane"
               aria-selected="false"
             >
               Admins
