@@ -9,7 +9,7 @@ function Login() {
   const [password, setPassword] = useState();
   const [show, setShow] = useState(false);
   const authenticate = (e) => {
-    const url = `http://localhost:7000/api/admin/login`;
+    const url = `https://rera-housing-production-build-2ybt.vercel.app/api/admin/login`;
     axios
       .post(url, { username: username, password: password })
       .then((result) => {
