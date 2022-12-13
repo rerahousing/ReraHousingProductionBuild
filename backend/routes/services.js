@@ -53,7 +53,7 @@ router.post(
     } catch (error) {
       return res
         .status(500)
-        .json({ error: "Something went wrong", message: err.message });
+        .json({ error: "Something went wrong", message: error.message });
     }
   }
 );
