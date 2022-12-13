@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const MONGOURI = "mongodb://127.0.0.1:27017/ReraHousing";
+const MONGOURI = require("../backend/config/keys");
 
 // connecting server to monogoDB using compass
 // mongoURI = "MONGO_SERVER/DATABASE_NAME"
