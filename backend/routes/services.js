@@ -50,7 +50,7 @@ router.post(
       });
       const savedService = await newService.save();
       res.json(savedService);
-    } catch (err) {
+    } catch (error) {
       return res
         .status(500)
         .json({ error: "Something went wrong", message: err.message });
