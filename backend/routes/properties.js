@@ -120,7 +120,7 @@ router.post(
       const savedProp = await newProp.save();
 
       res.send(savedProp);
-    } catch (err) {
+    } catch (error) {
       return res
         .status(500)
         .json({ error: "Something went wrong", message: err.message });
