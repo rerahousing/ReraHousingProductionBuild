@@ -6,6 +6,14 @@ var cors = require("cors");
 var bodyParser = require("body-parser");
 const path = require("path");
 const NODE_ENV = process.env.NODE_ENV;
+const cloudinary = require("cloudinary");
+
+// const fileUpload = require("express-fileupload");
+// app.use(
+//   fileUpload({
+//     useTempFiles: true,
+//   })
+// );
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

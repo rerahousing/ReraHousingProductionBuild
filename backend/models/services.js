@@ -13,7 +13,7 @@ const ServiceSchema = new Schema({
   whatsapp_link: { type: String },
   instagram_link: { type: String },
   website_link: { type: String },
-  profile_pic: { type: String },
+  profile_pic: { type: Object },
 });
 
 module.exports = mongoose.model("services", ServiceSchema);

@@ -3,6 +3,10 @@ const router = express.Router();
 const Services = require("../models/services");
 const uploadProfile = require("../middleware/uploadProfile");
 const fs = require("fs");
+const {
+  uploadToCloudinary,
+  removeFromCloudinary,
+} = require("../middleware/cloudinary");
 
 // Route 1 : Get all the services
 router.get("/getservices", async (req, res) => {
@@ -28,6 +32,9 @@ router.post(
         instagram_link,
         website_link,
       } = req.body;
+
+      const data = await uploadToCloudinary(req.file.path, "profile_pic");
+      console.log(req.file);
       let newService = new Services({
         name,
         services,
@@ -39,13 +46,8 @@ router.post(
         whatsapp_link,
         instagram_link,
         website_link,
+        profile_pic: data,
       });
-      console.log(req.body);
-      if (req.file) {
-        let path = "/uploads/profilePics/";
-        path = path + req.file.filename;
-        newService.profile_pic = path;
-      }
       const savedService = await newService.save();
       res.json(savedService);
     } catch (err) {
@@ -61,26 +63,8 @@ router.delete("/deleteservice/:id", async (req, res) => {
   try {
     // Find the note to be deleted
     let service = await Services.findById(req.params.id);
-    if (!service) {
-      return res.status(404).send("Not Found");
-    }
-
-    const path = "../my-app/public/" + service.profile_pic;
-    fs.stat(path, function (err, stats) {
-      console.log(stats); //here we got all information of file in stats variable
-
-      if (err) {
-        return console.error(err);
-      }
-
-      fs.unlink(path, function (err) {
-        if (err) return console.log(err);
-        console.log("file deleted successfully");
-      });
-    });
-
+    await removeFromCloudinary(service.profile_pic.public_id);
     service = await Services.findByIdAndDelete(req.params.id);
-
     res.json({ Success: "Note has been delete", service });
   } catch (error) {
     console.error(error.message);
@@ -105,7 +89,7 @@ router.post(
       instagram_link,
       website_link,
     } = req.body;
-    console.log(req.body);
+
     const newService = {};
     if (name) {
       newService.name = name;
@@ -137,30 +121,16 @@ router.post(
     if (website_link) {
       newService.website_link = website_link;
     }
-
-    console.log(req.file);
     let service = await Services.findById(req.params.id);
+
     if (req.file) {
-      let path = "/uploads/profilePics/";
-      path = path + req.file.filename;
-      newService.profile_pic = path;
-
-      if (service.profile_pic) {
-        path = "../my-app/public" + service.profile_pic;
-        console.log(path);
-        fs.stat(path, function (err, stats) {
-          console.log(stats); //here we got all information of file in stats variable
-
-          if (err) {
-            return console.error(err);
-          }
-
-          fs.unlink(path, function (err) {
-            if (err) return console.log(err);
-          });
-        });
-      }
+      await removeFromCloudinary(service.profile_pic.public_id);
+      newService.profile_pic = await uploadToCloudinary(
+        req.file.path,
+        "profile_pic"
+      );
     }
+
     if (!service) {
       return res.status(404).send("Not Found");
     }

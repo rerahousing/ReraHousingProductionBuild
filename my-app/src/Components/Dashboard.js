@@ -4,10 +4,13 @@ import "../Styles/Card7.css";
 import InputForm from "./InputForm";
 import CurrencyFormat from "react-currency-format";
 import data from "./Data";
+import LoadingComponent from "./LoadingComponent";
 
 function Dashboard() {
   // States
   const ref = useRef(null);
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
   const [logo, setLogo] = useState();
   const [imageData, setImageData] = useState([]);
   const context = useContext(PropertyContext);
@@ -20,7 +23,7 @@ function Dashboard() {
     id: "",
     etitle: "",
     edeveloper: "",
-    erera_no: 0,
+    erera_no: "0",
     ecity: "",
     estate: "",
     ebhk: [],
@@ -48,13 +51,15 @@ function Dashboard() {
     deleteProperty,
     editProp,
     patchProp,
+    loadProperty,
+    setLoadProperty,
   } = context;
 
   const [bhk, setBhk] = useState([]);
   const [input, setInput] = useState({
     title: "",
     developer: "",
-    rera_no: 0,
+    rera_no: "0",
     city: "",
     state: "",
     bhk: [],
@@ -74,7 +79,7 @@ function Dashboard() {
   const [propertyData, setPropertyData] = useState({
     title: "",
     developer: "",
-    rera_no: 0,
+    rera_no: "0",
     city: "",
     state: "",
     bhk: [],
@@ -98,7 +103,7 @@ function Dashboard() {
 
   // Functions;
   const checkBoxes = () => {
-    const checkbox = document.querySelectorAll("#flexCheckDefault");
+    const checkbox = document.querySelectorAll(".check");
     checkbox.forEach((e) => {
       if (amenites.includes(e.value)) {
         e.checked = true;
@@ -138,7 +143,7 @@ function Dashboard() {
       ewebsite_property: currentProp.website_property,
       econfiguration: currentProp.configuration,
       ecarpet_area: currentProp.carpet_area,
-      possession: currentProp.prossession,
+      possession: currentProp.possession,
       etower: currentProp.tower,
       efloor: currentProp.floor,
       eapartment_per_floor: currentProp.apartment_per_floor,
@@ -148,15 +153,13 @@ function Dashboard() {
       epricing_max: currentProp.pricing_max,
       epricing_min: currentProp.pricingmin,
       eproject_status: currentProp.project_status,
+      property_type: currentProp.property_type,
       ehot_deal: currentProp.hot_deal,
       views: currentProp.views,
     });
+    console.log(currentProp.possession);
     const data = document.getElementById("einput_hot_deal");
     data.checked = currentProp.hot_deal;
-    const selectBox = document.getElementById("eproject_status");
-    selectBox.value = currentProp.project_status;
-    const selectBox2 = document.getElementById("eproperty_type");
-    selectBox2.value = currentProp.property_type;
     setBhk(currentProp.bhk);
     setImage([]);
     setImageData([]);
@@ -165,6 +168,7 @@ function Dashboard() {
     setFetures(currentProp.other_fet);
     setPrice_min(currentProp.pricingmin);
     setPrice_max(currentProp.pricing_max);
+    console.log(new Date(currentProp.prossession));
   };
 
   const updatePropDB = () => {
@@ -218,7 +222,9 @@ function Dashboard() {
   };
 
   const handleClick = (e) => {
+    ref2.current.click();
     e.preventDefault();
+    console.log(propertyData);
     const formData = new FormData();
     formData.append("rera_no", propertyData.rera_no);
     formData.append("title", propertyData.title);
@@ -234,10 +240,10 @@ function Dashboard() {
     formData.append("carpet_area", propertyData.carpet_area);
     formData.append("tower", propertyData.tower);
     formData.append("floor", propertyData.floor);
-    imageData.forEach((item) => formData.append("image", item));
+    imageData?.forEach((item) => formData.append("image", item));
     formData.append("apartment_per_floor", propertyData.apartment_per_floor);
     formData.append("project_status", propertyData.project_status);
-    image.forEach((item) => formData.append("imgCollection", item));
+    image?.forEach((item) => formData.append("imgCollection", item));
     bhkDet.forEach((item) => formData.append("bhk_no", JSON.stringify(item)));
     fetures.forEach((item) => formData.append("other_fet", item));
     why.forEach((item) => formData.append("why", item));
@@ -251,8 +257,10 @@ function Dashboard() {
     formData.append("hot_deal", data);
     logo?.forEach((item) => formData.append("developer_logo", item));
     formData.append("property_type", propertyData.property_type);
+    console.log(propertyData.rera_no);
     addProperty(formData, bhkDet);
-    window.location.reload();
+    setLoadProperty(true);
+    getProperty();
   };
 
   const onChangeArray = (e) => {
@@ -292,16 +300,16 @@ function Dashboard() {
   };
 
   const patchproperty = () => {
+    ref3.current.click();
     const formData = new FormData();
-    imageData.forEach((item) => formData.append("image", item));
-    image.forEach((item) => formData.append("imgCollection", item));
-    bhkDet.forEach((item) => formData.append("bhk_no", JSON.stringify(item)));
-    logo.forEach((item) => formData.append("developer_logo", item));
+    imageData?.forEach((item) => formData.append("image", item));
+    image?.forEach((item) => formData.append("imgCollection", item));
+    bhkDet?.forEach((item) => formData.append("bhk_no", JSON.stringify(item)));
+    logo?.forEach((item) => formData.append("developer_logo", item));
     patchProp(inputProp.id, formData);
-    window.location.reload();
   };
 
-  return (
+  const page = (
     <div className="container">
       <button
         type="button"
@@ -364,7 +372,7 @@ function Dashboard() {
                 <td className="overflow">
                   {e.bhk_no.map((item, index) => {
                     const data = JSON.parse(item);
-                    const image = e.image;
+                    const image = Object.values(e.image)[index];
                     return (
                       <>
                         <span>
@@ -381,7 +389,7 @@ function Dashboard() {
                         <br />
                         <span>
                           <strong>image: </strong>
-                          {image[index]}
+                          {image?.url}
                         </span>
                         <hr />
                       </>
@@ -412,7 +420,7 @@ function Dashboard() {
                   <td className="image_col">
                     {" "}
                     <img
-                      src={`https://rera-housing-production-build-2ybt.vercel.app${e.developer_logo}`}
+                      src={`${e.developer_logo.url}`}
                       alt="No Developer Logo"
                     />
                   </td>
@@ -435,7 +443,7 @@ function Dashboard() {
                 <td className="overflow">
                   <ul>
                     {e.imgCollection.map((i) => {
-                      return <li>{i}</li>;
+                      return <li>{i.url}</li>;
                     })}
                   </ul>
                 </td>
@@ -875,7 +883,6 @@ function Dashboard() {
                     type="date"
                     className="form-control"
                     id="exampleInputPassword5"
-                    value={inputProp.possession}
                     name="possession"
                     placeholder="Ex: 2022-12-31"
                     onChange={onChange}
@@ -1249,6 +1256,7 @@ function Dashboard() {
                       onChange={(e) => {
                         setImage([...e.target.files]);
                       }}
+                      accept="image/png, image/jpg, image/jpeg"
                       multiple
                     />
                   </div>
@@ -1266,6 +1274,7 @@ function Dashboard() {
                       onChange={(e) => {
                         setLogo([...e.target.files]);
                       }}
+                      accept="image/png, image/jpg, image/jpeg"
                     />
                   </div>
                 </div>
@@ -1276,6 +1285,7 @@ function Dashboard() {
                 type="button"
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
+                ref={ref2}
               >
                 Close
               </button>
@@ -1395,11 +1405,9 @@ function Dashboard() {
                         handleChange(e);
                         setSelectedState(e.target.value);
                       }}
-                      defaultValue="All"
+                      defaultValue="Select State"
                     >
-                      <option selected value="Select State">
-                        Select State
-                      </option>
+                      <option selected>Select State</option>
                       {data.state.map((item, index) => {
                         return (
                           <option value={item.name} key={index}>
@@ -1419,10 +1427,10 @@ function Dashboard() {
                       id="eproject_status"
                       name="eproject_status"
                       onChange={handleChange}
+                      defaultValue="Not Specified"
+                      value={inputProp.eproject_status}
                     >
-                      <option selected value="Not Specified">
-                        Project Status
-                      </option>
+                      <option selected>Project Status</option>
                       <option value="Under Construction">
                         Under Construction
                       </option>
@@ -1440,6 +1448,8 @@ function Dashboard() {
                       id="eproperty_type"
                       name="property_type"
                       onChange={handleChange}
+                      defaultValue="Property Type"
+                      value={inputProp.property_type}
                     >
                       <option selected>Property Type</option>
                       <option value="Apartment">Apartment</option>
@@ -1645,7 +1655,7 @@ function Dashboard() {
                     <input
                       type="date"
                       className="form-control"
-                      value={inputProp.epossession}
+                      value={inputProp.possession}
                       id="exampleInputPassword13"
                       name="possession"
                       placeholder="Ex: 2022-12-31"
@@ -1802,7 +1812,7 @@ function Dashboard() {
                       <div className="col-4">
                         <div className="form-check">
                           <input
-                            className="form-check-input"
+                            className="form-check-input check"
                             type="checkbox"
                             value="Hospital"
                             onChange={(e) => {
@@ -1820,7 +1830,7 @@ function Dashboard() {
                       <div className="col-4">
                         <div className="form-check">
                           <input
-                            className="form-check-input"
+                            className="form-check-input check"
                             type="checkbox"
                             value="Park"
                             onChange={(e) => {
@@ -1838,7 +1848,7 @@ function Dashboard() {
                       <div className="col-4">
                         <div className="form-check">
                           <input
-                            className="form-check-input"
+                            className="form-check-input check"
                             type="checkbox"
                             value="School"
                             onChange={(e) => {
@@ -1856,7 +1866,7 @@ function Dashboard() {
                       <div className="col-4">
                         <div className="form-check">
                           <input
-                            className="form-check-input"
+                            className="form-check-input check"
                             type="checkbox"
                             value="Club House"
                             onChange={(e) => {
@@ -1874,7 +1884,7 @@ function Dashboard() {
                       <div className="col-4">
                         <div className="form-check">
                           <input
-                            className="form-check-input"
+                            className="form-check-input check"
                             type="checkbox"
                             value="Play Area"
                             onChange={(e) => {
@@ -1892,7 +1902,7 @@ function Dashboard() {
                       <div className="col-4">
                         <div className="form-check">
                           <input
-                            className="form-check-input"
+                            className="form-check-input check"
                             type="checkbox"
                             value="Collage"
                             onChange={(e) => {
@@ -1910,7 +1920,7 @@ function Dashboard() {
                       <div className="col-4">
                         <div className="form-check">
                           <input
-                            className="form-check-input"
+                            className="form-check-input check"
                             type="checkbox"
                             value="Metro Station"
                             onChange={(e) => {
@@ -1928,7 +1938,7 @@ function Dashboard() {
                       <div className="col-4">
                         <div className="form-check">
                           <input
-                            className="form-check-input"
+                            className="form-check-input check"
                             type="checkbox"
                             value="Police Station"
                             onChange={(e) => {
@@ -1946,7 +1956,7 @@ function Dashboard() {
                       <div className="col-4">
                         <div className="form-check">
                           <input
-                            className="form-check-input"
+                            className="form-check-input check"
                             type="checkbox"
                             value="Mall"
                             onChange={(e) => {
@@ -1964,7 +1974,7 @@ function Dashboard() {
                       <div className="col-4">
                         <div className="form-check">
                           <input
-                            className="form-check-input"
+                            className="form-check-input check"
                             type="checkbox"
                             value="Shopping Mall"
                             onChange={(e) => {
@@ -1972,7 +1982,7 @@ function Dashboard() {
                             }}
                           />
                           <label
-                            className="form-check-label"
+                            className="form-check-label check"
                             for="flexCheckDefault"
                           >
                             Shopping Mall
@@ -1982,7 +1992,7 @@ function Dashboard() {
                       <div className="col-4">
                         <div className="form-check">
                           <input
-                            className="form-check-input"
+                            className="form-check-input check"
                             type="checkbox"
                             value="Cinema"
                             onChange={(e) => {
@@ -2117,6 +2127,7 @@ function Dashboard() {
                         onChange={(e) => {
                           setImage([...e.target.files]);
                         }}
+                        accept="image/png, image/jpg, image/jpeg"
                       />
                     </div>
                     <div className="form-group">
@@ -2134,6 +2145,7 @@ function Dashboard() {
                           onChange={(e) => {
                             setLogo([e.target.files[0]]);
                           }}
+                          accept="image/png, image/jpg, image/jpeg"
                         />
                       </div>
                     </div>
@@ -2145,6 +2157,7 @@ function Dashboard() {
                   type="button"
                   className="btn btn-secondary"
                   data-bs-dismiss="modal"
+                  ref={ref3}
                 >
                   Close
                 </button>
@@ -2162,6 +2175,8 @@ function Dashboard() {
       </div>
     </div>
   );
+
+  return <>{loadProperty ? <LoadingComponent /> : page}</>;
 }
 
 export default Dashboard;

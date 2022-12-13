@@ -4,9 +4,10 @@ import PropertyContext from "./PropertyContext";
 import axios from "axios";
 
 const PropertyState = (props) => {
-  const host = "https://rera-housing-production-build-2ybt.vercel.app";
-  const [load, setLoad] = useState();
-  const [loadProperty, setLoadProperty] = useState();
+  const host = "rera-housing-production-build.vercel.app";
+  const [load, setLoad] = useState(false);
+  const [loadDash, setLoadDash] = useState(false);
+  const [loadProperty, setLoadProperty] = useState(false);
   // States for Property Section
   const [property, setProperty] = useState([]);
   const [bhkNo, setBhkNo] = useState();
@@ -23,7 +24,6 @@ const PropertyState = (props) => {
 
   // Get Property -- Property Section
   const getProperty = async () => {
-    setLoadProperty(true);
     const response = await fetch(`${host}/api/properties/getproperties`, {
       method: "GET",
       headers: {
@@ -33,25 +33,32 @@ const PropertyState = (props) => {
 
     const json = await response.json();
     setProperty(json);
-    setLoadProperty(false);
   };
 
   const addProperty = async (formData) => {
     const url = `${host}/api/properties/addproperty`;
-
-    axios
+    setLoadProperty(true);
+    console.log(loadProperty);
+    alert("Hello");
+    await axios
       .post(url, formData)
       .then((result) => {
-        console.log(result.data.developer_logo);
         setProperty(result.data);
+        setLoadProperty(false);
+        window.location.reload();
+        alert("Uploaded Successfully");
       })
       .catch((error) => {
         console.log(error);
+        setLoadProperty(false);
+        window.location.reload();
+        alert(error.message);
       });
   };
 
   // Delete Property -- Property Section
   const deleteProperty = async (id) => {
+    setLoadProperty(true);
     const response = await fetch(
       `${host}/api/properties/deleteproperty/${id}`,
       {
@@ -60,13 +67,19 @@ const PropertyState = (props) => {
           "Content-Type": "application/json",
         },
       }
-    );
-
-    const json = response.json();
-    const newProperty = property.filter((prop) => {
-      return prop._id !== id;
-    });
-    setProperty(newProperty);
+    )
+      .then((res) => {
+        const json = res.json();
+        const newProperty = property.filter((prop) => {
+          return prop._id !== id;
+        });
+        setProperty(newProperty);
+        alert("Delete Successfully !!");
+        setLoadProperty(false);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
   };
 
   // Get specific property -- Property Section
@@ -90,27 +103,36 @@ const PropertyState = (props) => {
   // Edit Property -- Property Section
   const editProp = (id, formData) => {
     const url = `${host}/api/properties/updateproperty/${id}`;
-
+    setLoadProperty(true);
     axios
       .post(url, formData)
       .then((result) => {
-        console.log(result.data.property);
+        alert(`Upadated Property successfully \n id: ${id}`);
+        setLoadProperty(false);
+        window.location.reload();
       })
       .catch((err) => {
-        console.log(err);
+        alert(`Some Error Occured ! \n id: ${err.message}`);
+        setLoadProperty(false);
+        window.location.reload();
       });
   };
 
   // Patch Property -- Property Section
   const patchProp = (id, formData) => {
     const url = `${host}/api/properties/patchproperty/${id}`;
+    setLoadProperty(true);
     axios
       .patch(url, formData)
       .then((result) => {
-        console.log(result.data.property);
+        alert(`Upadated Property successfully \n id: ${id}`);
+        setLoadProperty(false);
+        window.location.reload();
       })
       .catch((err) => {
-        console.log(err);
+        alert(`Some Error Occured ! \n id: ${err.message}`);
+        setLoadProperty(false);
+        window.location.reload();
       });
   };
 
@@ -255,6 +277,7 @@ const PropertyState = (props) => {
         addContact,
         deleteContact,
         updateContact,
+        setLoadProperty,
       }}
     >
       {props.children}

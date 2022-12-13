@@ -315,7 +315,7 @@ function ProductPage() {
                       />
                     </Tabs>
                   </ul>{" "}
-                  <FloorPlan_Wrapper parsedBhkNo={bhkNo} image={image} />
+                  <FloorPlan_Wrapper parsedBhkNo={bhkNo} data={specProp} />
                 </div>
               </div>
             </div>

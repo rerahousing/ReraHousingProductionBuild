@@ -82,6 +82,7 @@ function InputForm(props) {
                       data[index] = e.target.files[0];
                       setInputImage(data);
                     }}
+                    accept="image/png, image/jpg, image/jpeg"
                   />
                 </div>
               </div>

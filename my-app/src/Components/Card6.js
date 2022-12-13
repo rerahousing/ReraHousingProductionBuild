@@ -35,10 +35,11 @@ function Card6(props) {
     views,
     hot_deal,
     developer_logo,
+    imgCollection,
   } = props.data;
 
-  const { image } = props;
-
+  const image = imgCollection[0]?.url;
+  console.log(image);
   const changeFormatPrice = (price) => {
     let min = Math.abs(price);
     let data2 = 0;
@@ -83,11 +84,7 @@ function Card6(props) {
         </span>
 
         <span className="dev-logo rounded-circle">
-          <img
-            src={`https://rera-housing-production-build-2ybt.vercel.app${developer_logo}`}
-            alt=""
-            style={{ width: "100%" }}
-          />
+          <img src={`${developer_logo.url}`} alt="" style={{ width: "100%" }} />
         </span>
         <button
           type="button"
@@ -104,11 +101,7 @@ function Card6(props) {
           Copied to clipboard !!
         </div>
 
-        <img
-          src={`https://rera-housing-production-build-2ybt.vercel.app${props.image}`}
-          className="card-img-top"
-          alt="..."
-        />
+        <img src={`${image ? image : ""}`} className="card-img-top" alt="..." />
         <div className="card-body">
           <span className="seal rounded-circle">
             <img src={seal} alt="" />

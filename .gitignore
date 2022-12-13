@@ -3,3 +3,4 @@
 ./backend/uploads
 ./backend/imgCollection
 ./backend/image
+/node_modules

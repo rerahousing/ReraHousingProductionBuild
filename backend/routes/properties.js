@@ -3,7 +3,12 @@ const router = express.Router();
 const Property = require("../models/properties");
 const multer = require("multer");
 const upload = require("../middleware/upload");
+const {
+  uploadToCloudinary,
+  removeFromCloudinary,
+} = require("../middleware/cloudinary");
 const fs = require("fs");
+const cloudinary = require("cloudinary");
 
 // Route 1 : Get all the properties
 router.get("/getproperties", async (req, res) => {
@@ -25,7 +30,7 @@ router.post(
       name: "developer_logo",
     },
   ]),
-
+  // upload.single("image"),
   async (req, res) => {
     try {
       const {
@@ -56,7 +61,35 @@ router.post(
         property_type,
       } = req.body;
 
-      let newProp = new Property({
+      // const data = await uploadToCloudinary(req.files.image[0].path, "image");
+      let data2;
+      if (req.files.developer_logo) {
+        data2 = await uploadToCloudinary(
+          req.files.developer_logo[0].path,
+          "developer_logo"
+        );
+      }
+
+      let imageUrlList = [];
+
+      if (req.files.image) {
+        for (let i = 0; i < req.files.image.length; i++) {
+          let locaFilePath = req.files.image[i].path;
+          let result = await uploadToCloudinary(locaFilePath, "image");
+          imageUrlList.push(result);
+        }
+      }
+
+      let imageUrlList2 = [];
+
+      if (req.files.imgCollection) {
+        for (let i = 0; i < req.files.imgCollection.length; i++) {
+          let locaFilePath2 = req.files.imgCollection[i].path;
+          let result = await uploadToCloudinary(locaFilePath2, "imgCollection");
+          imageUrlList2.push(result);
+        }
+      }
+      const newProp = new Property({
         rera_no,
         title,
         developer,
@@ -82,37 +115,14 @@ router.post(
         hot_deal,
         views,
         property_type,
+        image: imageUrlList || [],
+        developer_logo: data2 || [],
+        imgCollection: imageUrlList2 || [],
       });
 
-      if (req.files) {
-        if (req.files.imgCollection) {
-          req.files.imgCollection.forEach(function (files, index, arr) {
-            let path = "/uploads/";
-            path = path + files.filename;
-            newProp.imgCollection.push(path);
-          });
-        }
-
-        if (req.files.image) {
-          req.files.image.forEach(function (files, index, arr) {
-            let path = "/uploads/";
-            path = path + files.filename;
-            newProp.image.push(path);
-          });
-        }
-
-        if (req.files.developer_logo) {
-          req.files.developer_logo.forEach(function (files, index, arr) {
-            let path = "/uploads/";
-            path = path + files.filename;
-            newProp.developer_logo.push(path);
-          });
-        }
-      }
-
       const savedProp = await newProp.save();
-      console.log(req.body);
-      res.json(savedProp);
+
+      res.send(savedProp);
     } catch (err) {
       return res
         .status(500)
@@ -129,35 +139,14 @@ router.delete("/deleteproperty/:id", async (req, res) => {
     if (!property) {
       return res.status(404).send("Not Found");
     }
-    property.imgCollection?.forEach((item) => {
-      const path = "../my-app/public" + item;
-      fs.stat(path, function (err, stats) {
-        console.log(stats); //here we got all information of file in stats variable
 
-        if (err) {
-          return console.error(err);
-        }
-
-        fs.unlink(path, function (err) {
-          if (err) return console.log(err);
-          console.log("file deleted successfully");
-        });
-      });
+    await property.image.forEach((item) => {
+      removeFromCloudinary(item.public_id);
     });
-    property.image?.forEach((item) => {
-      const path = "../my-app/public" + item;
-      fs.stat(path, function (err, stats) {
-        console.log(stats); //here we got all information of file in stats variable
-
-        if (err) {
-          return console.error(err);
-        }
-
-        fs.unlink(path, function (err) {
-          if (err) return console.log(err);
-        });
-      });
+    await property.imgCollection.forEach((item) => {
+      removeFromCloudinary(item.public_id);
     });
+    removeFromCloudinary(property.developer_logo.public_id);
     property = await Property.findByIdAndDelete(req.params.id);
 
     res.json({ Success: "Note has been delete", property });
@@ -321,108 +310,77 @@ router.patch(
     },
   ]),
   async (req, res) => {
-    let property = await Property.findById(req.params.id);
-    const newProp = { image: [], imgCollection: [], developer_logo: [] };
-    if (req.body.bhk_no) {
-      newProp.bhk_no = req.body.bhk_no;
-    }
+    try {
+      let property = await Property.findById(req.params.id);
+      const newProp = {};
+      if (req.body.bhk_no) {
+        newProp.bhk_no = req.body.bhk_no;
+      }
 
-    console.log(req.files);
-    if (req.files) {
-      if (req.files.imgCollection) {
-        req.files.imgCollection.forEach(function (files, index, arr) {
-          let path = "/uploads/";
-          path = path + files.filename;
-          newProp.imgCollection.push(path);
-        });
-
-        property.imgCollection?.forEach((item) => {
-          const path = "../my-app/public" + item;
-          fs.stat(path, function (err, stats) {
-            console.log(stats); //here we got all information of file in stats variable
-
-            if (err) {
-              return console.error(err);
-            }
-
-            fs.unlink(path, function (err) {
-              if (err) return console.log(err);
+      if (req.files) {
+        if (req.files.image) {
+          let image = [];
+          if (property.image) {
+            await property.image.forEach((item) => {
+              if (item.url) {
+                removeFromCloudinary(item.public_id);
+              }
             });
-          });
-        });
-      }
-      if (!req.files.imgCollection) {
-        property.imgCollection.forEach((item) => {
-          newProp.imgCollection.push(item);
-        });
-      }
-      if (!req.files.image) {
-        property.image.forEach((item) => {
-          newProp.image.push(item);
-        });
-      }
-      if (req.files.image) {
-        req.files.image.forEach(function (files, index, arr) {
-          let path = "/uploads/";
-          path = path + files.filename;
-          newProp.image.push(path);
-        });
+          }
 
-        property.image?.forEach((item) => {
-          const path = "../my-app/public" + item;
-          fs.stat(path, function (err, stats) {
-            console.log(stats); //here we got all information of file in stats variable
-
-            if (err) {
-              return console.error(err);
-            }
-
-            fs.unlink(path, function (err) {
-              if (err) return console.log(err);
+          for (let i = 0; i < req.files.image.length; i++) {
+            let locaFilePath = req.files.image[i].path;
+            let result = await uploadToCloudinary(locaFilePath, "image");
+            image.push(result);
+          }
+          newProp.image = image;
+        }
+        if (req.files.developer_logo) {
+          if (property.developer_logo.public_id) {
+            await removeFromCloudinary(property.developer_logo.public_id);
+          }
+          newProp.developer_logo = await uploadToCloudinary(
+            req.files.developer_logo[0].path,
+            "developer_logo"
+          );
+        }
+        if (req.files.imgCollection) {
+          let image = [];
+          if (property.imgCollection) {
+            await property.imgCollection.forEach((item) => {
+              if (item.url) {
+                removeFromCloudinary(item.public_id);
+              }
             });
-          });
-        });
-      }
-      if (!req.files.developer_logo) {
-        property.developer_logo.forEach((item) => {
-          newProp.developer_logo.push(item);
-        });
-      }
-      if (req.files.developer_logo) {
-        req.files.developer_logo.forEach(function (files, index, arr) {
-          let path = "/uploads/";
-          path = path + files.filename;
-          newProp.developer_logo.push(path);
-        });
+          }
 
-        property.developer_logo?.forEach((item) => {
-          const path = "../my-app/public" + item;
-          fs.stat(path, function (err, stats) {
-            console.log(stats); //here we got all information of file in stats variable
-
-            if (err) {
-              return console.error(err);
-            }
-
-            fs.unlink(path, function (err) {
-              if (err) return console.log(err);
-            });
-          });
-        });
+          for (let i = 0; i < req.files.imgCollection.length; i++) {
+            let locaFilePath = req.files.imgCollection[i].path;
+            let result = await uploadToCloudinary(
+              locaFilePath,
+              "imgCollection"
+            );
+            image.push(result);
+          }
+          newProp.imgCollection = image;
+        }
       }
+
+      if (!property) {
+        return res.status(404).send("Not Found");
+      }
+
+      property = await Property.findByIdAndUpdate(
+        req.params.id,
+        { $set: newProp },
+        { new: true }
+      );
+
+      res.json({ property });
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Internal server error");
     }
-
-    if (!property) {
-      return res.status(404).send("Not Found");
-    }
-
-    property = await Property.findByIdAndUpdate(
-      req.params.id,
-      { $set: newProp },
-      { new: true }
-    );
-
-    res.json({ property });
   }
 );
 

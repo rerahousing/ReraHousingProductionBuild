@@ -2,13 +2,9 @@ const path = require("path");
 const multer = require("multer");
 
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "../my-app/build/public/uploads/");
-  },
-
   filename: function (req, file, cb) {
     let ext = path.extname(file.originalname);
-    cb(null, Date.now() + ext);
+    cb(null, "rerahousing_profile_image_" + Date.now() + ext);
   },
 });
 

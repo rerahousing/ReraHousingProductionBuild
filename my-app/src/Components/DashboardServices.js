@@ -180,7 +180,7 @@ function DashboardServices() {
                 <th scope="row">{e._id}</th>
                 <td className="image_col">
                   {" "}
-                  <img src={`http://localhost:3000${e.profile_pic}`} alt="" />
+                  <img src={`${e.profile_pic.url}`} alt="" />
                 </td>
                 <td>{e.name}</td>
                 <td>{e.loc_area}</td>
@@ -431,6 +431,7 @@ function DashboardServices() {
                       onChange={(e) => {
                         setImage([e.target.files[0]]);
                       }}
+                      accept="image/png, image/jpg, image/jpeg"
                     />
                   </div>
                 </div>
@@ -791,6 +792,7 @@ function DashboardServices() {
                       onChange={(e) => {
                         setImage([e.target.files[0]]);
                       }}
+                      accept="image/png, image/jpg, image/jpeg"
                     />
                   </div>
                 </div>

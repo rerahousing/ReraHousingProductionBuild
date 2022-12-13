@@ -4,7 +4,7 @@ import OwlCarousel from "react-owl-carousel";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 function FloorPlan_Wrapper(props) {
-  const { image, parsedBhkNo } = props;
+  const { parsedBhkNo, data } = props;
   const resp = {
     320: {
       items: 2,
@@ -37,13 +37,13 @@ function FloorPlan_Wrapper(props) {
               nav
             >
               {parsedBhkNo?.map((item, index) => {
-                const imageData = image || [];
+                const image = data.image;
                 return (
                   <div className="item" key={index}>
                     <div className="floorPlan_box">
                       <img
                         loading="lazy"
-                        src={`http://localhost:3000${imageData[index]}`}
+                        src={`${Object.values(image)[index].url}`}
                         alt="Floor plan"
                       />
 
