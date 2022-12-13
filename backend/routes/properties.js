@@ -1,14 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const Property = require("../models/properties");
-const multer = require("multer");
 const upload = require("../middleware/upload");
 const {
   uploadToCloudinary,
   removeFromCloudinary,
 } = require("../middleware/cloudinary");
-const fs = require("fs");
-const cloudinary = require("cloudinary");
 
 // Route 1 : Get all the properties
 router.get("/getproperties", async (req, res) => {
