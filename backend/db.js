@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const MONGOURI = require("../backend/config/keys");
+const { MONGOURI } = require("../backend/config/keys");
 
 // connecting server to monogoDB using compass
 // mongoURI = "MONGO_SERVER/DATABASE_NAME"
