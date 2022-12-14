@@ -22,7 +22,7 @@ function Card7(props) {
       <div className="services-card col-custom m-4">
         <div className="card-image text-center">
           <img
-            src={`${profile_pic}`}
+            src={`${profile_pic.url}`}
             alt=""
             className="card-image-top
           "

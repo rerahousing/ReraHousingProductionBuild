@@ -94,9 +94,8 @@ const PropertyState = (props) => {
 
   // Get specific property -- Property Section
   const getSpecificProperty = async (id) => {
-    setLoadProperty(true);
     let url = `${host}/api/properties/getproperty/${id}`;
-
+    
     await axios
       .get(url)
       .then((result) => {
@@ -106,7 +105,6 @@ const PropertyState = (props) => {
         });
         setBhkNo(bhk_no_data);
         setSpecProp(result.data);
-        setLoadProperty(false);
       })
       .catch("Something went wrong \n Please Reload");
   };
