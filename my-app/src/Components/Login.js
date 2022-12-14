@@ -18,6 +18,7 @@ function Login() {
       })
       .catch((err) => {
         setShow(true);
+        alert(err);
       });
     e.preventDefault();
   };
