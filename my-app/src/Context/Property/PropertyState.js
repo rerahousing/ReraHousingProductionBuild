@@ -85,6 +85,7 @@ const PropertyState = (props) => {
 
   // Get specific property -- Property Section
   const getSpecificProperty = async (id) => {
+    setLoadProperty(true);
     const response = await fetch(`${host}/api/properties/getproperty/${id}`, {
       method: "GET",
       headers: {
@@ -100,6 +101,7 @@ const PropertyState = (props) => {
 
     setBhkNo(bhk_no_data);
     setSpecProp(json);
+    setLoadProperty(false);
   };
   // Edit Property -- Property Section
   const editProp = (id, formData) => {
