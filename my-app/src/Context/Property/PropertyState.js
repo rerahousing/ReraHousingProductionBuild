@@ -25,15 +25,22 @@ const PropertyState = (props) => {
 
   // Get Property -- Property Section
   const getProperty = async () => {
-    const response = await fetch(`${host}/api/properties/getproperties`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const json = await response.json();
-    setProperty(json);
+    try {
+      setLoadProperty(true);
+      let url = `${host}/api/properties/getproperties`;
+      await axios
+        .get(url)
+        .then((result) => {
+          setProperty(result.json());
+          setLoadProperty(false);
+        })
+        .catch((error) => {
+          alert("Something went wrong \n Please Reload");
+          setLoadProperty(false);
+        });
+    } catch (error) {
+      alert("Something went wrong");
+    }
   };
 
   const addProperty = async (formData) => {

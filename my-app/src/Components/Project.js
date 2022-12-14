@@ -8,16 +8,14 @@ import "../Styles/Project.css";
 
 function Project(props) {
   const context = useContext(PropertyContext);
-  const { property, getProperty } = context;
+  const { property, getProperty, loadProperty } = context;
   const [loading, setLoading] = useState();
   let amenities = JSON.parse(sessionStorage.getItem("amenities"));
   let subType = JSON.parse(sessionStorage.getItem("sub-type"));
   const { filter, keyword } = props;
   useEffect(() => {
-    setLoading(true);
     getProperty();
     amenities = JSON.parse(sessionStorage.getItem("amenities"));
-    setLoading(false);
   }, []);
   const [view, setView] = useState("List");
 
@@ -194,7 +192,7 @@ function Project(props) {
       </div>
     </div>
   );
-  return loading ? <LoadingComponent /> : page;
+  return loadProperty ? <LoadingComponent /> : page;
 }
 
 export default Project;
