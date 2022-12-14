@@ -13,20 +13,18 @@ import FloorPlan_Wrapper from "./FloorPlan_Wrapper";
 import data from "./Data";
 
 function ProductPage() {
-  const [load, setLoad] = useState(true);
   const [showValid, setShowValid] = useState(false);
   const [showInvalid, setShowInvalid] = useState(false);
   const context = useContext(PropertyContext);
-  const { specProp, getSpecificProperty, bhkNo, addContact } = context;
+  const { specProp, getSpecificProperty, bhkNo, addContact, loadProperty } =
+    context;
   const [contactDet, setContactDet] = useState([]);
 
   const { image } = specProp;
 
   const params = useParams();
   useEffect(() => {
-    setLoad(true);
     getSpecificProperty(params.id);
-    setLoad(false);
   }, []);
 
   const [drop, setDrop] = useState("");
@@ -588,7 +586,7 @@ function ProductPage() {
     </div>
   );
 
-  return <>{load ? <LoadingComponent /> : page}</>;
+  return <>{loadProperty ? <LoadingComponent /> : page}</>;
 }
 
 export default ProductPage;

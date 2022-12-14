@@ -43,7 +43,7 @@ function FloorPlan_Wrapper(props) {
                     <div className="floorPlan_box">
                       <img
                         loading="lazy"
-                        src={`${Object.values(image)[index].url}`}
+                        src={`${Object.values(image)[index]?.url}`}
                         alt="Floor plan"
                       />
 

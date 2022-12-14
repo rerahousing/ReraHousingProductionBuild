@@ -95,22 +95,20 @@ const PropertyState = (props) => {
   // Get specific property -- Property Section
   const getSpecificProperty = async (id) => {
     setLoadProperty(true);
-    const response = await fetch(`${host}/api/properties/getproperty/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    let url = `${host}/api/properties/getproperty/${id}`;
 
-    const json = await response.json();
-    const bhk_no_data = [];
-    json.bhk_no.forEach((item) => {
-      bhk_no_data.push(JSON.parse(item));
-    });
-
-    setBhkNo(bhk_no_data);
-    setSpecProp(json);
-    setLoadProperty(false);
+    await axios
+      .get(url)
+      .then((result) => {
+        let bhk_no_data = [];
+        result.data.bhk_no.forEach((item) => {
+          bhk_no_data.push(JSON.parse(item));
+        });
+        setBhkNo(bhk_no_data);
+        setSpecProp(result.data);
+        setLoadProperty(false);
+      })
+      .catch("Something went wrong \n Please Reload");
   };
   // Edit Property -- Property Section
   const editProp = (id, formData) => {
