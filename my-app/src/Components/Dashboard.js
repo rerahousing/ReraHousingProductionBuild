@@ -443,7 +443,7 @@ function Dashboard() {
                 <td className="overflow">
                   <ul>
                     {e.imgCollection.map((i) => {
-                      return <li>{i.url}</li>;
+                      return <li>{i?.url}</li>;
                     })}
                   </ul>
                 </td>
