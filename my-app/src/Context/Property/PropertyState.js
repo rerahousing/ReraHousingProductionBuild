@@ -31,7 +31,7 @@ const PropertyState = (props) => {
       await axios
         .get(url)
         .then((result) => {
-          setProperty(result.json());
+          setProperty(result);
           setLoadProperty(false);
         })
         .catch((error) => {
