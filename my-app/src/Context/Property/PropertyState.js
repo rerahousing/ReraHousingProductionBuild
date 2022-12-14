@@ -35,7 +35,9 @@ const PropertyState = (props) => {
           setLoadProperty(false);
         })
         .catch((error) => {
-          alert("Something went wrong \n Please Reload");
+          alert(
+            `Something went wrong \n Please Reload \n error: ${error.message}`
+          );
           setLoadProperty(false);
         });
     } catch (error) {
