@@ -121,9 +121,7 @@ router.post(
 
       res.send(savedProp);
     } catch (error) {
-      return res
-        .status(500)
-        .json({ error: "Something went wrong", message: error.message });
+      return res.status(502).json({ error });
     }
   }
 );
