@@ -1,11 +1,10 @@
 {
   "files": {
     "main.css": "./static/css/main.8a3f78ab.css",
-    "main.js": "./static/js/main.a84fd561.js",
+    "main.js": "./static/js/main.0e16e2d6.js",
     "static/js/787.28cb0dcd.chunk.js": "./static/js/787.28cb0dcd.chunk.js",
     "static/media/gurugram.jpg": "./static/media/gurugram.97861660936eb7eee69e.jpg",
     "static/media/rera-approved-housing-projects-header.jpg": "./static/media/rera-approved-housing-projects-header.fdac6cc9fca143a7e104.jpg",
-    "static/media/blog-1.jpg": "./static/media/blog-1.135abd73d041dabb036e.jpg",
     "static/media/rera-blog-image-3.png": "./static/media/rera-blog-image-3.a80148e8c4ea4c22526b.png",
     "static/media/rera-blog-image-1.png": "./static/media/rera-blog-image-1.b99560ebdb25c9a35082.png",
     "static/media/banner-image.png": "./static/media/banner-image.7a9a6e49aced8d11ba38.png",
@@ -37,11 +36,11 @@
     "static/media/no-money-icon.svg": "./static/media/no-money-icon.aa0f74080c2071474ed5e8a67a4e3601.svg",
     "static/media/quote.svg": "./static/media/quote.1fa145d0b88812f66078ea977a1d4cd7.svg",
     "main.8a3f78ab.css.map": "./static/css/main.8a3f78ab.css.map",
-    "main.a84fd561.js.map": "./static/js/main.a84fd561.js.map",
+    "main.0e16e2d6.js.map": "./static/js/main.0e16e2d6.js.map",
     "787.28cb0dcd.chunk.js.map": "./static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8a3f78ab.css",
-    "static/js/main.a84fd561.js"
+    "static/js/main.0e16e2d6.js"
   ]
 }

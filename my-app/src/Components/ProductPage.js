@@ -586,7 +586,7 @@ function ProductPage() {
     </div>
   );
 
-  return <>{page}</>;
+  return <>{loadProperty ? <LoadingComponent /> : page}</>;
 }
 
 export default ProductPage;

@@ -170,14 +170,7 @@ function Project(props) {
                   );
                 } else if (view === "Grid") {
                   return (
-                    <Card6Grid
-                      title={item.title}
-                      dev={item.developer}
-                      rera_no={item.rera_no}
-                      bhk={item.bhk}
-                      view={view}
-                      data={item}
-                    />
+                    <Card6Grid data={item} image={imageCard[0]} index={index} />
                   );
                 }
               })}
