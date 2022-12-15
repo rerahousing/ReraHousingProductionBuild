@@ -213,11 +213,11 @@ function ProjectList() {
       <Helmet>
         <title>List of all RERA Approved Housing Projects in India</title>
         <meta
-          name="description"
+          property="og:description"
           content="List of all 1bhk, 2bhk, 3bhk, 4bhk flats, villas and duplex for sale and all are RERA approved"
         />
         <meta
-          name="keywords"
+          property="og:keywords"
           content="RERA, projects, 1bhk, 2bhk, 3bhk, 4bhk, flats duplex, villa"
         />
       </Helmet>
@@ -255,31 +255,6 @@ function ProjectList() {
                   );
                 })}
               </select>
-              {/* <button
-                className="btn btn-dropdown dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                State Search
-              </button>
-              <ul className="dropdown-menu">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    U.P.
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    M.P.
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Haryana
-                  </a>
-                </li>
-              </ul> */}
             </div>
             <div className="dropdown">
               <select
@@ -305,31 +280,6 @@ function ProjectList() {
                   );
                 })}
               </select>
-              {/* <button
-                className="btn btn-dropdown dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                City Search
-              </button>
-              <ul className="dropdown-menu">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Gurugram
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Greater Noida
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Dehradun
-                  </a>
-                </li>
-              </ul> */}
             </div>
           </div>
           <input

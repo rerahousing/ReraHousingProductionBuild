@@ -57,7 +57,7 @@
   padding-right: 5px !important;
 }
 
-.footer .col ul li:hover {
+.footer .col ul li a:hover {
   color: #1192e5;
   transition: 0.1s;
   -webkit-transition: 0.1s;
@@ -87,13 +87,13 @@
 /* .social ul li:hover {
   background-color: #e5e5e5;
 } */
-@media only screen and (min-width: 1280px) {
+@media (min-width: 1280px) {
   .contain {
     width: 1200px;
     margin: 0 auto;
   }
 }
-@media only screen and (max-width: 1139px) {
+@media (max-width: 1139px) {
   .contain .social {
     width: 1000px;
     display: block;
@@ -102,35 +102,49 @@
     margin: 0px;
   }
 }
-@media only screen and (max-width: 950px) {
+@media (max-width: 950px) {
   .footer .col {
     width: 33%;
   }
   .footer .col h1 {
     font-size: 14px;
   }
-  .footer .col ul li {
+  .footer .col ul li a {
     font-size: 13px;
+    padding-left: 0;
+  }
+
+  .footer .col ul li {
+    line-height: 1;
   }
 }
-@media only screen and (max-width: 500px) {
+@media (max-width: 500px) {
   .footer .col {
     width: 50%;
   }
   .footer .col h1 {
     font-size: 14px;
   }
-  .footer .col ul li {
+  .footer .col ul li a {
     font-size: 13px;
+    padding-left: 0;
+  }
+
+  .footer .col ul li {
+    line-height: 1;
   }
 }
-@media only screen and (max-width: 380px) {
+@media (max-width: 380px) {
   .footer {
     padding: 90px 50px;
   }
 
   .footer .col {
     width: 100%;
+  }
+
+  .footer .col ul li {
+    line-height: 1;
   }
 }
 
@@ -141,5 +155,9 @@
 
   .clearfix a {
     margin-top: 10px;
+  }
+
+  .footer .col ul li {
+    line-height: 1;
   }
 }

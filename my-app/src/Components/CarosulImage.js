@@ -3,7 +3,7 @@ import Carousel from "react-bootstrap/Carousel";
 
 function CarosulImage(props) {
   const { image } = props;
-  console.log(image);
+
   return (
     <>
       <Carousel style={{ position: "relative" }} fade={true}>

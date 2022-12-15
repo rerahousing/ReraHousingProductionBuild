@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.8a3f78ab.css",
-    "main.js": "./static/js/main.0e16e2d6.js",
+    "main.css": "./static/css/main.a10f827f.css",
+    "main.js": "./static/js/main.fb59abf5.js",
     "static/js/787.28cb0dcd.chunk.js": "./static/js/787.28cb0dcd.chunk.js",
     "static/media/gurugram.jpg": "./static/media/gurugram.97861660936eb7eee69e.jpg",
     "static/media/rera-approved-housing-projects-header.jpg": "./static/media/rera-approved-housing-projects-header.fdac6cc9fca143a7e104.jpg",
@@ -23,8 +23,8 @@
     "static/media/icon (2).svg": "./static/media/icon (2).5f5f172ebe59757f3c05f49d91bdb2f1.svg",
     "static/media/finance.svg": "./static/media/finance.724c7792d04b8f863c2d510c3d591b18.svg",
     "static/media/profile.svg": "./static/media/profile.87b1cc5193dd9f59ba0e76bca69e10ca.svg",
-    "static/media/ex-logo.svg": "./static/media/ex-logo.a8826384a3436758f69a6660a3f4cbdf.svg",
     "index.html": "./index.html",
+    "static/media/ex-logo.svg": "./static/media/ex-logo.a8826384a3436758f69a6660a3f4cbdf.svg",
     "static/media/bed.svg": "./static/media/bed.3c89ab2c4b0cbeb82c95992b0aad9746.svg",
     "static/media/icon (3).svg": "./static/media/icon (3).90cbdcfdc791ded9754278a50d5c1c96.svg",
     "static/media/interior.svg": "./static/media/interior.e89e5e31a7663cb312c2ce2883de4abd.svg",
@@ -35,12 +35,12 @@
     "static/media/fire.svg": "./static/media/fire.6c31083ddf5e0f48fbedf9a7391d7df5.svg",
     "static/media/no-money-icon.svg": "./static/media/no-money-icon.aa0f74080c2071474ed5e8a67a4e3601.svg",
     "static/media/quote.svg": "./static/media/quote.1fa145d0b88812f66078ea977a1d4cd7.svg",
-    "main.8a3f78ab.css.map": "./static/css/main.8a3f78ab.css.map",
-    "main.0e16e2d6.js.map": "./static/js/main.0e16e2d6.js.map",
+    "main.a10f827f.css.map": "./static/css/main.a10f827f.css.map",
+    "main.fb59abf5.js.map": "./static/js/main.fb59abf5.js.map",
     "787.28cb0dcd.chunk.js.map": "./static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8a3f78ab.css",
-    "static/js/main.0e16e2d6.js"
+    "static/css/main.a10f827f.css",
+    "static/js/main.fb59abf5.js"
   ]
 }

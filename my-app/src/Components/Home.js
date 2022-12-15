@@ -37,11 +37,11 @@ function Home() {
       <Helmet>
         <title>Find RERA Approved Housing Projects in India</title>
         <meta
-          name="description"
+          property="og:description"
           content="Find the best affordable Villas, Duplex, and Flats for sale in India and all are RERA approved"
         />
         <meta
-          name="keywords"
+          property="og:keywords"
           content="RERA, projects, agents, flats, duplex, villa, interior designer, property lawyer"
         />
       </Helmet>
@@ -223,14 +223,21 @@ function Home() {
               <Card_2
                 image={dehradun}
                 category={"Projects"}
-                city={"Dehradun, Uttrakhand"}
+                city={"Dehradun"}
+                state={"Uttrakhand"}
               />
               <Card_2
                 image={gurugram}
                 category={"Projects"}
-                city={"Gurugram, Haryana"}
+                city={"Gurugram"}
+                state={"Haryana"}
               />
-              <Card_2 image={noida} category={"Projects"} city={"Noida, UP"} />
+              <Card_2
+                image={noida}
+                category={"Projects"}
+                city={"Noida"}
+                state={"Uttar Pradesh"}
+              />
             </div>
           </div>
         </div>
@@ -329,7 +336,9 @@ function Home() {
         </h4>
         <p className="description text-center">
           Learn how you can leverage our platform &amp; products with your{" "}
-          <span className="link">clients</span>{" "}
+          <a href="/servicesignup" className="link">
+            clients
+          </a>{" "}
         </p>
       </section>
 

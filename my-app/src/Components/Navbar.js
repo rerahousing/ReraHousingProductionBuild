@@ -70,11 +70,6 @@ function Navbar() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/real-estate-online-cources">
-                  Learn
-                </a>
-              </li>
-              <li className="nav-item">
                 <Link
                   activeClass="active-custom"
                   to="footer"

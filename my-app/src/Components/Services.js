@@ -20,11 +20,11 @@ function Services(props) {
       <Helmet>
         <title>Find the real estate service providers near you</title>
         <meta
-          name="description"
+          property="og:description"
           content="Connnect with RERA agents, interior designers, decorator, vastu consultant, and others"
         />
         <meta
-          name="keywords"
+          property="og:keywords"
           content="RERA, agents, interior, designer, decorator, consultant, architect, near, property, lawyer"
         />
       </Helmet>

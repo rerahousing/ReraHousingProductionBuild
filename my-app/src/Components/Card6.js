@@ -39,7 +39,6 @@ function Card6(props) {
   } = props.data;
 
   const image = imgCollection[0]?.url;
-  console.log(image);
   const changeFormatPrice = (price) => {
     let min = Math.abs(price);
     let data2 = 0;
@@ -55,7 +54,7 @@ function Card6(props) {
     }
     return data2;
   };
-
+  console.log(state + " " + city);
   const promptText = () => {
     let url = window.location.href;
     navigator.clipboard.writeText(url + `/${_id}`);
