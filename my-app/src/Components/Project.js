@@ -81,36 +81,6 @@ function Project(props) {
           </h2>
 
           <div className="more-filter d-inline-block">
-            <div className="sort-btn d-inline-block">
-              <div className="dropdown">
-                <button
-                  className="btn btn-dropdown dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <img src={sortImage} alt="" style={{ marginRight: "7px" }} />
-                  Frequently Searched
-                </button>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      U.P.
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      M.P.
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Haryana
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
             <div className="view-btn d-inline-block">
               <button type="button" class="btn btn-light" onClick={changeView}>
                 {`${view}`} View
@@ -168,7 +138,8 @@ function Project(props) {
                   return (
                     <Card6 data={item} image={imageCard[0]} index={index} />
                   );
-                } else if (view === "Grid") {
+                }
+                if (view === "Grid") {
                   return (
                     <Card6Grid data={item} image={imageCard[0]} index={index} />
                   );

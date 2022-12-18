@@ -25,24 +25,21 @@ const PropertyState = (props) => {
 
   // Get Property -- Property Section
   const getProperty = async () => {
-    try {
-      setLoadProperty(true);
-      let url = `${host}/api/properties/getproperties`;
-      await axios
-        .get(url)
-        .then((result) => {
-          setProperty(result.data);
-          setLoadProperty(false);
-        })
-        .catch((error) => {
-          alert(
-            `Something went wrong \n Please Reload \n error: ${error.message}`
-          );
-          setLoadProperty(false);
-        });
-    } catch (error) {
-      alert("Something went wrong");
-    }
+    setLoadProperty(true);
+    let url = `${host}/api/properties/getproperties`;
+
+    axios
+      .get(url)
+      .then((result) => {
+        setProperty(result.data);
+        setLoadProperty(false);
+      })
+      .catch((error) => {
+        alert(
+          `Something went wrong \n Please Reload \n error: ${error.message}`
+        );
+        setLoadProperty(false);
+      });
   };
 
   const addProperty = async (formData) => {
@@ -50,7 +47,7 @@ const PropertyState = (props) => {
     setLoadProperty(true);
     console.log(loadProperty);
     alert("Hello");
-    await axios
+    axios
       .post(url, formData)
       .then((result) => {
         setProperty(result.data);
