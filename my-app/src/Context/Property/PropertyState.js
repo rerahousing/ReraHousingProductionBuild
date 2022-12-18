@@ -45,8 +45,7 @@ const PropertyState = (props) => {
   const addProperty = async (formData) => {
     const url = `${host}/api/properties/addproperty`;
     setLoadProperty(true);
-    console.log(loadProperty);
-    alert("Hello");
+
     axios
       .post(url, formData)
       .then((result) => {
@@ -93,21 +92,19 @@ const PropertyState = (props) => {
   const getSpecificProperty = async (id) => {
     let url = `${host}/api/properties/getproperty/${id}`;
     setLoadProperty(true);
-    await axios
-      .get(url)
-      .then((result) => {
-        let bhk_no_data = [];
-        result.data.bhk_no.forEach((item) => {
-          bhk_no_data.push(JSON.parse(item));
-        });
-        setBhkNo(bhk_no_data);
-        setSpecProp(result.data);
-        setLoadProperty(false);
-      })
-      .catch((error) => {
-        alert("Something went wrong \n Please Reload");
-        setLoadProperty(false);
+
+    const res = await axios.get(url).catch((err) => {
+      alert("Something went wrong");
+    });
+    let bhk_no_data = [];
+    if (res.data.bhk_no) {
+      await res.data.bhk_no.forEach((item) => {
+        bhk_no_data.push(JSON.parse(item));
       });
+    }
+    setBhkNo(bhk_no_data);
+    setSpecProp(res.data);
+    setLoadProperty(false)
   };
   // Edit Property -- Property Section
   const editProp = (id, formData) => {

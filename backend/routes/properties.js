@@ -9,8 +9,13 @@ const {
 
 // Route 1 : Get all the properties
 router.get("/getproperties", async (req, res) => {
-  const data = await Property.find({});
-  res.json(data);
+  Property.find((error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.json(data);
+    }
+  });
 });
 
 // Route 2 : Add a property
@@ -156,16 +161,23 @@ router.get(
   "/getproperty/:id",
 
   async (req, res) => {
-    try {
-      let property = await Property.findById(req.params.id);
-      if (!property) {
-        return res.status(404).send("Not Found", err);
+    // try {
+    //   let property = await Property.findById(req.params.id);
+    //   if (!property) {
+    //     return res.status(404).send("Not Found", err);
+    //   }
+    //   res.json(property);
+    // } catch (error) {
+    //   console.error(error.message);
+    //   res.status(500).send("Internal server error");
+    // }
+    Property.findById(req.params.id, (error, data) => {
+      if (error) {
+        return next(error);
+      } else {
+        res.json(data);
       }
-      res.json(property);
-    } catch (error) {
-      console.error(error.message);
-      res.status(500).send("Internal server error");
-    }
+    });
   }
 );
 
