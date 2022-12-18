@@ -30,7 +30,7 @@ function App() {
               element={<ProjectList />}
               path="/rera-approved-projects-villa-duplex-flats"
             />
-            <Route exact path="/:id" element={<ProductPage />} />
+            <Route path="/:id" element={<ProductPage />} />
             <Route
               path="/real-estate-service-providers"
               element={<ServicePage />}

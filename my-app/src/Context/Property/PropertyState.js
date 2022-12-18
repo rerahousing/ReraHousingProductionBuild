@@ -98,13 +98,13 @@ const PropertyState = (props) => {
     });
     let bhk_no_data = [];
     if (res.data.bhk_no) {
-      await res.data.bhk_no.forEach((item) => {
+      res.data.bhk_no.forEach((item) => {
         bhk_no_data.push(JSON.parse(item));
       });
     }
     setBhkNo(bhk_no_data);
     setSpecProp(res.data);
-    setLoadProperty(false)
+    setLoadProperty(false);
   };
   // Edit Property -- Property Section
   const editProp = (id, formData) => {
