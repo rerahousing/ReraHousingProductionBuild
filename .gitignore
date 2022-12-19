@@ -4,3 +4,5 @@
 ./backend/imgCollection
 ./backend/image
 /node_modules
+# Local Netlify folder
+.netlify

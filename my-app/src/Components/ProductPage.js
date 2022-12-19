@@ -14,6 +14,7 @@ import FloorPlan_Wrapper from "./FloorPlan_Wrapper";
 import data from "./Data";
 
 function ProductPage() {
+  const [effect, setEffect] = useState(0);
   const [showValid, setShowValid] = useState(false);
   const [showInvalid, setShowInvalid] = useState(false);
   const context = useContext(PropertyContext);
@@ -26,7 +27,7 @@ function ProductPage() {
   const params = useParams();
   useEffect(() => {
     getSpecificProperty(params.id);
-  }, []);
+  }, [effect]);
 
   const [drop, setDrop] = useState("");
   const [activeTab, setActiveTab] = useState(0);

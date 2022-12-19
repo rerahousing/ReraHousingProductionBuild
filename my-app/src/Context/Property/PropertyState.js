@@ -24,41 +24,36 @@ const PropertyState = (props) => {
 
   // Get Property -- Property Section
   const getProperty = async () => {
-    setLoadProperty(true);
     let url = `${host}/api/properties/getproperties`;
-
-    axios
-      .get(url)
-      .then((result) => {
-        setProperty(result.data);
-        setLoadProperty(false);
-      })
-      .catch((error) => {
-        alert(
-          `Something went wrong \n Please Reload \n error: ${error.message}`
-        );
-        setLoadProperty(false);
-      });
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+    setProperty(json);
   };
 
   const addProperty = async (formData) => {
     const url = `${host}/api/properties/addproperty`;
     setLoadProperty(true);
-
-    axios
-      .post(url, formData)
-      .then((result) => {
-        setProperty(result.data);
-        setLoadProperty(false);
-        window.location.reload();
-        alert("Uploaded Successfully");
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoadProperty(false);
-        window.location.reload();
-        alert(error.message);
-      });
+    if (formData) {
+      axios
+        .post(url, formData)
+        .then((result) => {
+          setProperty(result.data);
+          setLoadProperty(false);
+          window.location.reload();
+          alert("Uploaded Successfully");
+        })
+        .catch((error) => {
+          console.log(error);
+          setLoadProperty(false);
+          window.location.reload();
+          alert(error.message);
+        });
+    }
   };
 
   // Delete Property -- Property Section
@@ -89,12 +84,10 @@ const PropertyState = (props) => {
 
   // Get specific property -- Property Section
   const getSpecificProperty = async (id) => {
-    let url = `${host}/api/properties/getproperty/${id}`;
     setLoadProperty(true);
+    let url = `${host}/api/properties/getproperty/${id}`;
 
-    const res = await axios.get(url).catch((err) => {
-      alert("Something went wrong");
-    });
+    const res = await axios.get(url);
     let bhk_no_data = [];
     if (res.data.bhk_no) {
       res.data.bhk_no.forEach((item) => {
