@@ -3,6 +3,7 @@ import Search from "./Search";
 import Card_1 from "./Card1";
 import Card_2 from "./Card2";
 import Card_3 from "./Card3";
+import bannerImage from "../Resources/rera-approved-housing-projects-header.jpg";
 import Card_5 from "./Card5";
 import dehradun from "../Resources/dehradun.webp";
 import gurugram from "../Resources/gurugram.jpg";
@@ -13,18 +14,10 @@ import "../Styles/Partnership.css";
 import image3 from "../Resources/no-money-icon.svg";
 import image4 from "../Resources/readyToMove.svg";
 import image5 from "../Resources/house.svg";
-import image6 from "../Resources/icon (1).svg";
 import image7 from "../Resources/icon (2).svg";
-import image8 from "../Resources/icon (3).svg";
-import image20 from "../Resources/finance.svg";
-import image21 from "../Resources/homeInspection.svg";
-import image22 from "../Resources/verifiedConsultant.svg";
-import image23 from "../Resources/transparentProcess.svg";
-import image24 from "../Resources/interior.svg";
 import image25 from "../Resources/rera-blog-image-1.png";
 import image26 from "../Resources/rera-blog-image-2.png";
 import image27 from "../Resources/rera-blog-image-3.png";
-import ourService from "../Resources/our-service.svg";
 import { Helmet } from "react-helmet";
 
 import "../Styles/Home.css";
@@ -42,6 +35,15 @@ function Home() {
         />
         <meta
           property="og:keywords"
+          content="RERA, projects, agents, flats, duplex, villa, interior designer, property lawyer"
+        />
+        <meta image={bannerImage} />
+        <meta
+          name="description"
+          content="Find the best affordable Villas, Duplex, and Flats for sale in India and all are RERA approved"
+        />
+        <meta
+          name="keywords"
           content="RERA, projects, agents, flats, duplex, villa, interior designer, property lawyer"
         />
       </Helmet>

@@ -141,7 +141,13 @@ function Project(props) {
                 }
                 if (view === "Grid") {
                   return (
-                    <Card6Grid data={item} image={imageCard[0]} index={index} />
+                    <>
+                      <Card6Grid
+                        data={item}
+                        image={imageCard[0]}
+                        index={index}
+                      />
+                    </>
                   );
                 }
               })}

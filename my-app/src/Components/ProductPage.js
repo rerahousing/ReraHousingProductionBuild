@@ -101,6 +101,15 @@ function ProductPage() {
     <>
       <Helmet>
         <title>{`Property_${specProp.title}`}</title>
+        <meta
+          property="og:description"
+          content="List of all 1bhk, 2bhk, 3bhk, 4bhk flats, villas and duplex for sale and all are RERA approved"
+        />
+        <meta
+          property="og:keywords"
+          content="RERA, projects, 1bhk, 2bhk, 3bhk, 4bhk, flats duplex, villa"
+        />
+        <meta property="og:url" content={window.location.href} />
       </Helmet>
       <div className="product-page">
         <div

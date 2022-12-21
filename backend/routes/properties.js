@@ -161,16 +161,6 @@ router.get(
   "/getproperty/:id",
 
   async (req, res) => {
-    // try {
-    //   let property = await Property.findById(req.params.id);
-    //   if (!property) {
-    //     return res.status(404).send("Not Found", err);
-    //   }
-    //   res.json(property);
-    // } catch (error) {
-    //   console.error(error.message);
-    //   res.status(500).send("Internal server error");
-    // }
     Property.findById(req.params.id, (error, data) => {
       if (error) {
         return next(error);

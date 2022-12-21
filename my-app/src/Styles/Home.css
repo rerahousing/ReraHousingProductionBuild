@@ -9,7 +9,7 @@ body {
 
 .banner {
   background: url("../Resources/rera-approved-housing-projects-header.jpg") top
-      right,
+      left,
     linear-gradient(
       0deg,
       #265eba 0%,

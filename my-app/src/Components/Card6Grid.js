@@ -53,19 +53,14 @@ function Card6Grid(props) {
   };
 
   const promptText = () => {
-    let url = window.location.href;
-    navigator.clipboard.writeText(url + `/${_id}`);
+    navigator.clipboard.writeText("https://rerahousing.in" + `/${_id}`);
     setShow(true);
     setTimeout(() => {
       setShow(false);
     }, 3000);
   };
   return (
-    <div
-      className={`property-card-basic grid-card ${
-        props.view === "Grid" ? "" : "hide"
-      }`}
-    >
+    <div className={`property-card-basic grid-card`}>
       {hot_deal ? (
         <span className="badge rounded-pill">
           {" "}

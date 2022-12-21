@@ -27,7 +27,8 @@
   box-shadow: 0 0 4px #999;
 }
 
-.property-display .card .badge {
+.property-display .card .badge,
+.grid-card .badge {
   background-color: #1192e5;
   top: -13px;
   position: absolute;

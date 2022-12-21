@@ -54,10 +54,9 @@ function Card6(props) {
     }
     return data2;
   };
-  console.log(state + " " + city);
+
   const promptText = () => {
-    let url = window.location.href;
-    navigator.clipboard.writeText(url + `/${_id}`);
+    navigator.clipboard.writeText("https://rerahousing.in" + `/${_id}`);
     setShow(true);
     setTimeout(() => {
       setShow(false);
@@ -66,8 +65,7 @@ function Card6(props) {
   return (
     <>
       <div
-        className={`property-card-basic card col-5 rounded-0 ${
-          props.view === "Grid" ? "hide" : ""
+        className={`property-card-basic card col-5 rounded-0 
         }`}
       >
         {hot_deal ? (

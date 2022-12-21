@@ -1,10 +1,20 @@
-.property-display .card .Featured {
+.property-display .card .Featured,
+.grid-card .Featured {
   top: 175px;
   width: 79px;
   height: 28px;
   font-weight: bold;
   line-height: 18px;
   font-size: 14px;
+}
+
+.grid-card .Featured {
+  top: 267px;
+}
+
+.grid-card .dev-logo {
+  top: 250px;
+  left: 325px;
 }
 
 .property-display .card .Featured .fi-rs-eye {
