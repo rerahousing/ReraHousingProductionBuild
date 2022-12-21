@@ -3,7 +3,7 @@ import Search from "./Search";
 import Card_1 from "./Card1";
 import Card_2 from "./Card2";
 import Card_3 from "./Card3";
-import bannerImage from "../Resources/rera-approved-housing-projects-header.jpg";
+import bannerImage from "../Resources/rera-approved-housing-projects-header-min.jpg";
 import Card_5 from "./Card5";
 import dehradun from "../Resources/dehradun.webp";
 import gurugram from "../Resources/gurugram.jpg";
@@ -37,7 +37,8 @@ function Home() {
           property="og:keywords"
           content="RERA, projects, agents, flats, duplex, villa, interior designer, property lawyer"
         />
-        <meta property="og:image" content={bannerImage} />
+        <meta property="og:image" itemprop="image" content={bannerImage} />
+        <meta property="og:type" content="website" />
         <meta
           name="description"
           content="Find the best affordable Villas, Duplex, and Flats for sale in India and all are RERA approved"
