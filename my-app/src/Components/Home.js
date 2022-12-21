@@ -37,7 +37,7 @@ function Home() {
           property="og:keywords"
           content="RERA, projects, agents, flats, duplex, villa, interior designer, property lawyer"
         />
-        <meta image={bannerImage} />
+        <meta property="og:image" content={bannerImage} />
         <meta
           name="description"
           content="Find the best affordable Villas, Duplex, and Flats for sale in India and all are RERA approved"
