@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.8998d18b.css",
-    "main.js": "./static/js/main.6165d0da.js",
+    "main.js": "./static/js/main.b7d2e9a4.js",
     "static/js/787.28cb0dcd.chunk.js": "./static/js/787.28cb0dcd.chunk.js",
     "static/media/gurugram.jpg": "./static/media/gurugram.97861660936eb7eee69e.jpg",
     "static/media/rera-approved-housing-projects-header.jpg": "./static/media/rera-approved-housing-projects-header.fdac6cc9fca143a7e104.jpg",
@@ -9,8 +9,8 @@
     "static/media/rera-blog-image-1.png": "./static/media/rera-blog-image-1.b99560ebdb25c9a35082.png",
     "static/media/banner-image.png": "./static/media/banner-image.7a9a6e49aced8d11ba38.png",
     "static/media/rera-blog-image-2.png": "./static/media/rera-blog-image-2.952a709d426ae37013b8.png",
-    "static/media/rera-approved-housing-projects-header-min.jpg": "./static/media/rera-approved-housing-projects-header-min.fccc4ef48bd627fd77c6.jpg",
     "static/media/eco_house_03.png": "./static/media/eco_house_03.689d867a4a8c60a84654.png",
+    "static/media/rera-approved-housing-projects-header-min.jpg": "./static/media/rera-approved-housing-projects-header-min.a8c43ff522ebd6f488a1.jpg",
     "static/media/greaternoida.webp": "./static/media/greaternoida.19584849ed9b9aa2dade.webp",
     "static/media/dehradun.webp": "./static/media/dehradun.b0ca55d3fdf79ba0ac91.webp",
     "static/media/house.svg": "./static/media/house.5fadf773302dee587e0067af9d85f486.svg",
@@ -29,11 +29,11 @@
     "static/media/no-money-icon.svg": "./static/media/no-money-icon.aa0f74080c2071474ed5e8a67a4e3601.svg",
     "static/media/quote.svg": "./static/media/quote.1fa145d0b88812f66078ea977a1d4cd7.svg",
     "main.8998d18b.css.map": "./static/css/main.8998d18b.css.map",
-    "main.6165d0da.js.map": "./static/js/main.6165d0da.js.map",
+    "main.b7d2e9a4.js.map": "./static/js/main.b7d2e9a4.js.map",
     "787.28cb0dcd.chunk.js.map": "./static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8998d18b.css",
-    "static/js/main.6165d0da.js"
+    "static/js/main.b7d2e9a4.js"
   ]
 }
