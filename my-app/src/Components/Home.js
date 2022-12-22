@@ -40,7 +40,7 @@ function Home() {
         <meta
           property="og:image:secure_url"
           itemprop="image"
-          content="https://res.cloudinary.com/djgeilll8/image/upload/v1671722877/rera-approved-housing-projects-header-min_t2fjwu.jpg"
+          content="https://res.cloudinary.com/djgeilll8/image/upload/v1671723596/rera-approved-housing-projects-header-min_1_edmz23.jpg"
         />
         <meta property="og:type" content="website" />
         <meta property="og:image:type" content="image/jpeg" />
