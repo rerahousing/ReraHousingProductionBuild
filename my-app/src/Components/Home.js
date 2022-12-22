@@ -38,14 +38,19 @@ function Home() {
           content="RERA, projects, agents, flats, duplex, villa, interior designer, property lawyer"
         />
         <meta
-          property="og:image"
+          property="og:title"
+          content="Find RERA Approved Housing Projects in India"
+        />
+
+        <meta
+          property="og:image:secure"
           itemprop="image"
           content="https://res.cloudinary.com/djgeilll8/image/upload/v1671723596/rera-approved-housing-projects-header-min_1_edmz23.jpg"
         />
         <meta property="og:type" content="website" />
         <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:width" content="300" />
-        <meta property="og:image:height" content="300" />
+        <meta property="og:image:height" content="200" />
         <meta property="og:type" content="website" />
         <meta
           name="description"
@@ -56,6 +61,11 @@ function Home() {
           content="RERA, projects, agents, flats, duplex, villa, interior designer, property lawyer"
         />
         <meta property="og:locale" content="en_GB" />
+        <meta property="og:url" content="https://rerahousing.in" />
+        <meta
+          property="og:site_name"
+          content="RERA Housing: Find your desire property"
+        />
         <meta property="og:locale:alternate" content="fr_FR" />
         <meta property="og:locale:alternate" content="es_ES" />
       </Helmet>
