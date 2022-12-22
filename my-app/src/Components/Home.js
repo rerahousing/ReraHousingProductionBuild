@@ -37,7 +37,15 @@ function Home() {
           property="og:keywords"
           content="RERA, projects, agents, flats, duplex, villa, interior designer, property lawyer"
         />
-        <meta property="og:image" itemprop="image" content={bannerImage} />
+        <meta
+          property="og:image:secure_url"
+          itemprop="image"
+          content="https://res.cloudinary.com/djgeilll8/image/upload/v1671722877/rera-approved-housing-projects-header-min_t2fjwu.jpg"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="300" />
+        <meta property="og:image:height" content="300" />
         <meta property="og:type" content="website" />
         <meta
           name="description"
