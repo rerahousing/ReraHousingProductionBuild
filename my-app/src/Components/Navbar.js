@@ -87,7 +87,7 @@ function Navbar() {
               <a
                 className="btn btn-outline-success"
                 type="submit"
-                href="/login"
+                href="/rera-approved-projects-villa-duplex-flats"
               >
                 Search Property
               </a>

@@ -35,7 +35,7 @@ function App() {
               path="/real-estate-service-providers"
               element={<ServicePage />}
             />
-            <Route path="/dashboard" element={<DashboardTab />} />
+            <Route path="/rera-housing-dashboard" element={<DashboardTab />} />
             <Route path="/login" element={<Login />} />
             <Route path="/privacypolicy" element={<PrivacyPolicy />} />
             <Route path="/termsandconditions" element={<TermsAndCondition />} />

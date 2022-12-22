@@ -102,7 +102,7 @@ function Footer() {
                 </a>
               </li>
               <li>
-                <a target="_blank" href="">
+                <a target="_blank" href="https://blog.rerahousing.in">
                   Press Kit
                 </a>
               </li>
