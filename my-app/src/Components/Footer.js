@@ -1,4 +1,5 @@
 import React from "react";
+import Blogger from "../Resources/icons8-blogger.svg";
 import "../Styles/Footer.css";
 
 function Footer() {
@@ -140,16 +141,24 @@ function Footer() {
             </div>
             <ul>
               <li>
-                <i class="bi bi-twitter"></i>
+                <a href="https://blog.rerahousing.in">
+                  <img src={Blogger} alt="" className="ci-blogger" />
+                </a>
               </li>
               <li>
-                <i class="bi bi-facebook"></i>
+                <a href="https://www.facebook.com/rerahousing">
+                  <i class="bi bi-facebook"></i>
+                </a>
               </li>
               <li>
-                <i class="bi bi-instagram"></i>
+                <a href="https://www.instagram.com/rerahousing.in/">
+                  <i class="bi bi-instagram"></i>
+                </a>
               </li>
               <li>
-                <i class="bi bi-youtube"></i>
+                <a href="https://www.youtube.com/@rerahousingindia">
+                  <i class="bi bi-youtube"></i>
+                </a>
               </li>
             </ul>
           </div>

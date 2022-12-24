@@ -41,8 +41,6 @@ function Home() {
           property="og:title"
           content="Find RERA Approved Housing Projects in India"
         />
-
-       
       </Helmet>
       <section className="d-flex">
         <div className="container banner">
@@ -77,6 +75,7 @@ function Home() {
                     "Search RERA approved projects of villas, duplex, and flats of 1bhk, 2bhk, 3bhk and more."
                   }
                   setColor={setColor}
+                  link={"/rera-approved-projects-villa-duplex-flats"}
                 />
               </div>
               <div className="col-lg-4 col-md-6">
@@ -86,6 +85,7 @@ function Home() {
                     "A home inspection examination by experienced civil engineers of the condition and safety of a property."
                   }
                   setColor={setColor}
+                  link={"/rera-approved-projects-villa-duplex-flats"}
                 />
               </div>
               <div className="col-lg-4 col-md-6">
@@ -95,6 +95,7 @@ function Home() {
                     "Find property lawyer nearby your location or online around India. And avoid legal issues in long term."
                   }
                   setColor={setColor}
+                  link={"/rera-approved-projects-villa-duplex-flats"}
                 />
               </div>
               <div className="col-lg-4 col-md-6">
@@ -104,6 +105,7 @@ function Home() {
                     "Find RERA approved agents nearby your location or online around India. And get everything smoothly."
                   }
                   setColor={setColor}
+                  link={"/rera-approved-projects-villa-duplex-flats"}
                 />
               </div>
               <div className="col-lg-4 col-md-6 ">
@@ -113,6 +115,7 @@ function Home() {
                     "Hire Interior designer & decorator nearby your location or online around whole India easily."
                   }
                   setColor={setColor}
+                  link={"/rera-approved-projects-villa-duplex-flats"}
                 />
               </div>
               <div className="col-lg-4 col-md-6 ">
@@ -122,6 +125,7 @@ function Home() {
                     "We Know to be for bringing complete transpiracy during the whole complete process."
                   }
                   setColor={setColor}
+                  link={"/real-estate-service-providers"}
                 />
               </div>
             </div>
@@ -143,6 +147,7 @@ function Home() {
                 body={
                   "Rock Bottom Prices are Guaranteed in return otherwise, you get double the discount from us."
                 }
+                link={"/rera-approved-projects-villa-duplex-flats"}
               />
             </div>
             <div className="col">
@@ -152,6 +157,7 @@ function Home() {
                 body={
                   "Unlike other real estate platforms or agents, we don't charge a single penny from our customers."
                 }
+                link={"/rera-approved-projects-villa-duplex-flats"}
               />
             </div>
             <div className="col">
@@ -161,6 +167,7 @@ function Home() {
                 body={
                   "Only RERA approved with OC (Occupancy Certified) or ready-to-move properties. No more late possession."
                 }
+                link={"/rera-approved-projects-villa-duplex-flats"}
               />
             </div>
           </div>
@@ -201,7 +208,7 @@ function Home() {
 
       <section className="section-5">
         <div className="text-container d-flex justify-content-center align-items-center">
-          <h2 className="text-center my-5 title">
+          <h2 className="text-end my-5 title">
             Find <span className="highlight mx-3">RERA </span> Approved Projects
           </h2>
           <div className="view-button">
@@ -256,6 +263,7 @@ function Home() {
                 body={
                   "Are you a builder with RERA approved projects with proper documentation and to ready to momve. Let's build RERA Housing together."
                 }
+                link={"/real-estate-service-providers"}
               />
             </div>
             <div className="col">
@@ -264,6 +272,7 @@ function Home() {
                 body={
                   "Are you a RERA approved Agent with proper past record or fresher and want to grow your carrier in real estate. Let's build RERA Housing together."
                 }
+                link={"/real-estate-service-providers"}
               />
             </div>
             <div className="col">
@@ -273,6 +282,7 @@ function Home() {
                 body={
                   "Are you a Real estate Service provider with proper past experience or portfolio. Let's build RERA Housing together. Click Here"
                 }
+                link={"/real-estate-service-providers"}
               />
             </div>
           </div>
@@ -302,7 +312,7 @@ function Home() {
               <Card_5
                 image={image25}
                 date="06 Dec, 2022"
-                likes="10K"
+                likes="7.8K"
                 title="Buying a RERA Registered Property? Here are 9 things you should know"
                 link="https://blog.rerahousing.in/2022/12/why-rera-act-is-so-important.html"
               />
@@ -311,7 +321,7 @@ function Home() {
               <Card_5
                 image={image26}
                 date="05 Dec, 2022"
-                likes="10K"
+                likes="6.7K"
                 title="50+ Points for House Evaluation by Yourself"
                 link="https://blog.rerahousing.in/2022/12/50-points-for-house-evaluation-by.html"
               />
@@ -320,7 +330,7 @@ function Home() {
               <Card_5
                 image={image27}
                 date="05 Dec, 2022"
-                likes="10K"
+                likes="9.8K"
                 title="Check these 10 documents, to avoid legal disputes!"
                 link="https://blog.rerahousing.in/2022/12/dont-invest-in-property-before-checking.html"
               />

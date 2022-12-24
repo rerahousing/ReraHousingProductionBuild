@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.8998d18b.css",
-    "main.js": "./static/js/main.4c6fc79d.js",
+    "main.css": "./static/css/main.a8b891e5.css",
+    "main.js": "./static/js/main.64a37a9e.js",
     "static/js/787.28cb0dcd.chunk.js": "./static/js/787.28cb0dcd.chunk.js",
     "static/media/gurugram.jpg": "./static/media/gurugram.97861660936eb7eee69e.jpg",
     "static/media/rera-approved-housing-projects-header.jpg": "./static/media/rera-approved-housing-projects-header.fdac6cc9fca143a7e104.jpg",
@@ -16,9 +16,9 @@
     "static/media/house.svg": "./static/media/house.5fadf773302dee587e0067af9d85f486.svg",
     "static/media/goodrej.png": "./static/media/goodrej.51ed21bb42c734319284.png",
     "static/media/sheth.png": "./static/media/sheth.9b1baa497418c5262adc.png",
+    "static/media/Rerahousing_logo_png.png": "./static/media/Rerahousing_logo_png.5e79e58bc558d2ab05fc.png",
     "static/media/tatahousing.png": "./static/media/tatahousing.4f350f3f2fc8c7cef860.png",
     "static/media/onebkc.jpg": "./static/media/onebkc.2cf57945bc98762e678f.jpg",
-    "static/media/rera-approved-housing-projects-logo.png": "./static/media/rera-approved-housing-projects-logo.5a865aa448ba6fa0ab1d.png",
     "static/media/icon (2).svg": "./static/media/icon (2).5f5f172ebe59757f3c05f49d91bdb2f1.svg",
     "index.html": "./index.html",
     "static/media/profile.svg": "./static/media/profile.87b1cc5193dd9f59ba0e76bca69e10ca.svg",
@@ -27,13 +27,14 @@
     "static/media/readyToMove.svg": "./static/media/readyToMove.bfe3f6ebfc4f1ff478437fe6b8d2f993.svg",
     "static/media/fire.svg": "./static/media/fire.6c31083ddf5e0f48fbedf9a7391d7df5.svg",
     "static/media/no-money-icon.svg": "./static/media/no-money-icon.aa0f74080c2071474ed5e8a67a4e3601.svg",
+    "static/media/icons8-blogger.svg": "./static/media/icons8-blogger.bdf0454371873dd86dbd223c1a0f88a8.svg",
     "static/media/quote.svg": "./static/media/quote.1fa145d0b88812f66078ea977a1d4cd7.svg",
-    "main.8998d18b.css.map": "./static/css/main.8998d18b.css.map",
-    "main.4c6fc79d.js.map": "./static/js/main.4c6fc79d.js.map",
+    "main.a8b891e5.css.map": "./static/css/main.a8b891e5.css.map",
+    "main.64a37a9e.js.map": "./static/js/main.64a37a9e.js.map",
     "787.28cb0dcd.chunk.js.map": "./static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8998d18b.css",
-    "static/js/main.4c6fc79d.js"
+    "static/css/main.a8b891e5.css",
+    "static/js/main.64a37a9e.js"
   ]
 }

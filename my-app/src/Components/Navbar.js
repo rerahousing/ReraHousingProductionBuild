@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logo from "../Resources/rera-approved-housing-projects-logo.png";
+import logo from "../Resources/Rerahousing_logo_png.png";
 import "../Styles/Navbar.css";
 import { Link } from "react-scroll";
 

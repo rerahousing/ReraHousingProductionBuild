@@ -24,10 +24,7 @@ function Card_3(props) {
             <h5 className="card-title">{props.text}</h5>
 
             <p className="card-text">{props.des}</p>
-            <a
-              href="/rera-approved-projects-villa-duplex-flats"
-              className="link"
-            >
+            <a href={props.link} className="link">
               Learn more <i class="bi bi-chevron-right"></i>
             </a>
           </div>

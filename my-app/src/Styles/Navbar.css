@@ -15,7 +15,11 @@
 }
 
 .navbar img {
-  width: 60%;
+  width: 66%;
+}
+
+.navbar-brand {
+  width: 26%;
 }
 
 .nav-link {
