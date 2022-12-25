@@ -10,11 +10,7 @@ const NODE_ENV = process.env.NODE_ENV;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(
-  cors({
-    origin: "https://rerahousing.in",
-  })
-);
+app.use(cors());
 
 app.use(express.json());
 
