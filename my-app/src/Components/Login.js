@@ -9,12 +9,12 @@ function Login() {
   const [password, setPassword] = useState();
   const [show, setShow] = useState(false);
   const authenticate = (e) => {
-    const url = `https://rera-housing-production-build-bicph54x5-rerahousing.vercel.app/api/admin/login`;
+    const url = `https://rerahousing.in/api/admin/login`;
     axios
       .post(url, { username: username, password: password })
       .then((result) => {
         localStorage.setItem("token", result.data.authToken);
-        navigate("/dashboard");
+        navigate("/rera-housing-dashboard");
       })
       .catch((err) => {
         setShow(true);
