@@ -14,7 +14,7 @@ function Login() {
       .post(url, { username: username, password: password })
       .then((result) => {
         localStorage.setItem("token", result.data.authToken);
-        navigate("/dashboard");
+        navigate("/rera-housing-dashboard");
       })
       .catch((err) => {
         setShow(true);

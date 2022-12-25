@@ -18,7 +18,7 @@ function App() {
   return (
     <div>
       <PropertyState>
-        {window.location.pathname === "/dashboard" ||
+        {window.location.pathname === "/rera-housing-dashboard" ||
         window.location.pathname === "/login" ? null : (
           <Navbar />
         )}
@@ -43,7 +43,7 @@ function App() {
             <Route path="/servicesignup" element={<ServiceSignup />} />
           </Routes>
         </Router>
-        {window.location.pathname === "/dashboard" ||
+        {window.location.pathname === "/rera-housing-dashboard" ||
         window.location.pathname === "/login" ? null : (
           <Footer />
         )}
