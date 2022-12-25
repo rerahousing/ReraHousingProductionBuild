@@ -10,8 +10,24 @@ function Login() {
   const [show, setShow] = useState(false);
   const authenticate = (e) => {
     const url = `https://rerahousing.in/api/admin/login`;
-    axios
-      .post(url, { username: username, password: password })
+    // axios
+    //   .post(url, { username: username, password: password })
+    //   .then((result) => {
+    //     localStorage.setItem("token", result.data.authToken);
+    //     navigate("/rera-housing-dashboard");
+    //   })
+    //   .catch((err) => {
+    //     setShow(true);
+    //     alert(err);
+    //   });
+
+    fetch(url, {
+      method: "POST",
+      body: {
+        username: username,
+        password: password,
+      },
+    })
       .then((result) => {
         localStorage.setItem("token", result.data.authToken);
         navigate("/rera-housing-dashboard");
