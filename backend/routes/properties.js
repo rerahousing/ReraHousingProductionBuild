@@ -33,13 +33,11 @@ router.get("/getproperties", async (req, res) => {
       property,
     });
   } catch (err) {
-    res
-      .status(500)
-      .json({
-        error: true,
-        message: "Internal Server Error",
-        error_message: error.message,
-      });
+    res.status(500).json({
+      error: true,
+      message: "Internal Server Error",
+      error_message: err.message,
+    });
   }
 });
 
