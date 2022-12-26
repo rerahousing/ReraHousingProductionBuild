@@ -14,7 +14,6 @@ router.get("/getproperties", async (req, res) => {
     const perPage = parseInt(req.query.perPage) || 21;
     const count = await Property.countDocuments({
       title: { $regex: search, $options: "i" },
-      title: { $regex: search, $options: "i" },
       city: { $regex: city, $options: "i" },
       state: { $regex: state, $options: "i" },
     });
@@ -34,7 +33,13 @@ router.get("/getproperties", async (req, res) => {
       property,
     });
   } catch (err) {
-    res.status(500).json({ error: true, message: "Internal Server Error" });
+    res
+      .status(500)
+      .json({
+        error: true,
+        message: "Internal Server Error",
+        error_message: error.message,
+      });
   }
 });
 
