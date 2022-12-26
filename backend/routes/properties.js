@@ -16,10 +16,11 @@ router.get("/getproperties", async (req, res) => {
     const property = await Property.find({})
       .skip(page * perPage)
       .limit(perPage);
+    console.log(count);
 
     return res.status(200).json({
-      property,
       count,
+      property,
     });
   } catch (err) {
     res.status(500).json({ error: true, message: "Internal Server Error" });
