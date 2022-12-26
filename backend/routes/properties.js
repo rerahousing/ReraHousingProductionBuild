@@ -9,6 +9,18 @@ const {
 
 // Route 1 : Get all the properties
 router.get("/getproperties", async (req, res) => {
+  // try {
+  //   const page = parseInt(req.query.page) - 1 || 0;
+  //   const perPage = parseInt(req.query.perPage) || 21;
+
+  //   const property = await Property.find({})
+  //     .skip(page * limit)
+  //     .limit(limit);
+
+  //   return res.status(200).json(property);
+  // } catch (err) {
+  //   res.status(500).json({ error: true, message: "Internal Server Error" });
+  // }
   Property.find((error, data) => {
     if (error) {
       return next(error);

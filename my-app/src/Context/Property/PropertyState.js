@@ -23,8 +23,8 @@ const PropertyState = (props) => {
   //  ---------------------------End--------------------------------
 
   // Get Property -- Property Section
-  const getProperty = async () => {
-    let url = `${host}/api/properties/getproperties`;
+  const getProperty = async (page, perPage) => {
+    let url = `${host}/api/properties/getproperties?page=${page}&perPage=${perPage}`;
     const response = await fetch(url, {
       method: "GET",
       headers: {

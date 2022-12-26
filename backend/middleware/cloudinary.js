@@ -1,5 +1,5 @@
 const cloudinary = require("cloudinary");
-import { CLOUD_NAME, API_KEY, API_SECRET, API_ENV } from "../config/keys";
+import { CLOUD_NAME, API_KEY, API_SECRET } from "../config/keys";
 
 cloudinary.v2.config({
   cloud_name: CLOUD_NAME,
