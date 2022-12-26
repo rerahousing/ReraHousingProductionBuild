@@ -344,7 +344,7 @@ function ProductPage() {
                   <div className="row row-cols-3">
                     {specProp.amenites?.map((e, index) => {
                       return (
-                        <div className="col" key={index}>
+                        <div className="col-6 col-sm-3" key={index}>
                           <span className="a_name">
                             {" "}
                             <span className="bullet_point">&bull;</span> {e}
@@ -477,7 +477,7 @@ function ProductPage() {
                   <label className="lable">Select Project City</label>
 
                   <select
-                    className="form-select drop"
+                    className="form-select drop-product"
                     aria-label="Default select example"
                     name="project_city"
                     value={selectedCity}

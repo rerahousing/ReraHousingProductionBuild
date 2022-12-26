@@ -7,7 +7,7 @@ function Footer() {
     <div className="footer" id="footer">
       <div className="contain">
         <div className="row">
-          <div className="col">
+          <div className="col-6 col-sm-auto col">
             <h1>For Buyers</h1>
             <ul>
               <li>
@@ -32,7 +32,7 @@ function Footer() {
               </li>
             </ul>
           </div>
-          <div className="col">
+          <div className="col-6 col-sm-auto col">
             <h1>For Builders</h1>
             <ul>
               <li>
@@ -59,7 +59,7 @@ function Footer() {
               </li>
             </ul>
           </div>
-          <div className="col">
+          <div className="col-6 col-sm-auto col">
             <h1>For Realtors</h1>
             <ul>
               <li>
@@ -84,7 +84,7 @@ function Footer() {
               </li>
             </ul>
           </div>
-          <div className="col">
+          <div className="col-6 col-sm-auto col">
             <h1>company</h1>
             <ul>
               <li>

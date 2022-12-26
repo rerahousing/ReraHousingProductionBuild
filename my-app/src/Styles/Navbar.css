@@ -10,6 +10,10 @@
   line-height: 2;
 }
 
+.navbar-nav {
+  align-items: center;
+}
+
 .navbar .search-button .btn:hover {
   background-color: #0b5ed7 !important;
 }
@@ -39,6 +43,10 @@
   .navbar-brand {
     justify-content: center !important;
     width: 40% !important;
+  }
+
+  .navbar-nav {
+    align-items: flex-start;
   }
 }
 

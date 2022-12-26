@@ -222,7 +222,7 @@ ul.list li {
   padding-left: 10px;
 }
 
-.contact_form .drop {
+.contact_form .drop-product {
   width: 100%;
   border-radius: 6px;
   padding-left: 10px;
@@ -230,7 +230,7 @@ ul.list li {
   font-size: 14px;
 }
 
-.drop {
+.drop-product {
   display: inline-block;
   width: auto;
   vertical-align: top;
