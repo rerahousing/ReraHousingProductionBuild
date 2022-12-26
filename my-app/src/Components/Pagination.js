@@ -4,8 +4,8 @@ import PropertyContext from "../Context/Property/PropertyContext.js";
 function Pagination(props) {
   const context = useContext(PropertyContext);
   const [pages, setPages] = useState(1);
-  const { property, getProperty, loadProperty } = context;
-  const nbPages = property.length / 1;
+  const { property, getProperty, loadProperty, count } = context;
+  const nbPages = count / 1;
 
   const fetchMoreData = () => {
     getProperty(pages + 1, 1);

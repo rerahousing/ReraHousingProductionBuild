@@ -12,7 +12,7 @@ router.get("/getproperties", async (req, res) => {
   try {
     const page = parseInt(req.query.page) - 1 || 0;
     const perPage = parseInt(req.query.perPage) || 21;
-    const count = await Property.countDocuments;
+    const count = await Property.countDocuments({});
     const property = await Property.find({})
       .skip(page * perPage)
       .limit(perPage);

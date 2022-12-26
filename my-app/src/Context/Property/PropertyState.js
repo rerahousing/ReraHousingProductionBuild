@@ -278,6 +278,7 @@ const PropertyState = (props) => {
         deleteContact,
         updateContact,
         setLoadProperty,
+        count,
       }}
     >
       {props.children}
