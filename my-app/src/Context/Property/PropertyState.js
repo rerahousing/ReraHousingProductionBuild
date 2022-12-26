@@ -8,7 +8,7 @@ const PropertyState = (props) => {
   const [load, setLoad] = useState(false);
   const [loadDash, setLoadDash] = useState(false);
   const [loadProperty, setLoadProperty] = useState(false);
-  const [count, setCount] = useState();
+  const [count, setCount] = useState(1);
   // States for Property Section
   const [property, setProperty] = useState([]);
   const [bhkNo, setBhkNo] = useState();

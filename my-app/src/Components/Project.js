@@ -2,26 +2,28 @@ import React, { useState, useEffect, useContext } from "react";
 import Card6 from "./Card6.js";
 import Card6Grid from "./Card6Grid.js";
 import LoadingComponent from "./LoadingComponent";
-import Pagination from "./Pagination.js";
+import { Pagination } from "@mui/material";
 import PropertyContext from "../Context/Property/PropertyContext.js";
 import "../Styles/Project.css";
 
 function Project(props) {
   const context = useContext(PropertyContext);
-  const { property, getProperty, loadProperty } = context;
+  const { property, getProperty, loadProperty, count } = context;
   const [loading, setLoading] = useState();
-  const pages = 1;
-  const perPage = 1;
+  const [pages, setPages] = useState(1);
+  const perPage = 15;
   let amenities = JSON.parse(sessionStorage.getItem("amenities"));
   let subType = JSON.parse(sessionStorage.getItem("sub-type"));
   const { filter, keyword } = props;
   useEffect(() => {
     getProperty(pages, perPage);
     amenities = JSON.parse(sessionStorage.getItem("amenities"));
-  }, []);
+  }, [pages]);
 
   const [view, setView] = useState("List");
-
+  const changePages = (e, value) => {
+    setPages(value);
+  };
   const filterProperty = property
     ?.filter((item) =>
       filter.price !== 0
@@ -76,7 +78,7 @@ function Project(props) {
     <div className="map_projectlist">
       <div className="container my-3 property-display">
         <div className="header d-inline-block">
-          <h2>Property: {filterProperty}</h2>
+          <h2>Property: {count}</h2>
 
           <div className="more-filter d-inline-block">
             <div className="view-btn d-inline-block">
@@ -153,7 +155,9 @@ function Project(props) {
           </div>
         </div>
       </div>
-      <Pagination pages={pages} />
+      <div className="pagination_btn">
+        <Pagination count={Math.ceil(count / perPage)} onChange={changePages} />
+      </div>
       <div className="bottom-banner">
         <h1>
           Design <span>For</span> Life
