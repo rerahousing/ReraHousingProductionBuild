@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import Card6 from "./Card6.js";
-import InfiniteScroll from "react-infinite-scroll-component";
 import Card6Grid from "./Card6Grid.js";
 import LoadingComponent from "./LoadingComponent";
+import Pagination from "./Pagination.js";
 import PropertyContext from "../Context/Property/PropertyContext.js";
 import "../Styles/Project.css";
 
@@ -10,14 +10,18 @@ function Project(props) {
   const context = useContext(PropertyContext);
   const { property, getProperty, loadProperty } = context;
   const [loading, setLoading] = useState();
+  const pages = 1;
+  const perPage = 1;
   let amenities = JSON.parse(sessionStorage.getItem("amenities"));
   let subType = JSON.parse(sessionStorage.getItem("sub-type"));
   const { filter, keyword } = props;
   useEffect(() => {
-    getProperty();
+    getProperty(pages, perPage);
     amenities = JSON.parse(sessionStorage.getItem("amenities"));
   }, []);
+
   const [view, setView] = useState("List");
+
   const filterProperty = property
     ?.filter((item) =>
       filter.price !== 0
@@ -149,6 +153,7 @@ function Project(props) {
           </div>
         </div>
       </div>
+      <Pagination pages={pages} />
       <div className="bottom-banner">
         <h1>
           Design <span>For</span> Life

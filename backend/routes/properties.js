@@ -12,22 +12,18 @@ router.get("/getproperties", async (req, res) => {
   try {
     const page = parseInt(req.query.page) - 1 || 0;
     const perPage = parseInt(req.query.perPage) || 21;
-
+    const count = await Property.countDocuments;
     const property = await Property.find({})
       .skip(page * perPage)
       .limit(perPage);
 
-    return res.status(200).json(property);
+    return res.status(200).json({
+      property,
+      count,
+    });
   } catch (err) {
     res.status(500).json({ error: true, message: "Internal Server Error" });
   }
-  // Property.find((error, data) => {
-  //   if (error) {
-  //     return next(error);
-  //   } else {
-  //     res.json(data);
-  //   }
-  // });
 });
 
 // Route 2 : Add a property

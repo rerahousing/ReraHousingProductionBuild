@@ -8,6 +8,7 @@ const PropertyState = (props) => {
   const [load, setLoad] = useState(false);
   const [loadDash, setLoadDash] = useState(false);
   const [loadProperty, setLoadProperty] = useState(false);
+  const [count, setCount] = useState();
   // States for Property Section
   const [property, setProperty] = useState([]);
   const [bhkNo, setBhkNo] = useState();
@@ -32,7 +33,8 @@ const PropertyState = (props) => {
       },
     });
     const json = await response.json();
-    setProperty(json);
+    setProperty(json.property);
+    setCount(json.count);
   };
 
   const addProperty = async (formData) => {
