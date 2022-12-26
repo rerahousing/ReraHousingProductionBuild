@@ -12,14 +12,14 @@ router.get("/getproperties", async (req, res) => {
   try {
     const page = parseInt(req.query.page) - 1 || 0;
     const perPage = parseInt(req.query.perPage) || 21;
+    const city = req.query.city || "";
+    const state = req.query.state || "";
+    const search = req.query.search || "";
     const count = await Property.countDocuments({
       title: { $regex: search, $options: "i" },
       city: { $regex: city, $options: "i" },
       state: { $regex: state, $options: "i" },
     });
-    const city = req.query.city || "";
-    const state = req.query.state || "";
-    const search = req.query.search || "";
     const property = await Property.find({
       title: { $regex: search, $options: "i" },
       city: { $regex: city, $options: "i" },
