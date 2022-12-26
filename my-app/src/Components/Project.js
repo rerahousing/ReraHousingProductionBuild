@@ -83,78 +83,71 @@ function Project(props) {
           </div>
         </div>
 
-        <InfiniteScroll
-          dataLength={property.length}
-          next={fetchMoreData}
-          hasMore={property.length !== filterProperty}
-          loader={<LoadingComponent />}
-        >
-          <div className="card-group-custom container my-3">
-            <div className="row">
-              {property
-                ?.filter((item) =>
-                  filter.price !== 0
-                    ? item.pricing_max <= filter.price ||
-                      item.pricingmin <= filter.price
-                    : item.pricing_max !== ""
-                )
-                .filter((item) =>
-                  filter.bhk != 0
-                    ? item.bhk.includes(Number(filter.bhk))
-                    : filter.bhk !== ""
-                )
-                .filter((item) =>
-                  filter.project_status !== "Not Specified"
-                    ? item.project_status === filter.project_status
-                    : filter.project_status !== "xyz"
-                )
-                .filter((item) =>
-                  keyword !== "All"
-                    ? item.title.toLowerCase().includes(keyword.toLowerCase())
-                    : filter.keyword !== "xyz"
-                )
-                .filter((item) =>
-                  amenities !== null
-                    ? amenities?.every((val) => item.amenites.includes(val))
-                    : true
-                )
-                .filter((item) =>
-                  subType !== null || ""
-                    ? subType?.every((val) => item.property_type.includes(val))
-                    : true
-                )
-                .filter((item) =>
-                  filter.project_state !== "Select State"
-                    ? item.state === filter.project_state
-                    : true
-                )
-                .filter((item) =>
-                  filter.project_city !== "Select City"
-                    ? item.city === filter.project_city
-                    : true
-                )
-                .map((item, index) => {
-                  const imageCard = item.imgCollection;
-                  if (view === "List") {
-                    return (
-                      <Card6 data={item} image={imageCard[0]} index={index} />
-                    );
-                  }
-                  if (view === "Grid") {
-                    return (
-                      <>
-                        <Card6Grid
-                          data={item}
-                          image={imageCard[0]}
-                          index={index}
-                        />
-                      </>
-                    );
-                  }
-                })}
-            </div>
+        <div className="card-group-custom container my-3">
+          <div className="row">
+            {property
+              ?.filter((item) =>
+                filter.price !== 0
+                  ? item.pricing_max <= filter.price ||
+                    item.pricingmin <= filter.price
+                  : item.pricing_max !== ""
+              )
+              .filter((item) =>
+                filter.bhk != 0
+                  ? item.bhk.includes(Number(filter.bhk))
+                  : filter.bhk !== ""
+              )
+              .filter((item) =>
+                filter.project_status !== "Not Specified"
+                  ? item.project_status === filter.project_status
+                  : filter.project_status !== "xyz"
+              )
+              .filter((item) =>
+                keyword !== "All"
+                  ? item.title.toLowerCase().includes(keyword.toLowerCase())
+                  : filter.keyword !== "xyz"
+              )
+              .filter((item) =>
+                amenities !== null
+                  ? amenities?.every((val) => item.amenites.includes(val))
+                  : true
+              )
+              .filter((item) =>
+                subType !== null || ""
+                  ? subType?.every((val) => item.property_type.includes(val))
+                  : true
+              )
+              .filter((item) =>
+                filter.project_state !== "Select State"
+                  ? item.state === filter.project_state
+                  : true
+              )
+              .filter((item) =>
+                filter.project_city !== "Select City"
+                  ? item.city === filter.project_city
+                  : true
+              )
+              .map((item, index) => {
+                const imageCard = item.imgCollection;
+                if (view === "List") {
+                  return (
+                    <Card6 data={item} image={imageCard[0]} index={index} />
+                  );
+                }
+                if (view === "Grid") {
+                  return (
+                    <>
+                      <Card6Grid
+                        data={item}
+                        image={imageCard[0]}
+                        index={index}
+                      />
+                    </>
+                  );
+                }
+              })}
           </div>
-        </InfiniteScroll>
+        </div>
       </div>
       <div className="bottom-banner">
         <h1>
