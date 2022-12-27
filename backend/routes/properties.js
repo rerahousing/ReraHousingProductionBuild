@@ -33,8 +33,9 @@ router.get("/getproperties", async (req, res) => {
     ];
 
     amenites === "All"
-      ? (amenites = [amenitesOption])
+      ? (amenites = [...amenitesOption])
       : (amenites = req.query.amenites.split(","));
+    console.log(amenites);
     const status =
       req.query.projectStatus == ""
         ? ["Under Construction", "Ready to Move"]
@@ -46,7 +47,6 @@ router.get("/getproperties", async (req, res) => {
       pricing_max: { $lte: price },
       bhk: { $in: bhk },
       project_status: { $in: status },
-      amenites: { $in: amenites },
     });
     const property = await Property.find({
       title: { $regex: search, $options: "i" },
@@ -55,9 +55,9 @@ router.get("/getproperties", async (req, res) => {
       pricing_max: { $lte: price },
       bhk: { $in: bhk },
       project_status: { $in: status },
+      amenites: { $in: amenites },
     })
-      .where("amenites")
-      .in([...amenites])
+
       .skip(page * perPage)
       .limit(perPage);
 

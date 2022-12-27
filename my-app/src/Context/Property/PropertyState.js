@@ -170,7 +170,6 @@ const PropertyState = (props) => {
 
   // Get Services -- Services Section
   const getService = async () => {
-    setLoad(true);
     const response = await fetch(`${host}/api/services/getservices`, {
       method: "GET",
       headers: {
@@ -181,7 +180,6 @@ const PropertyState = (props) => {
     const json = await response.json();
     console.log(json);
     setServices(json);
-    setLoad(false);
   };
 
   // Add Service -- Service Section
