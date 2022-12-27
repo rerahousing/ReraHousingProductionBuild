@@ -39,7 +39,7 @@ function DashboardServices() {
 
   useEffect(() => {
     getService();
-  });
+  }, []);
 
   const onChange = (e) => {
     setServiceData({ ...serviceData, [e.target.name]: e.target.value });

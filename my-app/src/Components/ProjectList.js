@@ -10,11 +10,10 @@ function ProjectList() {
   const context = useContext(PropertyContext);
   const { property, getPropertyFilter, loadProperty, count } = context;
   const [arr, setArr] = useState([] || "");
-  const host = "https://rerahousing.in";
   const counter1 = 0;
   const counter2 = 0;
   const [pages, setPages] = useState(1);
-  const [perPage, setPerPage] = useState(1);
+  const [perPage, setPerPage] = useState(15);
   const [arr2, setArr2] = useState([] || "");
   const [keyword, setKeyword] = useState("");
   const [counter, setCounter] = useState(0);
@@ -116,9 +115,6 @@ function ProjectList() {
       }
     });
   };
-  // const searchKeyword = () => {
-  //   let url = `${host}/api/properties/getproperties?page=${page}&perPage=${perPage}&state=${state}&city=${city}&search=${keyword}`;
-  // };
 
   const changePages = (e, value) => {
     setPages(value);

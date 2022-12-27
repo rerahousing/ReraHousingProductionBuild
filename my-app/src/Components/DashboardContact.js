@@ -20,7 +20,7 @@ function DashboardContact() {
 
   useEffect(() => {
     getContact();
-  });
+  }, []);
 
   const updateinput = (id) => {
     const currentContact = contact.filter((item) => item._id === id);
