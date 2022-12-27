@@ -24,8 +24,8 @@ function ProjectList() {
     search_keyword: "All",
     amenities: [],
     sub_type: [],
-    project_city: "Select City",
-    project_state: "Select State",
+    project_city: "",
+    project_state: "",
   });
   const [formatPrice, setFormatPrice] = useState("0");
   const [filter, setFilter] = useState({
@@ -35,8 +35,8 @@ function ProjectList() {
     search_keyword: "All",
     amenities: [],
     sub_type: [],
-    project_city: "Select City",
-    project_state: "Select State",
+    project_city: "",
+    project_state: "",
   });
   const changeFilter = (e) => {
     sessionStorage.setItem("price", Number(e.target.value * 100000));
@@ -54,7 +54,7 @@ function ProjectList() {
       }
     });
   };
-  const [effect, setEffect] = useState(0);
+
   useEffect(() => {
     const price = sessionStorage.getItem("price");
     const bhk = sessionStorage.getItem("bhk");
@@ -65,7 +65,7 @@ function ProjectList() {
     setSelectedState(project_state);
     setSelectedCity(project_city);
     const selectBox = document.getElementById("stateSelect");
-    selectBox.value = project_state || "Select State";
+    selectBox.value = project_state === "" ? "Select State" : project_state;
     const arr = JSON.parse(sessionStorage.getItem("amenities"));
     const arr2 = JSON.parse(sessionStorage.getItem("sub-type"));
     setFilterActive(arr);
@@ -90,7 +90,8 @@ function ProjectList() {
       project_city: project_city,
       project_state: project_state,
     });
-  }, [effect]);
+    getProperty(pages, perPage, project_state, project_city);
+  }, [pages]);
 
   const toggleActiveOnLoad = (arr, arr2) => {
     const box = document.querySelectorAll(".amenities");
@@ -111,8 +112,7 @@ function ProjectList() {
   // };
 
   const changePages = (e, value) => {
-    let url = `${host}/api/properties/getproperties?page=${value}&perPage=${perPage}`;
-    getProperty(url);
+    setPages(value);
   };
   const changeFormatPrice = (price) => {
     let min = Math.abs(price);
@@ -218,8 +218,8 @@ function ProjectList() {
       bhk: bhkSt ? bhkSt : 0,
       project_status: project_status ? project_status : "Not Specified",
       search_keyword: search_keyword ? search_keyword : "All",
-      project_city: project_city ? project_city : "Select City",
-      project_state: project_state ? project_state : "Select State",
+      project_city: project_city ? project_city : "",
+      project_state: project_state ? project_state : "",
     });
   };
   return (
@@ -244,6 +244,7 @@ function ProjectList() {
                 aria-label="Default select example"
                 name="project_state"
                 id="stateSelect"
+                value={selectedState}
                 style={{ border: "none" }}
                 onChange={(e) => {
                   setSelectedState(e.target.value);
@@ -252,7 +253,7 @@ function ProjectList() {
                     project_city: "",
                     project_state: e.target.value,
                   });
-                  setSelectedCity("Select City");
+                  setSelectedCity("");
                   sessionStorage.setItem("project_state", e.target.value);
                   sessionStorage.setItem("project_city", "");
                 }}
@@ -308,12 +309,13 @@ function ProjectList() {
               className="btn btn-outline-success btn-search rounded-circle"
               type="button"
               onClick={() => {
-                setFilter({
-                  ...filter,
-                  project_city: input.project_city,
-                  project_state: input.project_state,
-                });
                 setKeyword(input.search_keyword);
+                getProperty(
+                  pages,
+                  perPage,
+                  input.project_state,
+                  input.project_city
+                );
               }}
             >
               <i className="bi bi-search"></i>{" "}
@@ -638,7 +640,7 @@ function ProjectList() {
         </div>
       </nav>
 
-      <Project filter={filter} keyword={keyword} />
+      <Project filter={filter} keyword={keyword} data={property} />
 
       <div className="pagination_btn">
         <Pagination count={Math.ceil(count / perPage)} onChange={changePages} />

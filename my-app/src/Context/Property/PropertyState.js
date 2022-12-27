@@ -24,19 +24,21 @@ const PropertyState = (props) => {
   //  ---------------------------End--------------------------------
 
   // Get Property -- Property Section
-  const getProperty = async () => {
-    console.log(url);
-    let url1 = "https://rerahousing.in/api/properties/getproperties";
-    const response = await fetch(url1, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    console.log(response);
+  const getProperty = async (pages, perPage, state, city) => {
+    setLoadProperty(true);
+    const response = await fetch(
+      `${host}/api/properties/getproperties?page=${pages}&perPage=${perPage}&state=${state}&city=${city}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const json = await response.json();
     setProperty(json.property);
     setCount(json.count);
+    setLoadProperty(false);
   };
 
   // Get All Properties -- Dashboard Section
