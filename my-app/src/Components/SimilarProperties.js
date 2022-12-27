@@ -10,10 +10,10 @@ import PropertyContext from "../Context/Property/PropertyContext";
 
 function SimilarProperties(props) {
   const context = useContext(PropertyContext);
-  const { property, getProperty } = context;
+  const { allProperties, getAllProperties } = context;
 
   useEffect(() => {
-    getProperty();
+    getAllProperties();
   }, []);
 
   const [res, setRes] = useState({
@@ -30,7 +30,7 @@ function SimilarProperties(props) {
         autoWidth={true}
         nav
       >
-        {property
+        {allProperties
           ?.filter(
             (item) => item.state === props.data.state && props.id !== item._id
           )

@@ -8,7 +8,7 @@ import PropertyContext from "../Context/Property/PropertyContext.js";
 
 function ProjectList() {
   const context = useContext(PropertyContext);
-  const { property, getProperty, loadProperty, count } = context;
+  const { property, getPropertyFilter, loadProperty, count } = context;
   const [arr, setArr] = useState([] || "");
   const host = "https://rerahousing.in";
   const counter1 = 0;
@@ -88,7 +88,7 @@ function ProjectList() {
       project_city: project_city,
       project_state: project_state,
     });
-    getProperty(
+    getPropertyFilter(
       pages,
       perPage,
       project_state,
@@ -228,7 +228,7 @@ function ProjectList() {
       project_city: project_city ? project_city : "",
       project_state: project_state ? project_state : "",
     });
-    getProperty(
+    getPropertyFilter(
       pages,
       perPage,
       project_state,
@@ -327,7 +327,7 @@ function ProjectList() {
               type="button"
               onClick={() => {
                 // setKeyword(input.search_keyword);
-                // getProperty(
+                // getPropertyFilter(
                 //   pages,
                 //   perPage,
                 //   input.project_state,

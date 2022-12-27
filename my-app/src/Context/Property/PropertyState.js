@@ -24,7 +24,7 @@ const PropertyState = (props) => {
   //  ---------------------------End--------------------------------
 
   // Get Property -- Property Section
-  const getProperty = async (
+  const getPropertyFilter = async (
     pages,
     perPage,
     state,
@@ -114,7 +114,6 @@ const PropertyState = (props) => {
 
   // Get specific property -- Property Section
   const getSpecificProperty = async (id) => {
-    setLoadProperty(true);
     let url = `${host}/api/properties/getproperty/${id}`;
 
     const res = await axios.get(url);
@@ -126,7 +125,6 @@ const PropertyState = (props) => {
     }
     setBhkNo(bhk_no_data);
     setSpecProp(res.data);
-    setLoadProperty(false);
   };
   // Edit Property -- Property Section
   const editProp = (id, formData) => {
@@ -292,7 +290,7 @@ const PropertyState = (props) => {
         load,
         getService,
         specProp,
-        getProperty,
+        getPropertyFilter,
         addProperty,
         deleteProperty,
         getSpecificProperty,
