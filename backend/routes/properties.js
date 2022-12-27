@@ -26,7 +26,7 @@ router.get("/getproperties", async (req, res) => {
       title: { $regex: search, $options: "i" },
       city: { $regex: city, $options: "i" },
       state: { $regex: state, $options: "i" },
-      price: { $lte: price },
+      pricing_max: { $lte: price },
     })
       .skip(page * perPage)
       .limit(perPage);
