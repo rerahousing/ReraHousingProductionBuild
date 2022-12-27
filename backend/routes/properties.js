@@ -22,14 +22,14 @@ router.get("/getproperties", async (req, res) => {
       city: { $regex: city, $options: "i" },
       state: { $regex: state, $options: "i" },
       pricing_max: { $lte: price },
-      bhk: { $in: bhk },
+      bhk: { $in: [bhk] },
     });
     const property = await Property.find({
       title: { $regex: search, $options: "i" },
       city: { $regex: city, $options: "i" },
       state: { $regex: state, $options: "i" },
       pricing_max: { $lte: price },
-      bhk: { $in: bhk },
+      bhk: { $in: [bhk] },
     })
       .skip(page * perPage)
       .limit(perPage);
