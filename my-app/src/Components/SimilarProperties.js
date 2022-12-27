@@ -29,10 +29,11 @@ function SimilarProperties(props) {
       >
         {allProperties
           ?.filter(
-            (item) => item.state === props.data.state && props.id !== item._id
+            (item) => item.state === props.state && props.id !== item._id
           )
           .map((e, index) => {
-            return <Card6 data={e} key={index} />;
+            const imageCard = e.imgCollection;
+            return <Card6 data={e} image={imageCard[0]} key={index} />;
           })}
       </OwlCarousel>
     </div>

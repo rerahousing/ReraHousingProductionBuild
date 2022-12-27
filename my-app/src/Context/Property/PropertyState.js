@@ -126,7 +126,7 @@ const PropertyState = (props) => {
   // Get specific property -- Property Section
   const getSpecificProperty = async (id) => {
     let url = `${host}/api/properties/getproperty/${id}`;
-
+    setLoadProperty(true);
     const res = await axios.get(url);
     let bhk_no_data = [];
     if (res.data.bhk_no) {
@@ -136,6 +136,7 @@ const PropertyState = (props) => {
     }
     setBhkNo(bhk_no_data);
     setSpecProp(res.data);
+    setLoadProperty(false);
   };
   // Edit Property -- Property Section
   const editProp = (id, formData) => {
