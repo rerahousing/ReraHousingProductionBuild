@@ -34,7 +34,7 @@ router.get("/getproperties", async (req, res) => {
 
     amenites === "All"
       ? (amenites = [amenitesOption])
-      : (genere = req.query.amenites.split(","));
+      : (amenites = req.query.amenites.split(","));
     const status =
       req.query.projectStatus == ""
         ? ["Under Construction", "Ready to Move"]
