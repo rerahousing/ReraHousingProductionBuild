@@ -76,7 +76,7 @@ function Project(props) {
                   ? item.city === filter.project_city
                   : true
               ) */}
-            {props.data.map((item, index) => {
+            {props.data?.map((item, index) => {
               const imageCard = item.imgCollection;
               if (view === "List") {
                 return <Card6 data={item} image={imageCard[0]} index={index} />;

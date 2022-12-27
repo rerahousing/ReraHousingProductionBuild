@@ -56,7 +56,7 @@ function ProjectList() {
   };
 
   useEffect(() => {
-    const price = sessionStorage.getItem("price");
+    const price = sessionStorage.getItem("price") || 0;
     const bhk = sessionStorage.getItem("bhk");
     const project_status = sessionStorage.getItem("project_status");
     const range = document.getElementById("budget");
@@ -90,7 +90,7 @@ function ProjectList() {
       project_city: project_city,
       project_state: project_state,
     });
-    getProperty(pages, perPage, project_state, project_city);
+    getProperty(pages, perPage, project_state, project_city, keyword, price);
   }, [pages]);
 
   const toggleActiveOnLoad = (arr, arr2) => {
@@ -221,6 +221,14 @@ function ProjectList() {
       project_city: project_city ? project_city : "",
       project_state: project_state ? project_state : "",
     });
+    getProperty(
+      pages,
+      perPage,
+      project_state,
+      project_city,
+      search_keyword,
+      priceSt
+    );
   };
   return (
     <>
