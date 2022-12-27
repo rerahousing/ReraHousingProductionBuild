@@ -96,7 +96,8 @@ function ProjectList() {
       keyword,
       price,
       bhk,
-      project_status
+      project_status,
+      arr
     );
   }, [pages]);
 

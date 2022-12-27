@@ -16,9 +16,6 @@ function SimilarProperties(props) {
     getAllProperties();
   }, []);
 
-  const [res, setRes] = useState({
-    769: { items: 1 },
-  });
   return (
     <div className="similar_property">
       <OwlCarousel
