@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Project from "./Project";
 import "../Styles/ProjectList.css";
 import { Helmet } from "react-helmet";
 import data from "./Data";
+import { Pagination } from "@mui/material";
+import PropertyContext from "../Context/Property/PropertyContext.js";
 
 function ProjectList() {
+  const context = useContext(PropertyContext);
+  const { property, getProperty, loadProperty, count } = context;
   const [arr, setArr] = useState([] || "");
-  let counter1 = 0;
-  let counter2 = 0;
+  const host = "https://rerahousing.in";
+  const counter1 = 0;
+  const counter2 = 0;
+  const [pages, setPages] = useState(1);
+  const [perPage, setPerPage] = useState(1);
   const [arr2, setArr2] = useState([] || "");
-  const [count, setCount] = useState(0);
   const [keyword, setKeyword] = useState("All");
+  const [counter, setCounter] = useState(0);
   const [input, setInput] = useState({
     bhk: 0,
     project_status: "Not Specified",
@@ -63,7 +70,7 @@ function ProjectList() {
     const arr2 = JSON.parse(sessionStorage.getItem("sub-type"));
     setFilterActive(arr);
     setArr(arr);
-    setCount((arr?.length || 0) + (arr2?.length || 0));
+    setCounter((arr?.length || 0) + (arr2?.length || 0));
     toggleActiveOnLoad(arr, arr2);
     range.value = price;
     changeFormatPrice(price);
@@ -75,8 +82,8 @@ function ProjectList() {
       price: price ? Number(price) : 0,
       bhk: bhk ? bhk : 0,
       project_status: project_status ? project_status : "Not Specified",
-      project_state: project_state ? project_state : "Select State",
-      project_city: project_city ? project_city : "Select City",
+      project_state: project_state ? project_state : "",
+      project_city: project_city ? project_city : "",
     });
     setInput({
       ...input,
@@ -99,7 +106,14 @@ function ProjectList() {
       }
     });
   };
+  // const searchKeyword = () => {
+  //   let url = `${host}/api/properties/getproperties?page=${page}&perPage=${perPage}&state=${state}&city=${city}&search=${keyword}`;
+  // };
 
+  const changePages = (e, value) => {
+    let url = `${host}/api/properties/getproperties?page=${value}&perPage=${perPage}`;
+    getProperty(url);
+  };
   const changeFormatPrice = (price) => {
     let min = Math.abs(price);
     let data2 = 0;
@@ -179,7 +193,7 @@ function ProjectList() {
     setFilter({ ...filter, "sub-type": "" });
     setArr("");
     setArr2("");
-    setCount(0);
+    setCounter(0);
   };
 
   const done = () => {
@@ -189,7 +203,7 @@ function ProjectList() {
     sessionStorage.setItem("sub-type", JSON.stringify(data2));
     setFilter({ ...filter, amenities: data, "sub-type": data2 });
     setShow(false);
-    setCount(arr.length + arr2.length);
+    setCounter(arr.length + arr2.length);
   };
 
   const handleClick = (e) => {
@@ -235,16 +249,15 @@ function ProjectList() {
                   setSelectedState(e.target.value);
                   setInput({
                     ...input,
-                    project_city: "Select City",
+                    project_city: "",
                     project_state: e.target.value,
                   });
                   setSelectedCity("Select City");
                   sessionStorage.setItem("project_state", e.target.value);
-                  sessionStorage.setItem("project_city", "Select City");
+                  sessionStorage.setItem("project_city", "");
                 }}
-                defaultValue="All"
               >
-                <option selected value="Select State">
+                <option selected value="">
                   Select State
                 </option>
                 {data.state.map((item, index) => {
@@ -269,7 +282,7 @@ function ProjectList() {
                   changeFilterInput(e);
                 }}
               >
-                <option selected value="Select City">
+                <option selected value="">
                   Select City
                 </option>
                 {availableCity?.city.map((item, index) => {
@@ -385,7 +398,7 @@ function ProjectList() {
                     style={{ margin: "0", marginRight: "15px" }}
                   >
                     More Filters{" "}
-                    <span className="badge text-bg-primary">{count}</span>
+                    <span className="badge text-bg-primary">{counter}</span>
                   </a>
 
                   <div
@@ -626,6 +639,17 @@ function ProjectList() {
       </nav>
 
       <Project filter={filter} keyword={keyword} />
+
+      <div className="pagination_btn">
+        <Pagination count={Math.ceil(count / perPage)} onChange={changePages} />
+      </div>
+
+      <div className="bottom-banner">
+        <h1>
+          Design <span>For</span> Life
+        </h1>
+        <p>~by RERAHousing.in</p>
+      </div>
     </>
   );
 }

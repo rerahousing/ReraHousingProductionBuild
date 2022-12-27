@@ -15,10 +15,13 @@ function Project(props) {
   let amenities = JSON.parse(sessionStorage.getItem("amenities"));
   let subType = JSON.parse(sessionStorage.getItem("sub-type"));
   const { filter, keyword } = props;
+  // useEffect(() => {
+  //   getProperty(pages, perPage, filter.state, filter.city, keyword);
+  //   amenities = JSON.parse(sessionStorage.getItem("amenities"));
+  // }, [pages, filter.state, filter.city, keyword]);
   useEffect(() => {
-    getProperty(pages, perPage);
-    amenities = JSON.parse(sessionStorage.getItem("amenities"));
-  }, [pages]);
+    getProperty();
+  }, []);
 
   const [view, setView] = useState("List");
   const changePages = (e, value) => {
@@ -154,15 +157,6 @@ function Project(props) {
               })}
           </div>
         </div>
-      </div>
-      <div className="pagination_btn">
-        <Pagination count={Math.ceil(count / perPage)} onChange={changePages} />
-      </div>
-      <div className="bottom-banner">
-        <h1>
-          Design <span>For</span> Life
-        </h1>
-        <p>~by RERAHousing.in</p>
       </div>
     </div>
   );

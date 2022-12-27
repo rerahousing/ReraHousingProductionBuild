@@ -7,7 +7,7 @@ const {
   removeFromCloudinary,
 } = require("../middleware/cloudinary");
 
-// Route 1 : Get all the properties
+// Route 1 : Get the properties
 router.get("/getproperties", async (req, res) => {
   try {
     const page = parseInt(req.query.page) - 1 || 0;
@@ -38,6 +38,16 @@ router.get("/getproperties", async (req, res) => {
       message: "Internal Server Error",
       error_message: err.message,
     });
+  }
+});
+
+// Route 1.5 : Get all the properties -- for dashboard
+router.get("/getallproperties", async (req, res) => {
+  try {
+    const property = await Property.find({});
+    res.json(property);
+  } catch (err) {
+    res.status(500).send("Internal Server Error");
   }
 });
 

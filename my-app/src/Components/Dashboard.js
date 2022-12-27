@@ -45,8 +45,8 @@ function Dashboard() {
   const availableCity = data.state.find((s) => s.name === selectState);
   const [image, setImage] = useState([]);
   const {
-    property,
-    getProperty,
+    allProperties,
+    getAllProperties,
     addProperty,
     deleteProperty,
     editProp,
@@ -111,7 +111,7 @@ function Dashboard() {
     });
   };
   useEffect(() => {
-    getProperty();
+    getAllProperties();
   }, []);
 
   const formatCurrency = (price) => {
@@ -260,7 +260,7 @@ function Dashboard() {
     console.log(propertyData.rera_no);
     addProperty(formData, bhkDet);
     setLoadProperty(true);
-    getProperty();
+    getAllProperties();
   };
 
   const onChangeArray = (e) => {
@@ -354,7 +354,7 @@ function Dashboard() {
           </tr>
         </thead>
         <tbody>
-          {property?.map((e) => {
+          {allProperties?.map((e) => {
             return (
               <tr>
                 <th scope="row">{e._id}</th>

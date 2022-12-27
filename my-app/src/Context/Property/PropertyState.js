@@ -6,7 +6,7 @@ import axios from "axios";
 const PropertyState = (props) => {
   const host = "https://www.rerahousing.in";
   const [load, setLoad] = useState(false);
-  const [loadDash, setLoadDash] = useState(false);
+  const [allProperties, setAllProperties] = useState();
   const [loadProperty, setLoadProperty] = useState(false);
   const [count, setCount] = useState(1);
   // States for Property Section
@@ -24,8 +24,25 @@ const PropertyState = (props) => {
   //  ---------------------------End--------------------------------
 
   // Get Property -- Property Section
-  const getProperty = async (page, perPage) => {
-    let url = `${host}/api/properties/getproperties?page=${page}&perPage=${perPage}`;
+  const getProperty = async (url) => {
+    console.log(url);
+    let url1 = "https://rerahousing.in/api/properties/getproperties";
+    const response = await fetch(url1, {
+      method: "GET",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log(response);
+    const json = await response.json();
+    setProperty(json.property);
+    setCount(json.count);
+  };
+
+  // Get All Properties -- Dashboard Section
+  const getAllProperties = async () => {
+    let url = `${host}/api/properties/getallproperties`;
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -33,8 +50,7 @@ const PropertyState = (props) => {
       },
     });
     const json = await response.json();
-    setProperty(json.property);
-    setCount(json.count);
+    setAllProperties(json);
   };
 
   const addProperty = async (formData) => {
@@ -279,6 +295,8 @@ const PropertyState = (props) => {
         updateContact,
         setLoadProperty,
         count,
+        getAllProperties,
+        allProperties,
       }}
     >
       {props.children}
