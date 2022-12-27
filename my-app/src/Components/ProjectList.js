@@ -214,12 +214,12 @@ function ProjectList() {
   };
 
   const handleClick = (e) => {
-    let priceSt = sessionStorage.getItem("price");
-    let bhkSt = sessionStorage.getItem("bhk");
-    let project_status = sessionStorage.getItem("project_status");
-    let search_keyword = sessionStorage.getItem("search_keyword");
-    let project_city = sessionStorage.getItem("project_city");
-    let project_state = sessionStorage.getItem("project_state");
+    let priceSt = sessionStorage.getItem("price") || 0;
+    let bhkSt = sessionStorage.getItem("bhk") || 0;
+    let project_status = sessionStorage.getItem("project_status") || "";
+    let search_keyword = sessionStorage.getItem("search_keyword") || "";
+    let project_city = sessionStorage.getItem("project_city") || "";
+    let project_state = sessionStorage.getItem("project_state") || "";
     setFilter({
       price: priceSt ? Number(priceSt) : 0,
       bhk: bhkSt ? bhkSt : 0,
@@ -233,10 +233,10 @@ function ProjectList() {
       perPage,
       project_state,
       project_city,
-      search_keyword ? search_keyword : "",
-      priceSt ? Number(priceSt) : 0,
-      bhkSt ? bhkSt : 0,
-      project_status ? project_status : ""
+      search_keyword,
+      priceSt,
+      bhkSt,
+      project_status
     );
   };
   return (
