@@ -24,12 +24,11 @@ const PropertyState = (props) => {
   //  ---------------------------End--------------------------------
 
   // Get Property -- Property Section
-  const getProperty = async (url) => {
+  const getProperty = async () => {
     console.log(url);
     let url1 = "https://rerahousing.in/api/properties/getproperties";
     const response = await fetch(url1, {
       method: "GET",
-      mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
       },
@@ -161,8 +160,9 @@ const PropertyState = (props) => {
         "Content-Type": "application/json",
       },
     });
-
+    console.log(response);
     const json = await response.json();
+    console.log(json);
     setServices(json);
     setLoad(false);
   };

@@ -28,7 +28,7 @@ router.get("/getproperties", async (req, res) => {
       .skip(page * perPage)
       .limit(perPage);
 
-    return res.status(200).json({
+    res.status(200).json({
       count,
       property,
     });
