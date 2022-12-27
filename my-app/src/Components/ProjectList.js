@@ -60,12 +60,10 @@ function ProjectList() {
     const bhk = sessionStorage.getItem("bhk") || 0;
     const project_status = sessionStorage.getItem("project_status") || "";
     const range = document.getElementById("budget");
-    const project_state = sessionStorage.getItem("project_state");
-    const project_city = sessionStorage.getItem("project_city");
+    const project_state = sessionStorage.getItem("project_state") || "";
+    const project_city = sessionStorage.getItem("project_city") || "";
     setSelectedState(project_state);
     setSelectedCity(project_city);
-    const selectBox = document.getElementById("stateSelect");
-    selectBox.value = project_state === "" ? "Select State" : project_state;
     const arr = JSON.parse(sessionStorage.getItem("amenities"));
     const arr2 = JSON.parse(sessionStorage.getItem("sub-type"));
     setFilterActive(arr);
