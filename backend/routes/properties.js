@@ -18,6 +18,7 @@ router.get("/getproperties", async (req, res) => {
     const price = req.query.price || "";
     const bhk = req.query.bhk == 0 ? [1, 2, 3, 4, 5, 6] : [req.query.bhk];
     let amenites = req.query.amenites || "All";
+    let propertyType = req.query.propertyType || "All";
     const amenitesOption = [
       "Hosptial",
       "Park",
@@ -32,10 +33,19 @@ router.get("/getproperties", async (req, res) => {
       "Cinema Hall",
     ];
 
+    const propertyTypeOption = [
+      "Apartment",
+      "Row House / Villa",
+      "Independent Floor",
+    ];
+
+    propertyType === "All"
+      ? (propertyType = [...propertyTypeOption])
+      : (propertyType = req.query.propertyType.split(","));
+
     amenites === "All"
       ? (amenites = [...amenitesOption])
       : (amenites = req.query.amenites.split(","));
-    console.log(amenites);
     const status =
       req.query.projectStatus == ""
         ? ["Under Construction", "Ready to Move"]
@@ -47,6 +57,8 @@ router.get("/getproperties", async (req, res) => {
       pricing_max: { $lte: price },
       bhk: { $in: bhk },
       project_status: { $in: status },
+      amenites: { $in: amenites },
+      property_type: { $in: propertyType },
     });
     const property = await Property.find({
       title: { $regex: search, $options: "i" },
@@ -56,8 +68,8 @@ router.get("/getproperties", async (req, res) => {
       bhk: { $in: bhk },
       project_status: { $in: status },
       amenites: { $in: amenites },
+      property_type: { $in: propertyType },
     })
-
       .skip(page * perPage)
       .limit(perPage);
 

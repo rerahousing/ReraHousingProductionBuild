@@ -33,18 +33,23 @@ const PropertyState = (props) => {
     price,
     bhk,
     projectStatus,
-    amenites
+    amenites,
+    propertyType
   ) => {
     const priceF = price == 0 ? 100000000000000 : price;
     const bhkF = bhk == 0 ? "" : bhk;
     let string = "&amenites=";
+    let string2 = "&propertyType=";
+    propertyType?.forEach((item) => {
+      string2 += `${item},`;
+    });
     amenites?.forEach((item) => {
       string += `${item},`;
     });
 
     setLoadProperty(true);
     const response = await fetch(
-      `${host}/api/properties/getproperties?page=${pages}&perPage=${perPage}&state=${state}&city=${city}&price=${priceF}&search=${keyword}&bhk=${bhkF}&projectStatus=${projectStatus}${string}`,
+      `${host}/api/properties/getproperties?page=${pages}&perPage=${perPage}&state=${state}&city=${city}&price=${priceF}&search=${keyword}&bhk=${bhkF}&projectStatus=${projectStatus}${string}${string2}`,
       {
         method: "GET",
         headers: {

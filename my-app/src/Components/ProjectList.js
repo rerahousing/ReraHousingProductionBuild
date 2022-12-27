@@ -97,7 +97,8 @@ function ProjectList() {
       price,
       bhk,
       project_status,
-      arr
+      arr,
+      arr2
     );
   }, [pages]);
 
@@ -221,6 +222,8 @@ function ProjectList() {
     let search_keyword = sessionStorage.getItem("search_keyword") || "";
     let project_city = sessionStorage.getItem("project_city") || "";
     let project_state = sessionStorage.getItem("project_state") || "";
+    let amenites = JSON.parse(sessionStorage.getItem("amenities")) || "All";
+    let propertyType = JSON.parse(sessionStorage.getItem("sub-type"));
     setFilter({
       price: priceSt ? Number(priceSt) : 0,
       bhk: bhkSt ? bhkSt : 0,
@@ -237,7 +240,9 @@ function ProjectList() {
       search_keyword,
       priceSt,
       bhkSt,
-      project_status
+      project_status,
+      amenites,
+      propertyType
     );
   };
   return (
