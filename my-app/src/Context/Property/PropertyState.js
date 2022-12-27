@@ -24,11 +24,21 @@ const PropertyState = (props) => {
   //  ---------------------------End--------------------------------
 
   // Get Property -- Property Section
-  const getProperty = async (pages, perPage, state, city, keyword, price) => {
+  const getProperty = async (
+    pages,
+    perPage,
+    state,
+    city,
+    keyword,
+    price,
+    bhk,
+    projectStatus
+  ) => {
     const priceF = price == 0 ? 100000000000000 : price;
+    const bhkF = bhk == 0 ? "" : bhk;
     setLoadProperty(true);
     const response = await fetch(
-      `${host}/api/properties/getproperties?page=${pages}&perPage=${perPage}&state=${state}&city=${city}&price=${priceF}`,
+      `${host}/api/properties/getproperties?page=${pages}&perPage=${perPage}&state=${state}&city=${city}&price=${priceF}&search=${keyword}&bhk=${bhkF}&projectStatus=${projectStatus}`,
       {
         method: "GET",
         headers: {

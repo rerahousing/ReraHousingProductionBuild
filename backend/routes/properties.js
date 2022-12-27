@@ -16,17 +16,20 @@ router.get("/getproperties", async (req, res) => {
     const state = req.query.state || "";
     const search = req.query.search || "";
     const price = req.query.price || "";
+    const bhk = req.query.bhk || "";
     const count = await Property.countDocuments({
       title: { $regex: search, $options: "i" },
       city: { $regex: city, $options: "i" },
       state: { $regex: state, $options: "i" },
       pricing_max: { $lte: price },
+      bhk: { $regex: bhk, $options: "i" },
     });
     const property = await Property.find({
       title: { $regex: search, $options: "i" },
       city: { $regex: city, $options: "i" },
       state: { $regex: state, $options: "i" },
       pricing_max: { $lte: price },
+      bhk: { $regex: bhk, $options: "i" },
     })
       .skip(page * perPage)
       .limit(perPage);

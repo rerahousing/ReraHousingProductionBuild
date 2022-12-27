@@ -16,12 +16,12 @@ function ProjectList() {
   const [pages, setPages] = useState(1);
   const [perPage, setPerPage] = useState(1);
   const [arr2, setArr2] = useState([] || "");
-  const [keyword, setKeyword] = useState("All");
+  const [keyword, setKeyword] = useState("");
   const [counter, setCounter] = useState(0);
   const [input, setInput] = useState({
     bhk: 0,
-    project_status: "Not Specified",
-    search_keyword: "All",
+    project_status: "",
+    search_keyword: "",
     amenities: [],
     sub_type: [],
     project_city: "",
@@ -31,8 +31,8 @@ function ProjectList() {
   const [filter, setFilter] = useState({
     price: 0,
     bhk: 0,
-    project_status: "Not Specified",
-    search_keyword: "All",
+    project_status: "",
+    search_keyword: "",
     amenities: [],
     sub_type: [],
     project_city: "",
@@ -57,8 +57,8 @@ function ProjectList() {
 
   useEffect(() => {
     const price = sessionStorage.getItem("price") || 0;
-    const bhk = sessionStorage.getItem("bhk");
-    const project_status = sessionStorage.getItem("project_status");
+    const bhk = sessionStorage.getItem("bhk") || 0;
+    const project_status = sessionStorage.getItem("project_status") || "";
     const range = document.getElementById("budget");
     const project_state = sessionStorage.getItem("project_state");
     const project_city = sessionStorage.getItem("project_city");
@@ -77,7 +77,7 @@ function ProjectList() {
     let data = document.getElementById("input_bhk");
     data.value = bhk ? bhk : 0;
     data = document.getElementById("input_project_status");
-    data.value = project_status ? project_status : "Not Specified";
+    data.value = project_status ? project_status : "";
     setFilter({
       price: price ? Number(price) : 0,
       bhk: bhk ? bhk : 0,
@@ -90,7 +90,16 @@ function ProjectList() {
       project_city: project_city,
       project_state: project_state,
     });
-    getProperty(pages, perPage, project_state, project_city, keyword, price);
+    getProperty(
+      pages,
+      perPage,
+      project_state,
+      project_city,
+      keyword,
+      price,
+      bhk,
+      project_status
+    );
   }, [pages]);
 
   const toggleActiveOnLoad = (arr, arr2) => {
@@ -216,7 +225,7 @@ function ProjectList() {
     setFilter({
       price: priceSt ? Number(priceSt) : 0,
       bhk: bhkSt ? bhkSt : 0,
-      project_status: project_status ? project_status : "Not Specified",
+      project_status: project_status ? project_status : "",
       search_keyword: search_keyword ? search_keyword : "All",
       project_city: project_city ? project_city : "",
       project_state: project_state ? project_state : "",
@@ -226,8 +235,10 @@ function ProjectList() {
       perPage,
       project_state,
       project_city,
-      search_keyword,
-      priceSt
+      search_keyword ? search_keyword : "",
+      priceSt ? Number(priceSt) : 0,
+      bhkSt ? bhkSt : 0,
+      project_status ? project_status : ""
     );
   };
   return (
@@ -317,13 +328,14 @@ function ProjectList() {
               className="btn btn-outline-success btn-search rounded-circle"
               type="button"
               onClick={() => {
-                setKeyword(input.search_keyword);
-                getProperty(
-                  pages,
-                  perPage,
-                  input.project_state,
-                  input.project_city
-                );
+                // setKeyword(input.search_keyword);
+                // getProperty(
+                //   pages,
+                //   perPage,
+                //   input.project_state,
+                //   input.project_city
+                // );
+                handleClick();
               }}
             >
               <i className="bi bi-search"></i>{" "}
@@ -344,8 +356,9 @@ function ProjectList() {
                     onChange={changeFilterInput}
                     id="input_project_status"
                     aria-label="Default select example"
+                    value={input.project_status}
                   >
-                    <option value={"Not Specified"}>Project</option>
+                    <option value={""}>Project</option>
                     <option value={"Under Construction"}>
                       Under Construction
                     </option>
