@@ -228,6 +228,7 @@ ul.list li {
   padding-left: 10px;
   height: 35px;
   font-size: 14px;
+  max-width: 100%;
 }
 
 .drop-product {

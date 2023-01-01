@@ -497,7 +497,7 @@ function ProductPage() {
                   <label className="lable">Select Project State</label>
 
                   <select
-                    className="form-select drop"
+                    className="form-select drop-product"
                     aria-label="Default select example"
                     placeholder="State Name"
                     name="project_state"
