@@ -11,7 +11,7 @@ const {
 router.get("/getproperties", async (req, res) => {
   try {
     const page = parseInt(req.query.page) - 1 || 0;
-    const perPage = parseInt(req.query.perPage) || 21;
+    const perPage = parseInt(req.query.perPage) || 10;
     const city = req.query.city || "";
     const state = req.query.state || "";
     const search = req.query.search || "";

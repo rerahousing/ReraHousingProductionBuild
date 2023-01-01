@@ -13,7 +13,7 @@ function ProjectList() {
   const counter1 = 0;
   const counter2 = 0;
   const [pages, setPages] = useState(1);
-  const [perPage, setPerPage] = useState(15);
+  const [perPage, setPerPage] = useState(10);
   const [arr2, setArr2] = useState([] || "");
   const [keyword, setKeyword] = useState("");
   const [counter, setCounter] = useState(0);

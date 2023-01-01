@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.329369c1.css",
-    "main.js": "./static/js/main.054e6863.js",
+    "main.js": "./static/js/main.b04615df.js",
     "static/js/787.28cb0dcd.chunk.js": "./static/js/787.28cb0dcd.chunk.js",
     "static/media/gurugram.jpg": "./static/media/gurugram.97861660936eb7eee69e.jpg",
     "static/media/rera-approved-housing-projects-header.jpg": "./static/media/rera-approved-housing-projects-header.fdac6cc9fca143a7e104.jpg",
@@ -19,8 +19,8 @@
     "static/media/Rerahousing_logo_png.png": "./static/media/Rerahousing_logo_png.5e79e58bc558d2ab05fc.png",
     "static/media/tatahousing.png": "./static/media/tatahousing.4f350f3f2fc8c7cef860.png",
     "static/media/onebkc.jpg": "./static/media/onebkc.2cf57945bc98762e678f.jpg",
-    "static/media/icon (2).svg": "./static/media/icon (2).5f5f172ebe59757f3c05f49d91bdb2f1.svg",
     "index.html": "./index.html",
+    "static/media/icon (2).svg": "./static/media/icon (2).5f5f172ebe59757f3c05f49d91bdb2f1.svg",
     "static/media/profile.svg": "./static/media/profile.87b1cc5193dd9f59ba0e76bca69e10ca.svg",
     "static/media/ex-logo.svg": "./static/media/ex-logo.a8826384a3436758f69a6660a3f4cbdf.svg",
     "static/media/bed.svg": "./static/media/bed.3c89ab2c4b0cbeb82c95992b0aad9746.svg",
@@ -30,11 +30,11 @@
     "static/media/icons8-blogger.svg": "./static/media/icons8-blogger.bdf0454371873dd86dbd223c1a0f88a8.svg",
     "static/media/quote.svg": "./static/media/quote.1fa145d0b88812f66078ea977a1d4cd7.svg",
     "main.329369c1.css.map": "./static/css/main.329369c1.css.map",
-    "main.054e6863.js.map": "./static/js/main.054e6863.js.map",
+    "main.b04615df.js.map": "./static/js/main.b04615df.js.map",
     "787.28cb0dcd.chunk.js.map": "./static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.329369c1.css",
-    "static/js/main.054e6863.js"
+    "static/js/main.b04615df.js"
   ]
 }
