@@ -120,9 +120,9 @@ function Home() {
               </div>
               <div className="col-lg-4 col-md-6 ">
                 <Card_3
-                  text={"Transpiracy"}
+                  text={"Transparency"}
                   des={
-                    "We Know to be for bringing complete transpiracy during the whole complete process."
+                    "We Know to be for bringing complete Transparency during the whole complete process."
                   }
                   setColor={setColor}
                   link={"/real-estate-service-providers"}
