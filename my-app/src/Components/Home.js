@@ -100,7 +100,7 @@ function Home() {
               </div>
               <div className="col-lg-4 col-md-6">
                 <Card_3
-                  text={"Rera Agents"}
+                  text={"RERA Agents"}
                   des={
                     "Find RERA approved agents nearby your location or online around India. And get everything smoothly."
                   }
