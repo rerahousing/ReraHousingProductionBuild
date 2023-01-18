@@ -55,6 +55,7 @@ router.get("/getproperties", async (req, res) => {
       city: { $regex: city, $options: "i" },
       state: { $regex: state, $options: "i" },
       pricing_max: { $lte: price },
+      pricingmin: { $lte: price },
       bhk: { $in: bhk },
       project_status: { $in: status },
       amenites: { $in: amenites },

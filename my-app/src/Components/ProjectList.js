@@ -204,11 +204,13 @@ function ProjectList() {
   const done = () => {
     const data = arr === null ? [] : [...arr];
     const data2 = arr2 === null ? [] : [...arr2];
+    console.log(data);
     sessionStorage.setItem("amenities", JSON.stringify(data));
     sessionStorage.setItem("sub-type", JSON.stringify(data2));
     setFilter({ ...filter, amenities: data, "sub-type": data2 });
     setShow(false);
     setCounter(arr.length + arr2.length);
+    window.location.reload();
   };
 
   const handleClick = (e) => {
@@ -218,7 +220,7 @@ function ProjectList() {
     let search_keyword = sessionStorage.getItem("search_keyword") || "";
     let project_city = sessionStorage.getItem("project_city") || "";
     let project_state = sessionStorage.getItem("project_state") || "";
-    let amenites = JSON.parse(sessionStorage.getItem("amenities")) || "All";
+    let amenites = JSON.parse(sessionStorage.getItem("amenities")) || [];
     let propertyType = JSON.parse(sessionStorage.getItem("sub-type"));
     setFilter({
       price: priceSt ? Number(priceSt) : 0,
@@ -328,13 +330,6 @@ function ProjectList() {
               className="btn btn-outline-success btn-search rounded-circle"
               type="button"
               onClick={() => {
-                // setKeyword(input.search_keyword);
-                // getPropertyFilter(
-                //   pages,
-                //   perPage,
-                //   input.project_state,
-                //   input.project_city
-                // );
                 handleClick();
               }}
             >

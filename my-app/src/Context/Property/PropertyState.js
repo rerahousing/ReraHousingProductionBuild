@@ -40,6 +40,7 @@ const PropertyState = (props) => {
     const bhkF = bhk == 0 ? "" : bhk;
     let string = "&amenites=";
     let string2 = "&propertyType=";
+    let amenitesF = amenites ? amenites : [];
     propertyType?.forEach((item) => {
       string2 += `${item},`;
     });

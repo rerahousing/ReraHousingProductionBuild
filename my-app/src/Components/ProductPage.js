@@ -296,13 +296,13 @@ function ProductPage() {
                 </div>
                 <h5>Why You should buy this property</h5>
                 <ul className="list">
-                  {specProp.other_fet?.map((e) => {
+                  {specProp.why?.map((e) => {
                     return <li>{e}</li>;
                   })}
                 </ul>
                 <h5>Other Features</h5>
                 <ul className="list">
-                  {specProp.why?.map((e) => {
+                  {specProp.other_fet?.map((e) => {
                     return <li>{e}</li>;
                   })}
                 </ul>
