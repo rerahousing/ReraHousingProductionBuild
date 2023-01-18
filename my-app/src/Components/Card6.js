@@ -42,6 +42,9 @@ function Card6(props) {
   const changeFormatPrice = (price) => {
     let min = Math.abs(price);
     let data2 = 0;
+    if (min <= 999) {
+      data2 = price;
+    }
     if (min > 999 && min <= 99999) {
       data2 = min / 1000.0;
       data2 = data2.toString() + " K";

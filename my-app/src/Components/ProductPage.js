@@ -252,6 +252,7 @@ function ProductPage() {
                   class="callback-btn"
                   href={`${specProp.website_property}`}
                   role="button"
+                  target="_blank"
                 >
                   <i class="bi bi-link-45deg"></i> Project Website{" "}
                   <i class="bi bi-arrow-right"></i>
@@ -294,6 +295,12 @@ function ProductPage() {
                   </div>
                 </div>
                 <h5>Why You should buy this property</h5>
+                <ul className="list">
+                  {specProp.other_fet?.map((e) => {
+                    return <li>{e}</li>;
+                  })}
+                </ul>
+                <h5>Other Features</h5>
                 <ul className="list">
                   {specProp.why?.map((e) => {
                     return <li>{e}</li>;

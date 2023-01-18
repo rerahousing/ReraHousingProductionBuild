@@ -788,7 +788,7 @@ function DashboardServices() {
                     <input
                       type="file"
                       className="form-control"
-                      id="inputGroupFile02"
+                      id="inputGroupFile01"
                       onChange={(e) => {
                         setImage([e.target.files[0]]);
                       }}

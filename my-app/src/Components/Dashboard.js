@@ -27,6 +27,8 @@ function Dashboard() {
     ecity: "",
     estate: "",
     ebhk: [],
+    epricing_max: 0,
+    epricing_min: 0,
     website_property: "",
     possession: "",
     configuration: "",
@@ -157,7 +159,7 @@ function Dashboard() {
       ehot_deal: currentProp.hot_deal,
       views: currentProp.views,
     });
-    console.log(currentProp.possession);
+    console.log(currentProp.pricing_max);
     const data = document.getElementById("einput_hot_deal");
     data.checked = currentProp.hot_deal;
     setBhk(currentProp.bhk);
@@ -168,11 +170,11 @@ function Dashboard() {
     setFetures(currentProp.other_fet);
     setPrice_min(currentProp.pricingmin);
     setPrice_max(currentProp.pricing_max);
-    console.log(new Date(currentProp.prossession));
   };
 
   const updatePropDB = () => {
     ref.current.click();
+    console.log(inputProp);
     const formData = new FormData();
     formData.append("rera_no", inputProp.erera_no);
     formData.append("title", inputProp.etitle);
@@ -180,8 +182,8 @@ function Dashboard() {
     formData.append("city", inputProp.ecity);
     formData.append("state", inputProp.estate);
     bhk.forEach((item) => formData.append("bhk", item));
-    formData.append("pricingmin", price_min);
-    formData.append("pricing_max", price_max);
+    formData.append("pricingmin", Number(inputProp.epricing_min));
+    formData.append("pricing_max", Number(inputProp.epricing_max));
     formData.append("website_property", inputProp.ewebsite_property);
     formData.append("possession", inputProp.possession);
     formData.append("configuration", inputProp.econfiguration);
@@ -193,17 +195,15 @@ function Dashboard() {
     why.forEach((item) => formData.append("why", item));
     amenites.forEach((item) => formData.append("amenites", item));
     formData.append("project_status", inputProp.eproject_status);
-    let data = formatCurrency(price_max);
+    let data = formatCurrency(Number(inputProp.epricing_max));
     formData.append("priceMaxFormated", data);
-    data = formatCurrency(price_min);
+    data = formatCurrency(Number(inputProp.epricing_min));
     formData.append("priceMinFormated", data);
     formData.append("views", inputProp.views);
     data = document.getElementById("einput_hot_deal").checked;
     formData.append("hot_deal", data);
     formData.append("property_type", inputProp.property_type);
     editProp(inputProp.id, formData);
-
-    window.location.reload();
   };
   const setDataImage = (image) => {
     const data = [];
@@ -231,7 +231,7 @@ function Dashboard() {
     formData.append("developer", propertyData.developer);
     formData.append("city", propertyData.city);
     formData.append("state", propertyData.state);
-    bhk.forEach((item) => formData.append("bhk", item));
+    bhk?.forEach((item) => formData.append("bhk", item));
     formData.append("pricingmin", price_min);
     formData.append("pricing_max", price_max);
     formData.append("website_property", propertyData.website_property);
@@ -257,7 +257,6 @@ function Dashboard() {
     formData.append("hot_deal", data);
     logo?.forEach((item) => formData.append("developer_logo", item));
     formData.append("property_type", propertyData.property_type);
-    console.log(propertyData.rera_no);
     addProperty(formData, bhkDet);
     setLoadProperty(true);
     getAllProperties();
@@ -297,6 +296,7 @@ function Dashboard() {
   };
   const handleChange = (e) => {
     setInputProp({ ...inputProp, [e.target.name]: e.target.value });
+    console.log(e.target.value);
   };
 
   const patchproperty = () => {
@@ -610,7 +610,7 @@ function Dashboard() {
                 </div>
                 <div className="mb-3">
                   <label for="project_stataus" className="form-label">
-                    Project Status
+                    Project Status <span className="text-danger">*</span>
                   </label>
                   <select
                     class="form-select"
@@ -629,7 +629,7 @@ function Dashboard() {
 
                 <div className="mb-3">
                   <label for="property_type" className="form-label">
-                    Property Type
+                    Property Type <span className="text-danger">*</span>
                   </label>
                   <select
                     class="form-select"
@@ -671,7 +671,7 @@ function Dashboard() {
                 </div>
                 <div className="mb-3">
                   <label for="exampleInputPassword1" className="form-label">
-                    Total BHK
+                    Total BHK <span className="text-danger">*</span>
                   </label>
 
                   <div className="input-box">
@@ -759,7 +759,7 @@ function Dashboard() {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="exampleInputPassword1" className="form-label">
-                    Pricing
+                    Pricing <span className="text-danger">*</span>
                   </label>
                   <div className="d-flex my-2">
                     <input
@@ -877,7 +877,7 @@ function Dashboard() {
                 </div>
                 <div className="mb-3">
                   <label for="exampleInputPassword5" className="form-label">
-                    Possession in:
+                    Possession in: <span className="text-danger">*</span>
                   </label>
                   <input
                     type="date"
@@ -1029,7 +1029,7 @@ function Dashboard() {
                 </div>
                 <div className="mb-3">
                   <label for="exampleInputPassword1" className="form-label">
-                    Amenites:
+                    Amenites: <span className="text-danger">*</span>
                   </label>
                   <div className="row">
                     <div className="col-4">
@@ -1330,7 +1330,7 @@ function Dashboard() {
                     </label>
                     <input
                       value={inputProp.erera_no}
-                      type="number"
+                      type="text"
                       className="form-control"
                       id="exampleInputPassword9"
                       name="erera_no"
@@ -1419,7 +1419,7 @@ function Dashboard() {
                   </div>
                   <div className="mb-3">
                     <label for="eproject_status" className="form-label">
-                      Project Status
+                      Project Status <span className="text-danger">*</span>
                     </label>
                     <select
                       class="form-select"
@@ -1440,7 +1440,7 @@ function Dashboard() {
 
                   <div className="mb-3">
                     <label for="property_type" className="form-label">
-                      Property Type
+                      Property Type <span className="text-danger">*</span>
                     </label>
                     <select
                       class="form-select"
@@ -1489,7 +1489,7 @@ function Dashboard() {
                   </div>
                   <div className="mb-3">
                     <label for="exampleInputPassword1" className="form-label">
-                      Total BHK
+                      Total BHK <span className="text-danger">*</span>
                     </label>
                   </div>
 
@@ -1527,26 +1527,24 @@ function Dashboard() {
                       htmlFor="exampleInputPassword1"
                       className="form-label"
                     >
-                      Pricing
+                      Pricing <span className="text-danger">*</span>
                     </label>
                     <div className="d-flex my-2">
                       <input
                         type="number"
+                        name="epricing_min"
                         className="form-control"
                         placeholder="Min"
-                        value={price_min}
-                        onChange={(e) => {
-                          setPrice_min(e.target.value);
-                        }}
+                        value={inputProp.epricing_min}
+                        onChange={handleChange}
                       />
                       <input
                         type="number"
+                        name="epricing_max"
                         className="form-control"
                         placeholder="Max"
-                        value={price_max}
-                        onChange={(e) => {
-                          setPrice_max(e.target.value);
-                        }}
+                        value={inputProp.epricing_max}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -1650,7 +1648,7 @@ function Dashboard() {
                   </div>
                   <div className="mb-3">
                     <label for="exampleInputPassword13" className="form-label">
-                      Possession in:
+                      Possession in: <span className="text-danger">*</span>
                     </label>
                     <input
                       type="date"
@@ -1806,7 +1804,7 @@ function Dashboard() {
                   </div>
                   <div className="mb-3">
                     <label for="exampleInputPassword1" className="form-label">
-                      Amenites:
+                      Amenites: <span className="text-danger">*</span>
                     </label>
                     <div className="row">
                       <div className="col-4">

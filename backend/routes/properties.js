@@ -15,7 +15,7 @@ router.get("/getproperties", async (req, res) => {
     const city = req.query.city || "";
     const state = req.query.state || "";
     const search = req.query.search || "";
-    const price = req.query.price || "";
+    const price = req.query.price || 100000000000;
     const bhk = req.query.bhk == 0 ? [1, 2, 3, 4, 5, 6] : [req.query.bhk];
     let amenites = req.query.amenites || "All";
     let propertyType = req.query.propertyType || "All";

@@ -117,9 +117,11 @@ const PropertyState = (props) => {
         setProperty(newProperty);
         alert("Delete Successfully !!");
         setLoadProperty(false);
+        window.location.reload();
       })
       .catch((err) => {
         alert(err.message);
+        window.location.reload();
       });
   };
 
@@ -142,6 +144,7 @@ const PropertyState = (props) => {
   const editProp = (id, formData) => {
     const url = `${host}/api/properties/updateproperty/${id}`;
     setLoadProperty(true);
+    console.log(formData);
     axios
       .post(url, formData)
       .then((result) => {
@@ -151,6 +154,7 @@ const PropertyState = (props) => {
       })
       .catch((err) => {
         alert(`Some Error Occured ! \n id: ${err.message}`);
+        console.log(err);
         setLoadProperty(false);
         window.location.reload();
       });
@@ -215,6 +219,7 @@ const PropertyState = (props) => {
     const newService = services.filter((prop) => {
       return prop._id !== id;
     });
+    window.location.reload();
     setServices(newService);
   };
 
