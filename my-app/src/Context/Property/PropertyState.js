@@ -48,9 +48,36 @@ const PropertyState = (props) => {
       string += `${item},`;
     });
 
+    let query = "";
+    if (state) {
+      query += `&state=${state}`;
+    }
+    if (city) {
+      query += `&city=${city}`;
+    }
+    if (priceF) {
+      query += `&price=${priceF}`;
+    }
+    if (keyword) {
+      query += `&search=${keyword}`;
+    }
+    if (bhkF) {
+      query += `&bhk=${bhkF}`;
+    }
+    if (projectStatus) {
+      query += `&projectStatus=${projectStatus}`;
+    }
+    if (propertyType) {
+      query += `${string2}`;
+    }
+    if (amenites) {
+      query += `${string}`;
+    }
+    console.log(query);
+
     setLoadProperty(true);
     const response = await fetch(
-      `${host}/api/properties/getproperties?page=${pages}&perPage=${perPage}&state=${state}&city=${city}&price=${priceF}&search=${keyword}&bhk=${bhkF}&projectStatus=${projectStatus}${string}${string2}`,
+      `${host}/api/properties/getproperties?page=${pages}&perPage=${perPage}${query}`,
       {
         method: "GET",
         headers: {
