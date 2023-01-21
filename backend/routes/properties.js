@@ -12,10 +12,10 @@ router.get("/getproperties", async (req, res) => {
   try {
     const page = parseInt(req.query.page) - 1 || 0;
     const perPage = parseInt(req.query.perPage) || 10;
-    const city = req.query.city || "";
-    const state = req.query.state || "";
-    const search = req.query.search || "";
-    const price = req.query.price || 100000000;
+    const city = req.query.city ? req.query.city : "";
+    const state = req.query.state ? req.query.state : "";
+    const search = req.query.search ? req.query.search : "";
+    const price = req.query.price ? req.query.price : 100000000;
     const bhk = req.query.bhk ? [1, 2, 3, 4, 5, 6] : [req.query.bhk];
     let amenites = req.query.amenites || "All";
     let propertyType = req.query.propertyType || "All";
