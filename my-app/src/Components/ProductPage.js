@@ -52,6 +52,12 @@ function ProductPage() {
     });
   };
 
+  const dateConvertion = (date) => {
+    let dateInput = date || "N/A";
+    let dateFormated = dateInput.substring(0, 10);
+    return dateFormated;
+  };
+
   const resp = {
     320: {
       items: 2,
@@ -271,7 +277,7 @@ function ProductPage() {
                 <div className="other_details">
                   <div className="det_col">
                     <span>Possesion in</span>
-                    <label>{specProp.possession}</label>
+                    <label>{dateConvertion(specProp.possession)}</label>
                   </div>
                   <div className="det_col">
                     <span>Configuration (BUA)</span>

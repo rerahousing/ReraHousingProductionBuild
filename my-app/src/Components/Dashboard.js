@@ -221,6 +221,12 @@ function Dashboard() {
     }
   };
 
+  const dateConvertion = (date) => {
+    let dateInput = date || "N/A";
+    let dateFormated = dateInput.substring(0, 10);
+    return dateFormated;
+  };
+
   const handleClick = (e) => {
     ref2.current.click();
     e.preventDefault();
@@ -309,6 +315,11 @@ function Dashboard() {
     patchProp(inputProp.id, formData);
   };
 
+  const resetAllPropertyForm = () => {
+    setWhy([]);
+    setAmenites([]);
+  };
+
   const page = (
     <div className="container">
       <button
@@ -316,6 +327,7 @@ function Dashboard() {
         className="btn btn-primary"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
+        onClick={resetAllPropertyForm}
       >
         Add a Property
       </button>
@@ -407,7 +419,7 @@ function Dashboard() {
                   </p>
                 </td>
                 <td>{e.website_property}</td>
-                <td>{e.possession}</td>
+                <td>{dateConvertion(e.possession)}</td>
                 <td>{e.configuration}</td>
                 <td>{e.carpet_area}</td>
                 <td>{e.tower}</td>
