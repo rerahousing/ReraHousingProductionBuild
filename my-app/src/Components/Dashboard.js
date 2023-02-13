@@ -11,6 +11,7 @@ function Dashboard() {
   const ref = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
+  const [value, setValue] = useState();
   const [logo, setLogo] = useState();
   const [imageData, setImageData] = useState([]);
   const context = useContext(PropertyContext);
@@ -159,7 +160,6 @@ function Dashboard() {
       ehot_deal: currentProp.hot_deal,
       views: currentProp.views,
     });
-    console.log(currentProp.pricing_max);
     const data = document.getElementById("einput_hot_deal");
     data.checked = currentProp.hot_deal;
     setBhk(currentProp.bhk);
@@ -172,9 +172,10 @@ function Dashboard() {
     setPrice_max(currentProp.pricing_max);
   };
 
+  let carpetAreaInput = document.getElementById("carpet_area_input");
+
   const updatePropDB = () => {
     ref.current.click();
-    console.log(inputProp);
     const formData = new FormData();
     formData.append("rera_no", inputProp.erera_no);
     formData.append("title", inputProp.etitle);
@@ -221,6 +222,21 @@ function Dashboard() {
     }
   };
 
+  const changeInputValue = (value, subStr) => {
+    const currValue = value;
+    let newStr = "";
+    if (currValue.includes("s")) {
+      newStr = currValue.replace("sq.ft.", subStr);
+    } else if (currValue.includes("ft")) {
+      newStr = currValue.replace("ft", subStr);
+    } else if (currValue.includes("m")) {
+      newStr = currValue.replace("m", subStr);
+    } else {
+      newStr = currValue + " " + subStr;
+    }
+    return newStr;
+  };
+
   const dateConvertion = (date) => {
     let dateInput = date || "N/A";
     let dateFormated = dateInput.substring(0, 10);
@@ -230,7 +246,6 @@ function Dashboard() {
   const handleClick = (e) => {
     ref2.current.click();
     e.preventDefault();
-    console.log(propertyData);
     const formData = new FormData();
     formData.append("rera_no", propertyData.rera_no);
     formData.append("title", propertyData.title);
@@ -302,7 +317,6 @@ function Dashboard() {
   };
   const handleChange = (e) => {
     setInputProp({ ...inputProp, [e.target.name]: e.target.value });
-    console.log(e.target.value);
   };
 
   const patchproperty = () => {
@@ -1584,18 +1598,18 @@ function Dashboard() {
                       Carpet Area:
                     </label>
                     <div className="d-flex">
-                      <CurrencyFormat
-                        thousandSeparator={false}
-                        suffix={suffix}
+                      <input
+                        type="text"
                         className="form-control"
                         value={inputProp.ecarpet_area}
-                        placeholder="Ex: 123 ft"
+                        id="carpet_area"
                         name="ecarpet_area"
-                        onValueChange={(values) => {
-                          const { formattedValue, value } = values;
+                        placeholder="Ex: 123 ft"
+                        onChange={(e) => {
+                          setValue(e.target.value);
                           setInputProp({
                             ...inputProp,
-                            ecarpet_area: formattedValue,
+                            ecarpet_area: e.target.value,
                           });
                         }}
                       />
@@ -1615,6 +1629,14 @@ function Dashboard() {
                               className="dropdown-item"
                               onClick={() => {
                                 setSuffix(" ft");
+                                const valueInput = changeInputValue(
+                                  inputProp.ecarpet_area,
+                                  "ft"
+                                );
+                                setInputProp({
+                                  ...inputProp,
+                                  ecarpet_area: valueInput,
+                                });
                               }}
                             >
                               ft
@@ -1625,6 +1647,14 @@ function Dashboard() {
                               className="dropdown-item"
                               onClick={() => {
                                 setSuffix(" sq.ft.");
+                                const valueInput = changeInputValue(
+                                  inputProp.ecarpet_area,
+                                  "sq.ft."
+                                );
+                                setInputProp({
+                                  ...inputProp,
+                                  ecarpet_area: valueInput,
+                                });
                               }}
                             >
                               sq. ft.
@@ -1635,6 +1665,14 @@ function Dashboard() {
                               className="dropdown-item"
                               onClick={() => {
                                 setSuffix(" m");
+                                const valueInput = changeInputValue(
+                                  inputProp.ecarpet_area,
+                                  "m"
+                                );
+                                setInputProp({
+                                  ...inputProp,
+                                  ecarpet_area: valueInput,
+                                });
                               }}
                             >
                               m

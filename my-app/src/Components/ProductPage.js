@@ -280,7 +280,7 @@ function ProductPage() {
                     <label>{dateConvertion(specProp.possession)}</label>
                   </div>
                   <div className="det_col">
-                    <span>Configuration (BUA)</span>
+                    <span>Configuration</span>
                     <label>{specProp.configuration}</label>
                   </div>
                   <div className="det_col">
