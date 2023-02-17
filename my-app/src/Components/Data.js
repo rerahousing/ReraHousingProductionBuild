@@ -222,7 +222,7 @@ const data = {
       city: ["Gangtok", "Namchi"],
     },
     {
-      name: "Gujrat",
+      name: "Gujarat",
       city: [
         "Ahmendabad",
         "Vadodara",
