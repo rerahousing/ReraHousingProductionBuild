@@ -131,6 +131,7 @@ const data = {
       name: "Punjab",
       city: [
         "Amritsar",
+        "Chandigarh",
         "Kharar",
         "Zirakpur",
         "Chapra",
@@ -154,7 +155,7 @@ const data = {
         "Ludhiana",
         "Patiala",
         "Bathinda",
-        "Sahizada Ajit Singh Nagar",
+        "Mohali",
         "Kapurthala",
       ],
     },
